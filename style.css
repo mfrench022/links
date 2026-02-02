@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    font-size: 125%;
+	font-size: 125%;
 }
+
+h1 {
+
+	font-family: "Great Vibes", cursive;
+	font-weight: 400;
+	position: fixed;
+	font-size: 40vw;
+	inset-block-end: -13.5vw;
+	inset-inline-end: 1vw;
+}
+
+span {
+	font-size: 1.2em;
+}
+
+/* I wanted to have a break in the header word to push elements in front and behind the text */
+/* I reviewed clip paths here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path */
+/* This is visually cropping the top and bottom halves of the two headers */
+.clipped{
+  clip-path: inset(21% -10% 0% 0%);
+  color: blue;
+}
+
+.clipped2{
+  clip-path: inset(0 -10% 79% 0);
+  color: green;
+}
+
+#img {
+	width: 100%;
+	height: 500px;
+	background-color: red;
+}
+
