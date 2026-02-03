@@ -2,6 +2,7 @@
 
 :root {
 	font-size: 125%;
+	--padding: 1rem;
 }
 
 h1 {
@@ -24,16 +25,59 @@ span {
 .clipped{
   clip-path: inset(21% -10% 0% 0%);
   color: blue;
+  z-index: 1;
 }
 
 .clipped2{
   clip-path: inset(0 -10% 79% 0);
-  color: green;
+  color: blue;
+  z-index: -1;
 }
 
 #img {
-	width: 100%;
-	height: 500px;
-	background-color: red;
+	width: calc(100% - (12 * var(--padding)));
+	height: 100%;
+	/* background-color: red; */
+	z-index: 0;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: var(--padding);
+	row-gap: var(--padding);
+	margin-inline-end: var(--padding);
+	margin-inline-start: calc(11 * var(--padding));
+	padding-block-start: var(--padding);
 }
 
+.polaroid, .blank {
+	width: 100%;
+	background-color: green;
+	height: 200px;
+}
+
+header {
+	padding: var(--padding);
+	background-color: red;
+	width: calc(10 * var(--padding));
+	position: fixed;
+	margin-block-start: var(--padding);
+	margin-block-end: var(--padding);
+	height: calc(100% - var(--padding));
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--padding);
+}
+
+header h2 {
+	text-align: center;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.palette {
+	width: 100%;
+	height: 3rem;
+	background-color: black;
+}
