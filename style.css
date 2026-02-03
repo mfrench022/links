@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
+
+
 :root {
 	font-size: 125%;
 	--padding: 1rem;
@@ -23,7 +26,7 @@ h1 {
 	font-size: 40vw;
 	inset-block-end: -13.5vw;
 	inset-inline-end: 1vw;
-	filter: blur(0.5rem);
+	filter: blur(0.35rem);
 	color: white;
 }
 
@@ -51,7 +54,7 @@ span {
 	/* background-color: red; */
 	z-index: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	margin-inline-end: var(--padding);
@@ -59,10 +62,11 @@ span {
 	padding-block: var(--padding);
 }
 
-.polaroid, .blank {
+.polaroid, .blank, .document {
 	width: 100%;
 	aspect-ratio: 2.8 / 4;
 	height: auto;
+	background-color: green;
 }
 
 .polaroid {
@@ -78,6 +82,27 @@ span {
 	box-shadow: inset 0 0 1rem 0.7rem #292929;
 	width: calc(100% - var(--padding));
 	height: 80%;
+}
+
+.text {
+	color: white;
+	width: 100%;
+	background-color: red;
+	padding: var(--padding);
+	transform: rotate(3deg);
+	align-self: start;
+	margin-block-start: calc(2 * var(--padding));
+}
+
+.text p {
+	font-family: "Mr Dafoe", cursive;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.5rem;
+}
+
+.document {
+	transform: rotate(-1deg);
 }
 
 header {
