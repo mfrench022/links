@@ -59,14 +59,15 @@ span {
 	row-gap: var(--padding);
 	margin-inline-end: var(--padding);
 	margin-inline-start: calc(11 * var(--padding));
-	padding-block: var(--padding);
+	padding-block-start: calc(2 * var(--padding));
+	padding-block-end: 10rem;
 }
 
 .polaroid, .blank, .document {
 	width: 100%;
 	aspect-ratio: 2.8 / 4;
 	height: auto;
-	background-color: green;
+	/* background-color: green; */
 }
 
 .document {
@@ -119,6 +120,7 @@ span {
   mask-image: url("torn-mask.svg");
   mask-size: cover;
   mask-repeat: no-repeat;
+  background-color: white;
 }
 
 header {
