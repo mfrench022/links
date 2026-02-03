@@ -17,6 +17,7 @@ h1 {
 
 span {
 	font-size: 1.2em;
+	letter-spacing: -0.03em;
 }
 
 /* I wanted to have a break in the header word to push elements in front and behind the text */
@@ -40,18 +41,23 @@ span {
 	/* background-color: red; */
 	z-index: 0;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	margin-inline-end: var(--padding);
 	margin-inline-start: calc(11 * var(--padding));
-	padding-block-start: var(--padding);
+	padding-block: var(--padding);
 }
 
 .polaroid, .blank {
 	width: 100%;
 	background-color: green;
-	height: 200px;
+	aspect-ratio: 2.8 / 4;
+	height: auto;
+}
+
+.polaroid {
+	position: relative;
 }
 
 header {
