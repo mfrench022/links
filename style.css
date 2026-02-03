@@ -6,17 +6,12 @@
 :root {
 	font-size: 125%;
 	--padding: 1rem;
+	--dropshadow: 0.2rem 0.2rem 0.3rem 0.1rem #29292953;
 }
 
 body {
-	/* I was looking for an interesting gradient for a background of my index */
-	/* Saw this technique for gradient mixing with blend modes on MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Images/Using_gradients */
-	/* By layering gradients in opposite directions and using a blend mode, the result is a nice complex blend */
-
-	background:
-	linear-gradient(to right, #717171, #191919),
-	linear-gradient(to top, rgb(96, 96, 96), rgb(20, 20, 20));
-	background-blend-mode: overlay;
+	background-image: url("paper.jpg");
+	background-size: cover;
 }
 
 h1 {
@@ -40,7 +35,7 @@ span {
 /* This is visually cropping the top and bottom halves of the two headers */
 .clipped{
   clip-path: inset(21% -10% 0% 0%);
-  z-index: 1;
+  z-index: 2;
 }
 
 .clipped2{
@@ -70,35 +65,48 @@ span {
 	/* background-color: green; */
 }
 
-.document {
-
-  
-
-}
-
 .polaroid {
 	position: relative;
-	box-shadow: 0.3rem 0.3rem 0.4rem 0.2rem #29292953;
+	box-shadow: var(--dropshadow);
 	background-color: rgb(240, 240, 233);
 }
 
-.polaroidcover {
+.polaroidimg, .polaroidcover {
 	position: absolute;
 	inset-block-start: calc(var(--padding)/2);
 	inset-inline-start: calc(var(--padding)/2);
-	box-shadow: inset 0 0 1rem 0.7rem #292929;
 	width: calc(100% - var(--padding));
 	height: 80%;
 }
 
+.polaroidcover {
+	box-shadow: inset 0 0 1rem 0.7rem #292929cf;
+	z-index: 1;
+	mix-blend-mode: hard-light;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: auto;   /* stop forcing square */
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  object-position: top center; 
+}
+
 .text {
-	color: white;
+	color: black;
 	width: 100%;
-	background-color: red;
 	padding: var(--padding);
 	transform: rotate(3deg);
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
+	box-shadow: var(--dropshadow);
+
+	background: #fff5d9;
+	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
 }
 
 .text p {
@@ -121,12 +129,12 @@ span {
   mask-size: cover;
   mask-repeat: no-repeat;
   background-color: white;
+  box-shadow: var(--dropshadow);
 }
 
 header {
 	padding: var(--padding);
 	padding-block-start: calc(1.5 * var(--padding));
-	background-color: #dddddd4f;
 	width: calc(10 * var(--padding));
 	position: fixed;
 	height: 100%;
@@ -134,8 +142,9 @@ header {
 	flex-direction: column;
 	row-gap: var(--padding);
 	border-inline-end-width: calc(var(--padding) / 4);
-	border-inline-end-color: black;
-	border-inline-end-style: solid;
+	border-inline-end-style: double;
+	border-inline-end-color: rgba(234, 104, 104, 0.699);
+	mix-blend-mode: multiply;
 }
 
 header h2 {
