@@ -69,6 +69,12 @@ span {
 	background-color: green;
 }
 
+.document {
+
+  
+
+}
+
 .polaroid {
 	position: relative;
 	box-shadow: 0.3rem 0.3rem 0.4rem 0.2rem #29292953;
@@ -101,8 +107,18 @@ span {
 	font-size: 1.5rem;
 }
 
+/* ADD ATTRIBUTION HERE */
+
 .document {
 	transform: rotate(-1deg);
+
+  -webkit-mask-image: url("torn-mask.svg");
+  -webkit-mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+
+  mask-image: url("torn-mask.svg");
+  mask-size: cover;
+  mask-repeat: no-repeat;
 }
 
 header {
