@@ -2,11 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
 
 :root {
 	font-size: 125%;
 	--padding: 1rem;
-	--dropshadow: 0.2rem 0.2rem 0.3rem 0.1rem #29292953;
+	--dropshadow: 0.1rem 0.15rem 0.2rem 0.03rem #2929293d;
 }
 
 body {
@@ -15,14 +17,17 @@ body {
 }
 
 h1 {
-	font-family: "Great Vibes", cursive;
-	font-weight: 400;
-	position: fixed;
 	font-size: 40vw;
 	inset-block-end: -13.5vw;
 	inset-inline-end: 1vw;
-	filter: blur(0.35rem);
+	filter: blur(0.28rem);
+}
+
+h1 {
 	color: white;
+	font-family: "Great Vibes", cursive;
+	font-weight: 400;
+	position: fixed;
 }
 
 span {
@@ -65,10 +70,17 @@ span {
 	/* background-color: green; */
 }
 
+.blank {
+	display: none;
+}
+
+/* ADD JS TO ROTATE ELEMENTS RANDOMLY */
+
 .polaroid {
 	position: relative;
 	box-shadow: var(--dropshadow);
 	background-color: rgb(240, 240, 233);
+	transform: rotate(-2deg);
 }
 
 .polaroidimg, .polaroidcover {
@@ -107,13 +119,34 @@ img {
 
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
+	position: relative;
+	overflow: hidden;
 }
 
-.text p {
-	font-family: "Mr Dafoe", cursive;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.5rem;
+.text::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url("paper-grain.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  pointer-events:none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  filter: contrast(140%) brightness(105%);
+}
+
+p {
+	font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+	font-size: 0.9rem;
+	line-height: 1.9rem;
+}
+
+.nav p {
+	text-align: center;
+
 }
 
 /* ADD ATTRIBUTION HERE */
@@ -147,15 +180,6 @@ header {
 	mix-blend-mode: multiply;
 }
 
-header h2 {
-	text-align: center;
-}
-
-.nav {
-	display: flex;
-	justify-content: space-between;
-}
-
 .palette {
 	width: 100%;
 	height: 3rem;
@@ -183,4 +207,10 @@ header h2 {
 
 .palette6 {
 	background-color: #3E1815;
+}
+
+@media (width > 860px) {
+	.blank {
+	display: block;
+}
 }
