@@ -11,16 +11,22 @@
 	--dropshadow: 0.1rem 0.15rem 0.2rem 0.03rem #2929293d;
 }
 
-body {
-	background-image: url("paper.jpg");
-	background-size: cover;
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background-image: url("paper.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -10;
+  opacity: 0.8;
 }
 
 h1 {
 	font-size: 40vw;
 	inset-block-end: -13.5vw;
 	inset-inline-end: 1vw;
-	filter: blur(0.28rem);
+	filter: blur(0.35rem);
 }
 
 h1 {
@@ -92,7 +98,7 @@ span {
 }
 
 .polaroidcover {
-	box-shadow: inset 0 0 1rem 0.7rem #292929cf;
+	box-shadow: inset 0 0 1rem 0.4rem #292929a9;
 	z-index: 1;
 	mix-blend-mode: hard-light;
 }
@@ -123,6 +129,7 @@ img {
 	overflow: hidden;
 }
 
+/* ADD ATTRIBUTION HERE */
 .text::after{
   content:"";
   position:absolute;
@@ -185,29 +192,12 @@ header {
 	height: 3rem;
 }
 
-.palette1 {
-	background-color: #ECE6E8;
-}
-
-.palette2 {
-	background-color: #D3B7A9;
-}
-
-.palette3 {
-	background-color: #B07964;
-}
-
-.palette4 {
-	background-color: #A25C38;
-}
-
-.palette5 {
-	background-color: #6C4444;
-}
-
-.palette6 {
-	background-color: #3E1815;
-}
+svg.palette1 { color:#ECE6E8; }
+svg.palette2 { color:#D3B7A9; }
+svg.palette3 { color:#B07964; }
+svg.palette4 { color:#A25C38; }
+svg.palette5 { color:#6C4444; }
+svg.palette6 { color:#3E1815; }
 
 @media (width > 860px) {
 	.blank {
