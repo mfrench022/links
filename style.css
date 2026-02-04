@@ -12,7 +12,8 @@
 }
 
 body::before{
-  content:"";
+
+	content:"";
   position: fixed;
   inset: 0;
   background-image: url("paper.jpg");
@@ -54,7 +55,7 @@ span {
   z-index: -1;
 }
 
-#img {
+#content {
 	width: calc(100% - (12 * var(--padding)));
 	height: 100%;
 	/* background-color: red; */
@@ -63,8 +64,8 @@ span {
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
-	margin-inline-end: var(--padding);
-	margin-inline-start: calc(11 * var(--padding));
+	margin-inline: var(--padding);
+	
 	padding-block-start: calc(2 * var(--padding));
 	padding-block-end: 10rem;
 }
@@ -98,16 +99,16 @@ span {
 }
 
 .polaroidcover {
-	box-shadow: inset 0 0 1rem 0.4rem #292929a9;
 	z-index: 1;
-	mix-blend-mode: hard-light;
+	mix-blend-mode: lighten;
+	opacity: 40%;
 }
 
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: auto;   /* stop forcing square */
+  aspect-ratio: auto;
   display: block;
   overflow: hidden;
   position: absolute;
@@ -130,7 +131,7 @@ img {
 }
 
 /* ADD ATTRIBUTION HERE */
-.text::after{
+.text::after, .document::after{
   content:"";
   position:absolute;
   inset:0;
@@ -157,19 +158,34 @@ p {
 }
 
 /* ADD ATTRIBUTION HERE */
-
-.document {
-	transform: rotate(-1deg);
+.document{
+  transform: rotate(-1deg);
 
   -webkit-mask-image: url("torn-mask.svg");
   -webkit-mask-size: cover;
   -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 
   mask-image: url("torn-mask.svg");
   mask-size: cover;
   mask-repeat: no-repeat;
+  mask-position: center;
+  position: relative;
   background-color: white;
   box-shadow: var(--dropshadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.document img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(0.92);
+  transform-origin: top center;
 }
 
 header {
@@ -178,7 +194,7 @@ header {
 	width: calc(10 * var(--padding));
 	position: fixed;
 	height: 100%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	row-gap: var(--padding);
 	border-inline-end-width: calc(var(--padding) / 4);
@@ -203,4 +219,19 @@ svg.palette6 { color:#3E1815; }
 	.blank {
 	display: block;
 }
+
 }
+
+@media (width > 415px) {
+
+	header {
+	display: flex;
+}
+
+#content {
+	margin-inline-start: calc(11 * var(--padding));
+}
+
+}
+
+
