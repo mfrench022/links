@@ -27,14 +27,13 @@ h1 {
 	font-size: 40vw;
 	inset-block-end: -13.5vw;
 	inset-inline-end: 1vw;
-	filter: blur(0.35rem);
-}
-
-h1 {
-	color: white;
+	filter: blur(0.9rem);
+	/* opacity: 60%; */
+	color: rgb(41, 41, 41);
 	font-family: "Great Vibes", cursive;
 	font-weight: 400;
 	position: fixed;
+	mix-blend-mode: color-burn;
 }
 
 span {
@@ -86,7 +85,7 @@ span {
 .polaroid {
 	position: relative;
 	box-shadow: var(--dropshadow);
-	background-color: rgb(240, 240, 233);
+	background-color: rgb(234, 234, 231);
 	transform: rotate(-2deg);
 }
 
@@ -184,8 +183,8 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transform: scale(0.92);
-  transform-origin: top center;
+  transform: scale(0.93);
+  transform-origin: bottom center;
 }
 
 header {
