@@ -68,19 +68,17 @@ let renderBlock = (blockData) => {
 	}
 
 	// Text!
-	else if (blockData.type == 'Text') {
-		let textItem =
-			`
-			<div class="text">
-					<p>
-						<source srcset="${ blockData.text}">
-					</p>
-			</div>
-			`
+	else if (blockData.type === "Text") {
+  let html = blockData.content?.html ?? "";
 
-		// And puts it into the page!
-		channelBlocks.insertAdjacentHTML('beforeend', textItem)
-	}
+  let textItem = `
+    <div class="text">
+      ${html}
+    </div>
+  `;
+
+  channelBlocks.insertAdjacentHTML("beforeend", textItem);
+}
 
 	// Uploaded (not linked) media…
 	else if (blockData.type == 'Attachment') {
@@ -105,7 +103,22 @@ let renderBlock = (blockData) => {
 
 		// Uploaded PDFs!
 		else if (contentType.includes('pdf')) {
-			// …up to you!
+			let pdfItem =
+			`
+			<div class="document">
+				<figure>
+					<picture>
+						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
+						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
+						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+					</picture>
+				</figure>
+			</div>
+			`
+
+		// And puts it into the page!
+		channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
+			
 		}
 
 		// Uploaded audio!
