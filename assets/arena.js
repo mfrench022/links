@@ -1,6 +1,18 @@
 let channelSlug = 'staying-in-style' // The “slug” is just the end of the URL.
 let myUsername = 'michael-french' // For linking to your profile.
 
+// I learned about Math.Random and other functions last year in creative coding class
+// Here I am using a random integer function to define a min and max for the randomization, and then another function to add a random amount of divs to the HTML
+
+function randInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function blankDivsHTML(min = 0, max = 2) {
+	let n = randInt(min, max);
+	return `<div class="blank"></div>`.repeat(n);
+}
+
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
@@ -16,8 +28,6 @@ let placeChannelInfo = (channelData) => {
 	channelCount.innerHTML = channelData.counts.blocks
 	channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
-
-
 
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
@@ -38,6 +48,7 @@ let renderBlock = (blockData) => {
 					</picture>
 				</figure>
 			</div>
+			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
@@ -50,11 +61,10 @@ let renderBlock = (blockData) => {
 	// Images!
 	else if (blockData.type == 'Image') {
 		let imageItem =
-
-        `
+		`
 			<div class="polaroid">
 				<figure>
-                <img class="polaroidcover" src="polaroid.svg"></img>
+				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
@@ -62,22 +72,23 @@ let renderBlock = (blockData) => {
 					</picture>
 				</figure>
 			</div>
+			${blankDivsHTML(0, 2)}
 			`
 
-            channelBlocks.insertAdjacentHTML('beforeend', imageItem)
+			channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 	}
 
 	// Text!
 	else if (blockData.type === "Text") {
-  let html = blockData.content?.html ?? "";
+		let html = blockData.content?.html ?? ""
 
-  let textItem = `
-    <div class="text">
-      ${html}
-    </div>
-  `;
+		let textItem = `
+		<div class="text">
+		${html}
+		</div>
+		`
 
-  channelBlocks.insertAdjacentHTML("beforeend", textItem);
+	channelBlocks.insertAdjacentHTML("beforeend", textItem);
 }
 
 	// Uploaded (not linked) media…
@@ -88,14 +99,23 @@ let renderBlock = (blockData) => {
 		if (contentType.includes('video')) {
 			// …still up to you, but we’ll give you the `video` element:
 			let videoItem =
-				`
-				<li>
-					<p><em>Video</em></p>
-					<video controls src="${ blockData.attachment.url }"></video>
-				</li>
-				`
+
+		`
+			<div class="polaroid">
+				<figure>
+				<img class="polaroidcover" src="polaroid.svg"></img>
+					<picture class="polaroidimg">
+						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
+						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
+						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+					</picture>
+				</figure>
+			</div>
+			${blankDivsHTML(0, 2)}
+		`
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
+			// channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 
 			// More on `video`, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
@@ -114,11 +134,11 @@ let renderBlock = (blockData) => {
 					</picture>
 				</figure>
 			</div>
+			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
 		channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
-			
 		}
 
 		// Uploaded audio!
@@ -147,11 +167,10 @@ let renderBlock = (blockData) => {
 		if (embedType.includes('video')) {
 			// …still up to you, but here’s an example `iframe` element:
 			let linkedVideoItem =
-
-        `
+			`
 			<div class="polaroid">
 				<figure>
-                <img class="polaroidcover" src="polaroid.svg"></img>
+				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
@@ -159,9 +178,10 @@ let renderBlock = (blockData) => {
 					</picture>
 				</figure>
 			</div>
+			${blankDivsHTML(0, 2)}
 			`
 
-            channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
+			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 
 			// More on `iframe`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
@@ -204,8 +224,6 @@ let fetchJson = (url, callback) => {
 // More on `fetch`:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch
 
-
-
 // Now that we have said all the things we *can* do, go get the channel data:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 	console.log(json) // Always good to check your response!
@@ -231,4 +249,9 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
+
+	// I was having trouble getting my randomization to show up, so I used ChatGPT to troubleshoot.
+	// I learned that Are.na content loads after DOM Content, so the random function didn't see any content to randomize.
+	// By adding this if statement, I can call the randomization functions from my other JS file
+	if (window.applyRandomRotations) window.applyRandomRotations();
 })

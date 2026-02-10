@@ -80,7 +80,6 @@ span {
 	position: relative;
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
-	transform: rotate(-2deg);
 }
 
 .polaroidimg, .polaroidcover {
@@ -112,7 +111,6 @@ img, picture {
 	color: black;
 	width: 100%;
 	padding: var(--padding);
-	transform: rotate(3deg);
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
 	box-shadow: var(--dropshadow);
@@ -154,7 +152,6 @@ p {
 /* This works because the image is set to cover the entire svg, regardless of size, making it a responsive mask setup */
 
 .document{
-	transform: rotate(-1deg);
 	-webkit-mask-image: url("torn-mask.svg");
 	-webkit-mask-size: cover;
 	-webkit-mask-repeat: no-repeat;
