@@ -6,29 +6,29 @@
 // Set up function to return a number within a min/max range (using a random floating point)
 (function () {
 function randFloat(min, max) {
-	return Math.random() * (max - min) + min;
+	return Math.random() * (max - min) + min
 	}
 
 // Limit function output to random numbers between -3 and 3 degrees, rounded to the nearest 0.1
 function randomRotationDeg() {
-	return Math.round(randFloat(-3, 3) * 10) / 10;
+	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
 
 // Applying the randomization function to the rotation(deg) CSS variable on the three class types that I am targeting
 // By using forEach, I can make sure that items with the same class still have a unique random rotation
 function applyRandomRotations() {
-	const items = document.querySelectorAll(".document, .polaroid, .text");
+	const items = document.querySelectorAll(".document, .polaroid, .text")
 
 	items.forEach((el) => {
-		const deg = randomRotationDeg();
+		const deg = randomRotationDeg()
 
-		el.style.transform = `rotate(${deg}deg)`;
-	});
+		el.style.transform = `rotate(${deg}deg)`
+	})
 	}
 
 // Run the function on page load
-window.addEventListener("DOMContentLoaded", applyRandomRotations);
+window.addEventListener("DOMContentLoaded", applyRandomRotations)
 
 // Not using this now but might add a button later to randomize layout
-window.applyRandomRotations = applyRandomRotations;
-})();
+window.applyRandomRotations = applyRandomRotations
+})()

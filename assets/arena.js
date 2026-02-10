@@ -5,19 +5,19 @@ let myUsername = 'michael-french' // For linking to your profile.
 // Here I am using a random integer function to define a min and max for the randomization, and then another function to add a random amount of divs to the HTML
 
 function randInt(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 function blankDivsHTML(min = 0, max = 2) {
-	let n = randInt(min, max);
-	return `<div class="blank"></div>`.repeat(n);
+	let n = randInt(min, max)
+	return `<div class="blank"></div>`.repeat(n)
 }
 
 // I wanted to add a custom play button as an inline SVG, but I didn't know how to do this with Javascript
 // Found a stack overflow post that lead me to: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 // Here I am creating a variable that will hold the inline SVG
 
-let PLAY_SVG = "";
+let PLAY_SVG = ""
 
 // Setup Fetch function to return the SVG text in place of the file itself so that it can be inserted into the HTML (within JS) as a variable
 function loadInlineSVG(url, className) {
@@ -112,7 +112,7 @@ let renderBlock = (blockData) => {
 		</div>
 		`
 
-	channelBlocks.insertAdjacentHTML("beforeend", textItem);
+	channelBlocks.insertAdjacentHTML("beforeend", textItem)
 }
 
 	// Uploaded (not linked) media…
@@ -205,9 +205,9 @@ let renderBlock = (blockData) => {
 				</figure>
 				</div>
 				${blankDivsHTML(0, 2)}
-			`;
+			`
 
-  channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem);
+  channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem)
 }
 
 		// Linked audio!
@@ -276,5 +276,5 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 	// I was having trouble getting my randomization to show up, so I used ChatGPT to troubleshoot.
 	// I learned that Are.na content loads after DOM Content, so the random function didn't see any content to randomize.
 	// By adding this if statement, I can call the randomization functions from my other JS file
-	if (window.applyRandomRotations) window.applyRandomRotations();
+	if (window.applyRandomRotations) window.applyRandomRotations()
 })
