@@ -191,7 +191,7 @@ let renderBlock = (blockData) => {
 		// Using SVG variable declared earlier to insert inline SVG
 		if (embedType.includes("video")) {
 			let linkedVideoItem = `
-				<div class="polaroid has-video">
+				<div class="polaroid withvideo">
 				<figure>
 					${PLAY_SVG || ""}
 
