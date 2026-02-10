@@ -14,13 +14,13 @@
 body::before{
 
 	content:"";
-  position: fixed;
-  inset: 0;
-  background-image: url("paper.jpg");
-  background-size: cover;
-  background-position: center;
-  z-index: -10;
-  opacity: 0.8;
+	position: fixed;
+	inset: 0;
+	background-image: url("paper.jpg");
+	background-size: cover;
+	background-position: center;
+	z-index: -10;
+	opacity: 80%;
 }
 
 h1 {
@@ -28,7 +28,6 @@ h1 {
 	inset-block-end: -13.5vw;
 	inset-inline-end: 1vw;
 	filter: blur(0.9rem);
-	/* opacity: 60%; */
 	color: rgb(41, 41, 41);
 	font-family: "Great Vibes", cursive;
 	font-weight: 400;
@@ -45,26 +44,24 @@ span {
 /* I reviewed clip paths here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path */
 /* This is visually cropping the top and bottom halves of the two headers */
 .clipped{
-  clip-path: inset(21% -10% 0% 0%);
-  z-index: 2;
+	clip-path: inset(21% -10% 0% 0%);
+	z-index: 2;
 }
 
 .clipped2{
-  clip-path: inset(0 -10% 79% 0);
-  z-index: -1;
+	clip-path: inset(0 -10% 79% 0);
+	z-index: -1;
 }
 
 #content {
 	width: calc(100% - (12 * var(--padding)));
 	height: 100%;
-	/* background-color: red; */
 	z-index: 0;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	margin-inline: var(--padding);
-	
 	padding-block-start: calc(2 * var(--padding));
 	padding-block-end: 10rem;
 }
@@ -73,14 +70,11 @@ span {
 	width: 100%;
 	aspect-ratio: 2.8 / 4;
 	height: auto;
-	/* background-color: green; */
 }
 
 .blank {
 	display: none;
 }
-
-/* ADD JS TO ROTATE ELEMENTS RANDOMLY */
 
 .polaroid {
 	position: relative;
@@ -104,14 +98,14 @@ span {
 }
 
 img, picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: auto;
-  display: block;
-  overflow: hidden;
-  position: absolute;
-  object-position: top center; 
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	aspect-ratio: auto;
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	object-position: top center; 
 }
 
 .text {
@@ -122,7 +116,6 @@ img, picture {
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
 	box-shadow: var(--dropshadow);
-
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
 	position: relative;
@@ -156,35 +149,36 @@ p {
 
 }
 
-/* ADD ATTRIBUTION HERE */
+/* I wanted to use an svg file as a mask to make my PDF files look torn */
+/* I used a LLM to learn about the webkit mask-image property, and read more here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image */
+/* This works because the image is set to cover the entire svg, regardless of size, making it a responsive mask setup */
+
 .document{
-  transform: rotate(-1deg);
-
-  -webkit-mask-image: url("torn-mask.svg");
-  -webkit-mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-
-  mask-image: url("torn-mask.svg");
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  position: relative;
-  background-color: white;
-  box-shadow: var(--dropshadow);
-  position: relative;
-  overflow: hidden;
+	transform: rotate(-1deg);
+	-webkit-mask-image: url("torn-mask.svg");
+	-webkit-mask-size: cover;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-image: url("torn-mask.svg");
+	mask-size: cover;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	position: relative;
+	background-color: white;
+	box-shadow: var(--dropshadow);
+	position: relative;
+	overflow: hidden;
 }
 
 .document img, .document picture {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transform: scale(0.93);
-  transform-origin: bottom center;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	transform: scale(0.93);
+	transform-origin: bottom center;
 }
 
 header {
@@ -217,20 +211,17 @@ svg.palette6 { color:#3E1815; }
 @media (width > 860px) {
 	.blank {
 	display: block;
-}
-
+	}
 }
 
 @media (width > 415px) {
-
 	header {
 	display: flex;
-}
+	}
 
 #content {
 	margin-inline-start: calc(11 * var(--padding));
-}
-
+	}
 }
 
 
