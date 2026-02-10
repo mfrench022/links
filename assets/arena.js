@@ -13,6 +13,30 @@ function blankDivsHTML(min = 0, max = 2) {
 	return `<div class="blank"></div>`.repeat(n);
 }
 
+// I wanted to add a custom play button as an inline SVG, but I didn't know how to do this with Javascript
+// Found a stack overflow post that lead me to: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+// Here I am creating a variable that will hold the inline SVG
+
+let PLAY_SVG = "";
+
+// Setup Fetch function to return the SVG text in place of the file itself so that it can be inserted into the HTML (within JS) as a variable
+function loadInlineSVG(url, className) {
+return fetch(url)
+	.then((r) => r.text())
+	.then((svgText) => {
+
+//Assign a class to the SVG so that I can style them with CSS
+	return svgText.replace(
+		"<svg",
+		`<svg class="${className}" role="img" aria-label="Play" `
+	)
+	})
+}
+
+loadInlineSVG("play.svg", "play-icon").then((svg) => {
+  PLAY_SVG = svg
+})
+
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
@@ -164,28 +188,27 @@ let renderBlock = (blockData) => {
 		let embedType = blockData.embed.type
 
 		// Linked video!
-		if (embedType.includes('video')) {
-			// …still up to you, but here’s an example `iframe` element:
-			let linkedVideoItem =
-			`
-			<div class="polaroid">
+		// Using SVG variable declared earlier to insert inline SVG
+		if (embedType.includes("video")) {
+			let linkedVideoItem = `
+				<div class="polaroid has-video">
 				<figure>
-				<img class="polaroidcover" src="polaroid.svg"></img>
+					${PLAY_SVG || ""}
+
+					<img class="polaroidcover" src="polaroid.svg" alt="">
+
 					<picture class="polaroidimg">
-						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
-						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
-						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+					<source media="(width < 500px)" srcset="${blockData.image.small.src_2x}">
+					<source media="(width < 1000px)" srcset="${blockData.image.medium.src_2x}">
+					<img alt="${blockData.image.alt_text ?? ""}" src="${blockData.image.large.src_2x}">
 					</picture>
 				</figure>
-			</div>
-			${blankDivsHTML(0, 2)}
-			`
+				</div>
+				${blankDivsHTML(0, 2)}
+			`;
 
-			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
-
-			// More on `iframe`:
-			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
-		}
+  channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem);
+}
 
 		// Linked audio!
 		else if (embedType.includes('rich')) {

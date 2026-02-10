@@ -17,10 +17,10 @@ function randomRotationDeg() {
 // Applying the randomization function to the rotation(deg) CSS variable on the three class types that I am targeting
 // By using forEach, I can make sure that items with the same class still have a unique random rotation
 function applyRandomRotations() {
-	let items = document.querySelectorAll(".document, .polaroid, .text");
+	const items = document.querySelectorAll(".document, .polaroid, .text");
 
 	items.forEach((el) => {
-		let deg = randomRotationDeg();
+		const deg = randomRotationDeg();
 
 		el.style.transform = `rotate(${deg}deg)`;
 	});

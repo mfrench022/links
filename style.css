@@ -9,6 +9,7 @@
 	font-size: 125%;
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem 0.03rem #2929293d;
+	--white: #F5F2ED
 }
 
 body::before{
@@ -95,6 +96,29 @@ span {
 	mix-blend-mode: lighten;
 	opacity: 40%;
 }
+
+.play-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 28%;
+  height: auto;
+  z-index: 4;
+  pointer-events: none; /* so it doesn't block clicks */
+  color: rgba(0, 0, 0, 0.75); /* this becomes the icon color */
+}
+
+/* This is the important part for YOUR file (big path with fill attr) */
+.play-icon path {
+  fill: currentColor !important;
+}
+
+/* Optional hover vibe */
+.polaroid.has-video:hover .play-icon {
+  color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.02);
+}
+
 
 img, picture {
 	width: 100%;
@@ -220,5 +244,4 @@ svg.palette6 { color:#3E1815; }
 	margin-inline-start: calc(11 * var(--padding));
 	}
 }
-
 
