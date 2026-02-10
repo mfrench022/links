@@ -9,6 +9,7 @@
 	font-size: 125%;
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem 0.03rem #2929293d;
+	--dropshadow2: 0.25rem 0.25rem 0.6rem 0.2rem #2929293d;
 	--white: #F5F2ED;
 	--transition: transition: 300ms ease-in-out;
 }
@@ -82,6 +83,12 @@ span {
 	position: relative;
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
+	transition: var(--transition);
+}
+
+.polaroid:hover, .text:hover {
+	box-shadow: var(--dropshadow2);
+	transition: var(--transition);
 }
 
 .polaroidimg, .polaroidcover {
@@ -143,6 +150,7 @@ img, picture {
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
 	position: relative;
 	overflow: hidden;
+	transition: var(--transition);
 }
 
 /* ADD ATTRIBUTION HERE */
