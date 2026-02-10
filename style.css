@@ -22,7 +22,7 @@ body::before{
 	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
-	z-index: -10;
+	z-index: -1;
 	opacity: 80%;
 }
 
@@ -43,6 +43,22 @@ span {
 	letter-spacing: -0.03em;
 }
 
+.linework {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* overflow: hidden; */
+}
+
+/* Full-width, scale with viewport */
+.linework svg {
+  position: absolute;
+  width: 100%;
+  display: block;
+  inset-block-end: 60vh;
+}
+
 /* I wanted to have a break in the header word to push elements in front and behind the text */
 /* I reviewed clip paths here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path */
 /* This is visually cropping the top and bottom halves of the two headers */
@@ -59,7 +75,7 @@ span {
 #content {
 	width: calc(100% - (12 * var(--padding)));
 	height: 100%;
-	z-index: 0;
+	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 	column-gap: var(--padding);
@@ -153,31 +169,29 @@ img, picture {
 	transition: var(--transition);
 }
 
-/* ADD ATTRIBUTION HERE */
 .text::after, .document::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image: url("paper-grain.jpg");
-  background-size: cover;
-  background-repeat: repeat;
-  pointer-events:none;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-  filter: contrast(140%) brightness(105%);
+	content:"";
+	position:absolute;
+	inset:0;
+	background-image: url("paper-grain.jpg");
+	background-size: cover;
+	background-repeat: repeat;
+	pointer-events:none;
+	mix-blend-mode: multiply;
+	opacity: 0.5;
+	filter: contrast(140%) brightness(105%);
 }
 
 p {
 	font-family: "Rock Salt", cursive;
-  font-weight: 400;
-  font-style: normal;
+	font-weight: 400;
+	font-style: normal;
 	font-size: 0.9rem;
 	line-height: 1.9rem;
 }
 
 .nav p {
 	text-align: center;
-
 }
 
 /* I wanted to use an svg file as a mask to make my PDF files look torn */
@@ -196,7 +210,6 @@ p {
 	position: relative;
 	background-color: white;
 	box-shadow: var(--dropshadow);
-	position: relative;
 	overflow: hidden;
 }
 
@@ -224,6 +237,7 @@ header {
 	border-inline-end-style: double;
 	border-inline-end-color: rgba(234, 104, 104, 0.699);
 	mix-blend-mode: multiply;
+	z-index: 1;
 }
 
 .palette {
