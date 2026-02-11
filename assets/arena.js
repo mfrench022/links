@@ -13,6 +13,22 @@ function blankDivsHTML(min = 0, max = 2) {
 	return `<div class="blank"></div>`.repeat(n)
 }
 
+// I wanted to write a function that would randomize the rotation angle of my blocks
+// Reviewed materials from creative coding class last year and used ChatGPT to troubleshoot: https://taliacotton.notion.site/Javascript-Cheat-Sheet-5007bb6769c44a47991abb03b7aff177
+// See line by line comments below for explanations
+
+
+// Set up function to return a number within a min/max range (using a random floating point)
+function randFloat(min, max) {
+	return Math.random() * (max - min) + min
+	}
+
+// Limit function output to random numbers between -3 and 3 degrees, rounded to the nearest 0.1
+function randomRotationDeg() {
+	return Math.round(randFloat(-3, 3) * 10) / 10
+	}
+
+
 // Per Michael's instruction, I created a template literal for the SVG and inserted the variable as needed
 let playSVG =
 	`
@@ -46,9 +62,12 @@ let renderBlock = (blockData) => {
 	// Links!
 	if (blockData.type == 'Link') {
 		// Declares a “template literal” of the dynamic HTML we want.
+
+		// Michael walked me through the style syntax to allow me to selectively apply the rotation class to different elements to randomly calculate their rotation
+
 		let linkItem =
 			`
-			<div class="document">
+			<div class="document" style="--rotation: ${randomRotationDeg()}">
 				<figure>
 					<picture>
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -71,7 +90,7 @@ let renderBlock = (blockData) => {
 	else if (blockData.type == 'Image') {
 		let imageItem =
 		`
-			<div class="polaroid">
+			<div class="polaroid" style="--rotation: ${randomRotationDeg()}">
 				<figure>
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
@@ -110,7 +129,7 @@ let renderBlock = (blockData) => {
 			let videoItem =
 
 		`
-			<div class="polaroid">
+			<div class="polaroid" style="--rotation: ${randomRotationDeg()}">
 				<figure>
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
@@ -134,7 +153,7 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
-			<div class="document">
+			<div class="document" style="--rotation: ${randomRotationDeg()}">
 				<figure>
 					<picture>
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -144,6 +163,7 @@ let renderBlock = (blockData) => {
 				</figure>
 			</div>
 			${blankDivsHTML(0, 2)}
+
 			`
 
 		// And puts it into the page!
@@ -169,7 +189,7 @@ let renderBlock = (blockData) => {
 	}
 
 	// Linked (embedded) media…
-	// Here I am using the SVG literal that I declared earlier
+					// Here I am using the SVG literal that I declared earlier
 
 	else if (blockData.type == 'Embed') {
 		let embedType = blockData.embed.type
@@ -177,7 +197,7 @@ let renderBlock = (blockData) => {
 		// Linked video!
 		if (embedType.includes("video")) {
 			let linkedVideoItem = `
-				<div class="polaroid withvideo">
+				<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
 				<figure>
 
 					${playSVG}
@@ -259,9 +279,4 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
-
-	// I was having trouble getting my randomization to show up, so I used ChatGPT to troubleshoot.
-	// I learned that Are.na content loads after DOM Content, so the random function didn't see any content to randomize.
-	// By adding this if statement, I can call the randomization functions from my other JS file
-	if (window.applyRandomRotations) window.applyRandomRotations()
 })

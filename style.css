@@ -55,7 +55,7 @@ span {
 /* Full-width, scale with viewport */
 .linework svg {
   position: absolute;
-  width: 100%;
+  inline-size: 100%;
   display: block;
   inset-block-end: 60vh;
 }
@@ -74,8 +74,8 @@ span {
 }
 
 #content {
-	width: calc(100% - (8 * var(--padding)));
-	height: 100%;
+	inline-size: calc(100% - (8 * var(--padding)));
+	block-size: 100%;
 	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -87,9 +87,9 @@ span {
 }
 
 .polaroid, .blank, .document {
-	width: 100%;
+	inline-size: 100%;
 	aspect-ratio: 2.8 / 4;
-	height: auto;
+	block-size: auto;
 }
 
 .blank {
@@ -101,6 +101,7 @@ span {
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
 	transition: var(--transition);
+	rotate: calc(calc(var(--rotation) * 1deg));
 }
 
 .polaroid:hover, .text:hover {
@@ -112,8 +113,8 @@ span {
 	position: absolute;
 	inset-block-start: calc(var(--padding)/2);
 	inset-inline-start: calc(var(--padding)/2);
-	width: calc(100% - var(--padding));
-	height: 80%;
+	inline-size: calc(100% - var(--padding));
+	block-size: 80%;
 }
 
 .polaroidcover {
@@ -127,8 +128,8 @@ span {
 	inset: 0;
 	inset-block-end: 3rem;
 	margin: auto;
-	width: 28%;
-	height: auto;
+	inline-size: 28%;
+	block-size: auto;
 	z-index: 4;
 	pointer-events: none;
 	color: var(--white);
@@ -146,8 +147,8 @@ span {
 }
 
 img, picture {
-	width: 100%;
-	height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
 	object-fit: cover;
 	aspect-ratio: auto;
 	display: block;
@@ -158,7 +159,7 @@ img, picture {
 
 .text {
 	color: black;
-	width: 100%;
+	inline-size: 100%;
 	padding: var(--padding);
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
@@ -168,6 +169,7 @@ img, picture {
 	position: relative;
 	overflow: hidden;
 	transition: var(--transition);
+	rotate: calc(calc(var(--rotation) * 1deg));
 }
 
 .text::after, .document::after{
@@ -221,13 +223,14 @@ p {
 	background-color: white;
 	box-shadow: var(--dropshadow);
 	overflow: hidden;
+	rotate: calc(calc(var(--rotation) * 1deg));
 }
 
 .document img, .document picture {
 	position: absolute;
 	inset: 0;
-	width: 100%;
-	height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
 	object-fit: cover;
 	object-position: top center;
 	transform: scale(0.93);
@@ -237,9 +240,9 @@ p {
 header {
 	padding: var(--padding);
 	padding-block-start: calc(1.5 * var(--padding));
-	width: calc(10 * var(--padding));
+	inline-size: calc(10 * var(--padding));
 	position: fixed;
-	height: 100%;
+	block-size: 100%;
 	display: none;
 	flex-direction: column;
 	row-gap: var(--padding);
@@ -251,8 +254,8 @@ header {
 }
 
 .palette {
-	width: 100%;
-	height: 3rem;
+	inline-size: 100%;
+	block-size: 3rem;
 }
 
 svg.palette1 { color:#ECE6E8; }
@@ -275,7 +278,7 @@ svg.palette6 { color:#3E1815; }
 
 	#content {
 	margin-inline-start: calc(11 * var(--padding));
-	width: calc(100% - (12 * var(--padding)));
+	inline-size: calc(100% - (12 * var(--padding)));
 	}
 
 	.hamburger {
