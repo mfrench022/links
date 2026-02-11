@@ -271,7 +271,7 @@ svg.palette6 { color:#3E1815; }
 	}
 }
 
-@media (width > 500px) {
+@media (width > 600px) {
 	header {
 	display: flex;
 	}

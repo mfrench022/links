@@ -48,7 +48,10 @@ let placeChannelInfo = (channelData) => {
 	let channelLink = document.querySelector('#channel-link')
 
 	// Then set their content/attributes to our data:
-	channelTitle.innerHTML = channelData.title
+
+	// Not using channel title so I am commenting out
+	// channelTitle.innerHTML = channelData.title
+
 	channelDescription.innerHTML = channelData.description.html
 	channelCount.innerHTML = channelData.counts.blocks
 	channelLink.href = `https://www.are.na/channel/${channelSlug}`
@@ -239,7 +242,7 @@ let renderUser = (userData) => {
 		</address>
 		`
 
-	channelUsers.insertAdjacentHTML('beforeend', userAddress)
+	// channelUsers.insertAdjacentHTML('beforeend', userAddress)
 }
 
 
