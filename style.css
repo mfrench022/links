@@ -74,14 +74,14 @@ span {
 }
 
 #content {
-	width: calc(100% - (2 * var(--padding)));
+	width: calc(100% - (8 * var(--padding)));
 	height: 100%;
 	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
-	margin-inline: var(--padding);
+	margin-inline: calc(4* var(--padding));
 	padding-block-start: calc(2 * var(--padding));
 	padding-block-end: 10rem;
 }
@@ -195,6 +195,15 @@ p {
 	text-align: center;
 }
 
+.hamburger {
+	position: fixed;
+	inset-block-start: calc(var(--padding) /2);
+	inset-inline-start: calc(var(--padding) /2);
+	scale: 50%;
+	z-index: 500;
+	display: block;
+}
+
 /* I wanted to use an svg file as a mask to make my PDF files look torn */
 /* I used a LLM to learn about the webkit mask-image property, and read more here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image */
 /* This works because the image is set to cover the entire svg, regardless of size, making it a responsive mask setup */
@@ -264,9 +273,13 @@ svg.palette6 { color:#3E1815; }
 	display: flex;
 	}
 
-#content {
+	#content {
 	margin-inline-start: calc(11 * var(--padding));
 	width: calc(100% - (12 * var(--padding)));
+	}
+
+	.hamburger {
+		display: none;
 	}
 }
 
