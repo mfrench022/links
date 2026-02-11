@@ -159,7 +159,7 @@ img, picture {
 
 .text {
 	color: black;
-	inline-size: 100%;
+	inline-size: calc(100% - (2 * var(--padding)));
 	padding: var(--padding);
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
@@ -170,6 +170,7 @@ img, picture {
 	overflow: hidden;
 	transition: var(--transition);
 	rotate: calc(calc(var(--rotation) * 1deg));
+	margin-inline: var(--padding);
 }
 
 .text::after, .document::after{
