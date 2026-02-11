@@ -122,7 +122,7 @@ span {
 	opacity: 40%;
 }
 
-.play-icon {
+.play {
 	position: absolute;
 	inset: 0;
 	inset-block-end: 3rem;
@@ -135,11 +135,11 @@ span {
 	transition: var(--transition);
 }
 
-.play-icon path {
+.play path {
 	fill: currentColor;
 }
 
-.polaroid.withvideo:hover .play-icon {
+.polaroid.withvideo:hover .play {
 	scale: 1.2;
 	transform: rotate(-4deg);
 	transition: var(--transition);
