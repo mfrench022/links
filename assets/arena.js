@@ -69,8 +69,8 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
-			<div class="document-shadow">
-				<div class="document" style="--rotation: ${randomRotationDeg()}">
+			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
+				<div class="document">
 					<figure>
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -115,7 +115,7 @@ let renderBlock = (blockData) => {
 		let html = blockData.content?.html ?? ""
 
 		let textItem = `
-		<div class="text">
+		<div class="text" style="--rotation: ${randomRotationDeg()}">
 		${html}
 		</div>
 		`
@@ -157,8 +157,8 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
-			<div class="document-shadow">
-				<div class="document" style="--rotation: ${randomRotationDeg()}">
+			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
+				<div class="document">
 					<figure>
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
