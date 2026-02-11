@@ -8,7 +8,7 @@
 :root {
 	font-size: 125%;
 	--padding: 1rem;
-	--dropshadow: 0.1rem 0.15rem 0.2rem 0.03rem #2929293d;
+	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
 	--dropshadow2: 0.25rem 0.25rem 0.6rem 0.2rem #2929293d;
 	--white: #F5F2ED;
 	--transition: transition: 300ms ease-in-out;
@@ -211,6 +211,12 @@ p {
 /* I used a LLM to learn about the webkit mask-image property, and read more here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image */
 /* This works because the image is set to cover the entire svg, regardless of size, making it a responsive mask setup */
 
+.document-shadow{
+	filter: drop-shadow(var(--dropshadow));
+	display: inline-block;
+	transform: rotate(calc(var(--rotation) * 1deg));
+}
+
 .document{
 	-webkit-mask-image: url("torn-mask.svg");
 	-webkit-mask-size: cover;
@@ -221,10 +227,8 @@ p {
 	mask-repeat: no-repeat;
 	mask-position: center;
 	position: relative;
-	background-color: white;
-	box-shadow: var(--dropshadow);
+	background: white;
 	overflow: hidden;
-	rotate: calc(calc(var(--rotation) * 1deg));
 }
 
 .document img, .document picture {
@@ -286,4 +290,3 @@ svg.palette6 { color:#3E1815; }
 		display: none;
 	}
 }
-
