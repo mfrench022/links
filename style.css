@@ -9,7 +9,7 @@
 	font-size: 125%;
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
-	--dropshadow2: 0.25rem 0.25rem 0.6rem #2929293d;
+	--dropshadow2: 0.25rem 0.25rem 0.6rem #2929296a;
 	--white: #F5F2ED;
 	--transition: transition: 300ms ease-in-out;
 }
@@ -269,12 +269,12 @@ header {
 	block-size: 3rem;
 }
 
-svg.palette1 { color:#ECE6E8; }
-svg.palette2 { color:#D3B7A9; }
-svg.palette3 { color:#B07964; }
-svg.palette4 { color:#A25C38; }
-svg.palette5 { color:#6C4444; }
-svg.palette6 { color:#3E1815; }
+svg.palette1 { color:#2121DB; }
+svg.palette2 { color:#FC7F5F; }
+svg.palette3 { color:#F2C478; }
+svg.palette4 { color:#87C9AE; }
+svg.palette5 { color:#70838F; }
+svg.palette6 { color:#8BA48D; }
 
 @media (width > 860px) {
 	.blank {
