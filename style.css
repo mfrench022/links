@@ -74,7 +74,7 @@ span {
 }
 
 #content {
-	width: calc(100% - (12 * var(--padding)));
+	width: calc(100% - (2 * var(--padding)));
 	height: 100%;
 	z-index: 1;
 	display: grid;
@@ -266,6 +266,7 @@ svg.palette6 { color:#3E1815; }
 
 #content {
 	margin-inline-start: calc(11 * var(--padding));
+	width: calc(100% - (12 * var(--padding)));
 	}
 }
 

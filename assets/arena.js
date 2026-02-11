@@ -169,6 +169,8 @@ let renderBlock = (blockData) => {
 	}
 
 	// Linked (embedded) media…
+	// Here I am using the SVG literal that I declared earlier
+
 	else if (blockData.type == 'Embed') {
 		let embedType = blockData.embed.type
 
@@ -178,7 +180,6 @@ let renderBlock = (blockData) => {
 				<div class="polaroid withvideo">
 				<figure>
 
-				// Here I am using the SVG literal that I declared earlier
 					${playSVG}
 
 					<img class="polaroidcover" src="polaroid.svg" alt="">
