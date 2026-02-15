@@ -10,6 +10,7 @@
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
 	--dropshadow2: 0.25rem 0.25rem 0.6rem #2929296a;
+	--dropshadow3: 0.35rem 0.35rem 0.9rem #2929296a;
 	--white: #F5F2ED;
 	--transition: transition: 300ms ease-in-out;
 }
@@ -267,6 +268,26 @@ header {
 .palette {
 	inline-size: 100%;
 	block-size: 3rem;
+}
+
+.open {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	aspect-ratio: 2.8 / 4;
+	z-index: 2000;
+	box-shadow: var(--dropshadow3);
+	transition: var(--transition);
+	max-height: calc(100vh - (4 * var(--padding)));
+	height: auto;
+
+/* I wanted to make sure the image would responsively resize for any viewport width or height while still maintaining the same aspect aspect-ratio */
+/* I found the min () CSS function on MDN, which allows me to compute the largest width that fits within the available viewport: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min */
+/* Here we are limiting the size of the image to respect the existing design system padding while allowing it to resize to the viewport accordingly */
+
+	width: min(calc(100vw - (4 * var(--padding))),
+	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
 }
 
 svg.palette1 { color:#2121DB; }
