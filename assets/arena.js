@@ -33,16 +33,18 @@ function randomRotationDeg() {
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
 document.addEventListener('click', (e) => {
-  const item = e.target.closest('.item');
-  if (!item) return;
+	let item = e.target.closest('.item');
+	if (item) return;
 
-  const polaroid = item.querySelector('.polaroid');
-  const placeholder = item.querySelector('.placeholder');
-  const caption = item.querySelector('.caption');
+	let polaroid = item.querySelector('.polaroid');
+	let placeholder = item.querySelector('.placeholder');
+	let caption = item.querySelector('.caption');
 
-  const isOpen = polaroid.classList.toggle('open');
-  placeholder?.classList.toggle('placeholder-active', isOpen);
-  caption?.classList.toggle('caption-active', isOpen);
+	let isOpen = polaroid.classList.toggle('open');
+	placeholder?.classList.toggle('placeholder-active', isOpen);
+	caption?.classList.toggle('caption-active', isOpen);
+
+
 });
 
 
