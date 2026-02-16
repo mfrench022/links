@@ -87,7 +87,7 @@ span {
 	padding-block-end: 10rem;
 }
 
-.polaroid, .blank, .document {
+.polaroid, .blank, .document, .placeholder {
 	inline-size: 100%;
 	aspect-ratio: 2.8 / 4;
 	block-size: auto;
@@ -95,6 +95,15 @@ span {
 
 .blank {
 	display: none;
+}
+
+.placeholder {
+	background-color: red;
+	display: none;
+}
+
+.placeholder-active {
+	display: block;
 }
 
 .polaroid {

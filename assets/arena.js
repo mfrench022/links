@@ -29,6 +29,21 @@ function randomRotationDeg() {
 	}
 
 
+
+document.addEventListener('click', (e) => {
+  let polaroid = e.target.closest('.polaroid');
+  if (!polaroid) return;
+
+  let isOpen = polaroid.classList.toggle('open');
+
+  let placeholder = polaroid.nextElementSibling;
+  if (placeholder.classList.contains('placeholder')) {
+    placeholder.classList.toggle('placeholder-active', isOpen);
+  }
+});
+
+
+
 // Per Michael's instruction, I created a template literal for the SVG and inserted the variable as needed
 let playSVG =
 	`
@@ -71,13 +86,11 @@ let renderBlock = (blockData) => {
 			`
 			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
 				<div class="document">
-					<figure>
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 							<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 							<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 						</picture>
-					</figure>
 				</div>
 			</div>
 			${blankDivsHTML(0, 2)}
@@ -95,15 +108,14 @@ let renderBlock = (blockData) => {
 		let imageItem =
 		`
 			<div class="polaroid" style="--rotation: ${randomRotationDeg()}">
-				<figure>
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
-				</figure>
 			</div>
+			<div class="placeholder"></div>
 			${blankDivsHTML(0, 2)}
 			`
 
@@ -134,14 +146,12 @@ let renderBlock = (blockData) => {
 
 		`
 			<div class="polaroid" style="--rotation: ${randomRotationDeg()}">
-				<figure>
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
-				</figure>
 			</div>
 			${blankDivsHTML(0, 2)}
 		`
@@ -159,13 +169,11 @@ let renderBlock = (blockData) => {
 			`
 			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
 				<div class="document">
-					<figure>
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 							<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 							<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 						</picture>
-					</figure>
 				</div>
 			</div>
 			${blankDivsHTML(0, 2)}
@@ -204,7 +212,6 @@ let renderBlock = (blockData) => {
 		if (embedType.includes("video")) {
 			let linkedVideoItem = `
 				<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
-				<figure>
 
 					${playSVG}
 
@@ -215,7 +222,6 @@ let renderBlock = (blockData) => {
 					<source media="(width < 1000px)" srcset="${blockData.image.medium.src_2x}">
 					<img alt="${blockData.image.alt_text ?? ""}" src="${blockData.image.large.src_2x}">
 					</picture>
-				</figure>
 				</div>
 				${blankDivsHTML(0, 2)}
 			`
