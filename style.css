@@ -12,7 +12,7 @@
 	--dropshadow2: 0.25rem 0.25rem 0.6rem #2929296a;
 	--dropshadow3: 0.35rem 0.35rem 0.9rem #2929296a;
 	--white: #F5F2ED;
-	--transition: transition: 300ms ease-in-out;
+	--transition: 300ms ease-in-out;
 }
 
 body::before{
