@@ -129,7 +129,7 @@ let renderBlock = (blockData) => {
 					</picture>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
