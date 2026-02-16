@@ -33,17 +33,23 @@ function randomRotationDeg() {
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
 document.addEventListener('click', (e) => {
-	let item = e.target.closest('.item');
-	if (item) return;
+	let item = e.target.closest('.item')
 
-	let polaroid = item.querySelector('.polaroid');
-	let placeholder = item.querySelector('.placeholder');
-	let caption = item.querySelector('.caption');
+	if (!item) return
 
-	let isOpen = polaroid.classList.toggle('open');
-	placeholder?.classList.toggle('placeholder-active', isOpen);
-	caption?.classList.toggle('caption-active', isOpen);
+	let placeholder = item.querySelector('.placeholder')
+	let caption = item.querySelector('.caption')
 
+	let openItem =
+	item.querySelector('.polaroid')
+	item.querySelector('.document-shadow')
+
+	if (!openItem) return
+
+	let isOpen = openItem.classList.toggle('open')
+
+	placeholder.classList.toggle('placeholder-active', isOpen)
+	caption.classList.toggle('caption-active', isOpen)
 
 });
 
@@ -80,6 +86,7 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
+			<figure class="item">
 			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
 				<div class="document">
 						<picture>
@@ -89,6 +96,23 @@ let renderBlock = (blockData) => {
 						</picture>
 				</div>
 			</div>
+			<div class="placeholder"></div>
+			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+				<h2>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</h2>
+
+				<p>
+					${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+					? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+					: `` // Our “otherwise” can also be blank!
+					}
+				</p>
+			</figcaption>
+			</figure>
 			${blankDivsHTML(0, 2)}
 			`
 
@@ -161,7 +185,7 @@ let renderBlock = (blockData) => {
 			<figure class="item">
 			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
 
-			<svg width="105" height="133">
+			<svg width="105" height="133" class="template">
 				<use href="#play"/>
 			</svg>
 			
@@ -251,7 +275,7 @@ let renderBlock = (blockData) => {
 				<figure class="item">
 			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
 
-			<svg width="105" height="133">
+			<svg width="105" height="133" class="template">
 				<use href="#play"/>
 			</svg>
 			

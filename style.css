@@ -118,7 +118,7 @@ span {
 	opacity: 40%;
 }
 
-#play {
+.template {
 	position: absolute;
 	inset: 0;
 	inset-block-end: 3rem;
@@ -134,7 +134,7 @@ span {
 /* Per Michael's instruction, I am using a symbol within an SVG to reference the SVG in Javascript. This CSS hides the original copy of the SVG that is in my HTML */
 svg:has(symbol) { display: none; }
 
-.polaroid.withvideo:hover .play {
+.polaroid.withvideo:hover .template {
 	scale: 1.2;
 	transform: rotate(-4deg);
 	transition: var(--transition);
