@@ -16,7 +16,6 @@
 }
 
 body::before{
-
 	content:"";
 	position: fixed;
 	inset: 0;
@@ -167,20 +166,32 @@ img, picture {
 	object-position: top center; 
 }
 
-.text {
+.text, .caption {
 	color: black;
 	inline-size: calc(100% - (2 * var(--padding)));
 	padding: var(--padding);
 	align-self: start;
 	margin-block-start: calc(2 * var(--padding));
 	box-shadow: var(--dropshadow);
-	background: #fff5d9;
-	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
-	position: relative;
-	overflow: hidden;
 	transition: var(--transition);
 	rotate: calc(calc(var(--rotation) * 1deg));
 	margin-inline: var(--padding);
+}
+
+.text {
+	background: #fff5d9;
+	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
+}
+
+.caption {
+	background: #fff5d9;
+	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
+	position: fixed;
+	display: none;
+}
+
+.caption-active {
+	display: block;
 }
 
 .text::after, .document::after{
@@ -196,7 +207,7 @@ img, picture {
 	filter: contrast(140%) brightness(105%);
 }
 
-p {
+p, h2 {
 	font-family: "Rock Salt", cursive;
 	font-weight: 400;
 	font-style: normal;
@@ -206,6 +217,11 @@ p {
 
 .nav p {
 	text-align: center;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-block-end: var(--padding);
 }
 
 .hamburger {

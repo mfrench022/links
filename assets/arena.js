@@ -29,18 +29,31 @@ function randomRotationDeg() {
 	}
 
 
-
+// I wanted to be able to add a class to only one of my .polaroid elements at a time
+// I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
+// After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
 document.addEventListener('click', (e) => {
-  let polaroid = e.target.closest('.polaroid');
-  if (!polaroid) return;
+	let polaroid = e.target.closest('.polaroid');
+	if (!polaroid) return;
 
-  let isOpen = polaroid.classList.toggle('open');
+// Toggle opening the image
+	let isOpen = polaroid.classList.toggle('open');
 
-  let placeholder = polaroid.nextElementSibling;
-  if (placeholder.classList.contains('placeholder')) {
-    placeholder.classList.toggle('placeholder-active', isOpen);
-  }
+// Insert siblings right after polaroid:
+	let placeholder = polaroid.nextElementSibling;
+	let caption = placeholder.nextElementSibling;
+
+// This toggles the class .placeholder-active on the div .placeholder, which occupies the vacant spot in the grid
+	if (placeholder.classList.contains('placeholder')) {
+	placeholder.classList.toggle('placeholder-active', isOpen);
+}
+
+// This adds the class .caption-active to .caption, which makes it visible
+if (caption.classList.contains('caption')) {
+	caption.classList.toggle('caption-active', isOpen);
+}
 });
+
 
 
 
@@ -116,6 +129,21 @@ let renderBlock = (blockData) => {
 					</picture>
 			</div>
 			<div class="placeholder"></div>
+			<figcaption class="caption">
+				<h2>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</h2>
+
+				<p>
+					${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+					? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+					: `` // Our “otherwise” can also be blank!
+					}
+				</p>
+			</figcaption>
 			${blankDivsHTML(0, 2)}
 			`
 
