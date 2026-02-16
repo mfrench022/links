@@ -118,7 +118,7 @@ span {
 	opacity: 40%;
 }
 
-.play {
+#play {
 	position: absolute;
 	inset: 0;
 	inset-block-end: 3rem;
@@ -129,11 +129,25 @@ span {
 	pointer-events: none;
 	color: var(--white);
 	transition: var(--transition);
+	color: red;
 }
 
-.play path {
-	fill: currentColor;
+.play {
+  width: 105px;
+  height: 133px;
 }
+
+.play line,
+.play polyline {
+  stroke: currentColor;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Per Michael's instruction, I am using a symbol within an SVG to reference the SVG in Javascript. This CSS hides the original copy of the SVG that is in my HTML */
+svg:has(symbol) { display: none; }
 
 .polaroid.withvideo:hover .play {
 	scale: 1.2;
