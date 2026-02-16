@@ -295,8 +295,8 @@ header {
 .open {
 	position: fixed;
 	inset-inline-start: 50%;
-	inset-block-start: 40%;
-	transform: translate(-50%, -50%);
+	inset-block-start: calc(2 * var(--padding));
+	transform: translate(-50%, 0%);
 	aspect-ratio: 2.8 / 4;
 	z-index: 10;
 	box-shadow: var(--dropshadow3);

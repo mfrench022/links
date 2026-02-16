@@ -37,20 +37,20 @@ document.addEventListener('click', (e) => {
 
 	if (!item) return
 
+	let polaroid = item.querySelector('.polaroid')
 	let placeholder = item.querySelector('.placeholder')
 	let caption = item.querySelector('.caption')
+	let document = item.querySelector('.document-shadow')
 
-	let openItem =
-	item.querySelector('.polaroid')
-	item.querySelector('.document-shadow')
+	let polaroidOpen = polaroid.classList.toggle('open')
+	placeholder.classList.toggle('placeholder-active', polaroidOpen)
+	caption.classList.toggle('caption-active', polaroidOpen)
 
-	if (!openItem) return
+	let documentOpen = document.classList.toggle('open')
+	placeholder.classList.toggle('placeholder-active', documentOpen)
+	caption.classList.toggle('caption-active', documentOpen)
 
-	let isOpen = openItem.classList.toggle('open')
-
-	placeholder.classList.toggle('placeholder-active', isOpen)
-	caption.classList.toggle('caption-active', isOpen)
-
+  
 });
 
 
