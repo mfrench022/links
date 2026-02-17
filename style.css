@@ -84,7 +84,7 @@ span {
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
 	transition: var(--transition);
-	rotate: calc(calc(var(--rotation) * 1deg));
+	rotate: calc(var(--rotation) * 1deg);
 }
 
 .polaroid:hover, .text:hover {
@@ -147,14 +147,14 @@ img, picture {
 	margin-block-start: calc(2 * var(--padding));
 	box-shadow: var(--dropshadow);
 	transition: var(--transition);
-	rotate: calc(calc(var(--rotation) * 1deg));
+	rotate: calc(var(--rotation) * 1deg);
 	margin-inline: var(--padding);
-	min-height: 16rem;
 }
 
 .text {
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
+	aspect-ratio: 1;
 }
 
 .caption {
@@ -178,7 +178,7 @@ img, picture {
 .text::after, .document::after, .caption::after{
 	content:"";
 	position:absolute;
-	inset:0;
+	inset: 0;
 	background-image: url("paper-grain.jpg");
 	background-size: cover;
 	background-repeat: repeat;
@@ -192,7 +192,7 @@ p, h2 {
 	font-family: "Rock Salt", cursive;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 0.7rem;
+	font-size: 0.9rem;
 	line-height: 1.2rem;
 }
 
@@ -222,7 +222,7 @@ h2 {
 .document-shadow{
 	filter: drop-shadow(var(--dropshadow));
 	display: inline-block;
-	transform: rotate(calc(var(--rotation) * 1deg));
+	rotate: calc(var(--rotation) * 1deg);
 	transition: var(--transition)
 }
 
@@ -292,7 +292,6 @@ header {
 /* I wanted to make sure the image would responsively resize for any viewport width or height while still maintaining the same aspect aspect-ratio */
 /* I found the min () CSS function on MDN, which allows me to compute the largest width that fits within the available viewport: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min */
 /* Here we are limiting the size of the image to respect the existing design system padding while allowing it to resize to the viewport accordingly */
-
 	width: min(calc(100vw - (4 * var(--padding))),
 	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
 }
@@ -300,6 +299,17 @@ header {
 .documentopen {
 	box-shadow: none;
 	filter: drop-shadow(var(--dropshadow3));
+}
+
+.textopen {
+	position: fixed;
+	aspect-ratio: 1;
+}
+
+.textopen p {
+	font-size: 1.73rem;
+	line-height: 2.3rem;
+	transition: var(--transition);
 }
 
 svg.palette1 { color:#2121DB; }
@@ -312,7 +322,8 @@ svg.palette6 { color:#8BA48D; }
 @media (width > 1000px) {
 
 .caption {
-	width: 30vw;
+	width: 25vw;
+	aspect-ratio: 1;
 }
 
 }
@@ -338,9 +349,13 @@ svg.palette6 { color:#8BA48D; }
 	}
 
 
-	.open {
+	.open, .documentopen, .textopen {
 	inset-inline-start: 50%;
 	inset-block-start: 50%;
 	transform: translate(-50%, -50%);
-}
+	}
+
+	.textopen {
+		inset-block-start: 45%;
+	}
 }

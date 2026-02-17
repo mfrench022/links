@@ -69,6 +69,20 @@ document.addEventListener('click', (e) => {
 	docCaption.classList.toggle('caption-active', documentOpen)
 });
 
+// Replicating for text
+document.addEventListener('click', (e) => {
+	let textItem = e.target.closest('.textitem')
+
+	if (!textItem) return
+
+	let text = textItem.querySelector('.text')
+	let textPlaceholder = textItem.querySelector('.placeholder')
+	let textCaption = textItem.querySelector('.caption')
+
+	let textOpen = text.classList.toggle('textopen')
+	textPlaceholder.classList.toggle('placeholder-active', textOpen)
+	textCaption.classList.toggle('caption-active', textOpen)
+});
 
 
 
@@ -187,10 +201,22 @@ let renderBlock = (blockData) => {
 		</p>
 		</div>
 		<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
-			
-			</figcaption>
-			</figure>
+		<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<h2>
+				${ blockData.title
+					? blockData.title // If `blockData.title` exists, do this.
+					: `Untitled` // Otherwise do this.
+				}
+			</h2>
+
+			<p>
+				${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+				? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+				: `` // Our “otherwise” can also be blank!
+				}
+			</p>
+		</figcaption>
+		</figure>
 		${blankDivsHTML(0, 2)}
 		`
 
