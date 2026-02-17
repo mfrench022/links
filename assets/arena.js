@@ -89,20 +89,18 @@ document.addEventListener('click', (e) => {
 // Not using these so I am commenting out to avoid 
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
-// let placeChannelInfo = (channelData) => {
+let placeChannelInfo = (channelData) => {
 
-// 	let channelTitle = document.querySelector('#channel-title')
-// 	let channelDescription = document.querySelector('#channel-description')
-// 	let channelCount = document.querySelector('#channel-count')
-// 	let channelLink = document.querySelector('#channel-link')
-
-	// Then set their content/attributes to our data:
+	// let channelTitle = document.querySelector('#channel-title')
+	// let channelDescription = document.querySelector('#channel-description')
+	// let channelCount = document.querySelector('#channel-count')
+	// let channelLink = document.querySelector('#channel-link')
 
 	// channelTitle.innerHTML = channelData.title
 	// channelDescription.innerHTML = channelData.description.html
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
-// }
+}
 
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
