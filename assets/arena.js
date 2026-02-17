@@ -29,29 +29,46 @@ function randomRotationDeg() {
 	}
 
 
-// I wanted to be able to add a class to only one of my .polaroid elements at a time
+// I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
+
+// Listening for a click on the event object
 document.addEventListener('click', (e) => {
+	// Declaring the nearest .item figure as the event object
 	let item = e.target.closest('.item')
 
+	// If the click is detected, do the following
 	if (!item) return
 
+	// Declaring variables for classes that I will add
 	let polaroid = item.querySelector('.polaroid')
 	let placeholder = item.querySelector('.placeholder')
 	let caption = item.querySelector('.caption')
-	let document = item.querySelector('.document-shadow')
 
+	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, and fly in a caption
 	let polaroidOpen = polaroid.classList.toggle('open')
 	placeholder.classList.toggle('placeholder-active', polaroidOpen)
 	caption.classList.toggle('caption-active', polaroidOpen)
-
-	let documentOpen = document.classList.toggle('open')
-	placeholder.classList.toggle('placeholder-active', documentOpen)
-	caption.classList.toggle('caption-active', documentOpen)
-
-  
 });
+
+// Replicating function for documents
+document.addEventListener('click', (e) => {
+	let docItem = e.target.closest('.document-shadow')
+	if (!docItem) return
+
+	// These have a different HTML structure, so I am using the nextElementSibling to target siblings of the drop shadow div
+	let docPlaceholder = docItem.nextElementSibling
+	let docCaption = docPlaceholder.nextElementSibling
+
+	if (!docPlaceholder.classList.contains('placeholder')) return
+	if (!docCaption.classList.contains('caption')) return
+
+	const documentOpen = docItem.classList.toggle('documentopen')
+	docPlaceholder.classList.toggle('placeholder-active', documentOpen)
+	docCaption.classList.toggle('caption-active', documentOpen)
+});
+
 
 
 
@@ -86,7 +103,6 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
-			<figure class="item">
 			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
 				<div class="document">
 						<picture>
@@ -112,7 +128,6 @@ let renderBlock = (blockData) => {
 					}
 				</p>
 			</figcaption>
-			</figure>
 			${blankDivsHTML(0, 2)}
 			`
 
@@ -163,10 +178,20 @@ let renderBlock = (blockData) => {
 	else if (blockData.type === "Text") {
 		let html = blockData.content?.html ?? ""
 
-		let textItem = `
+		let textItem = 
+		`
+		<figure class ="textitem">
 		<div class="text" style="--rotation: ${randomRotationDeg()}">
+		<p>
 		${html}
+		</p>
 		</div>
+		<div class="placeholder"></div>
+			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			
+			</figcaption>
+			</figure>
+		${blankDivsHTML(0, 2)}
 		`
 
 	channelBlocks.insertAdjacentHTML("beforeend", textItem)
@@ -236,8 +261,23 @@ let renderBlock = (blockData) => {
 						</picture>
 				</div>
 			</div>
-			${blankDivsHTML(0, 2)}
+			<div class="placeholder"></div>
+			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+				<h2>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</h2>
 
+				<p>
+					${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+					? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+					: `` // Our “otherwise” can also be blank!
+					}
+				</p>
+			</figcaption>
+			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!

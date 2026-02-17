@@ -26,18 +26,6 @@ body::before{
 	opacity: 80%;
 }
 
-h1 {
-	font-size: 40vw;
-	inset-block-end: -13.5vw;
-	inset-inline-end: 1vw;
-	filter: blur(0.9rem);
-	color: rgb(41, 41, 41);
-	font-family: "Great Vibes", cursive;
-	font-weight: 400;
-	position: fixed;
-	mix-blend-mode: color-burn;
-}
-
 span {
 	font-size: 1.2em;
 	letter-spacing: -0.03em;
@@ -161,6 +149,7 @@ img, picture {
 	transition: var(--transition);
 	rotate: calc(calc(var(--rotation) * 1deg));
 	margin-inline: var(--padding);
+	min-height: 16rem;
 }
 
 .text {
@@ -179,11 +168,6 @@ img, picture {
 	height: auto;
 	width: calc(100vw - (2 * var(--padding)));
 	box-shadow: var(--dropshadow3);
-}
-
-.caption p {
-	font-size: 0.7rem;
-	line-height: 1.2rem;
 }
 
 .caption-active {
@@ -208,8 +192,8 @@ p, h2 {
 	font-family: "Rock Salt", cursive;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 0.9rem;
-	line-height: 1.9rem;
+	font-size: 0.7rem;
+	line-height: 1.2rem;
 }
 
 .nav p {
@@ -292,7 +276,7 @@ header {
 	block-size: 3rem;
 }
 
-.open {
+.open, .documentopen, .textopen {
 	position: fixed;
 	inset-inline-start: 50%;
 	inset-block-start: calc(2 * var(--padding));
