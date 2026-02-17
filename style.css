@@ -9,8 +9,8 @@
 	font-size: 125%;
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
-	--dropshadow2: 0.25rem 0.25rem 0.6rem #2929296a;
-	--dropshadow3: 0.35rem 0.35rem 0.9rem #2929296a;
+	--dropshadow3: 0.25rem 0.25rem 0.6rem #2929296a;
+	--dropshadow2: 0.35rem 0.35rem 0.9rem #2929296a;
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
 }
@@ -203,6 +203,7 @@ p, h2 {
 h2 {
 	font-size: 1.5rem;
 	margin-block-end: var(--padding);
+	line-height: 2.1rem;
 }
 
 .hamburger {
@@ -294,6 +295,11 @@ header {
 
 	width: min(calc(100vw - (4 * var(--padding))),
 	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
+}
+
+.documentopen {
+	box-shadow: none;
+	filter: drop-shadow(var(--dropshadow3));
 }
 
 svg.palette1 { color:#2121DB; }

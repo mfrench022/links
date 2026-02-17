@@ -64,7 +64,7 @@ document.addEventListener('click', (e) => {
 	if (!docPlaceholder.classList.contains('placeholder')) return
 	if (!docCaption.classList.contains('caption')) return
 
-	const documentOpen = docItem.classList.toggle('documentopen')
+	let documentOpen = docItem.classList.toggle('documentopen')
 	docPlaceholder.classList.toggle('placeholder-active', documentOpen)
 	docCaption.classList.toggle('caption-active', documentOpen)
 });
