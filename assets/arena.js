@@ -162,7 +162,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="${blockData.source.url}" target=_blank>Read More</a>
+				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
 			${blankDivsHTML(0, 3)}
 			`
@@ -202,7 +202,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="https://www.are.na/block/${blockData.id }" target=_blank>More Info</a>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}
@@ -238,7 +238,7 @@ let renderBlock = (blockData) => {
 				: `` // Our “otherwise” can also be blank!
 				}
 			</p>
-			<a href="https://www.are.na/block/${blockData.id }" target=_blank>More Info</a>
+			<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 		</figcaption>
 		</figure>
 		${blankDivsHTML(0, 3)}
@@ -286,7 +286,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="${blockData.source.url}" target=_blank>Watch Video</a>
+				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}
@@ -327,7 +327,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="https://www.are.na/block/${blockData.id }" target=_blank>Read More</a>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
 			${blankDivsHTML(0, 3)}
 			`
@@ -393,7 +393,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="${blockData.source.url}" target=_blank>Watch Video</a>
+				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}

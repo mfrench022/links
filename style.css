@@ -195,7 +195,7 @@ img, picture {
 	filter: contrast(140%) brightness(105%);
 }
 
-p, h2, a {
+p, h2, .buttonstyle {
 	font-family: "Rock Salt", cursive;
 	font-weight: 400;
 	font-style: normal;
@@ -203,11 +203,11 @@ p, h2, a {
 	line-height: 1.2rem;
 }
 
-.nav p, a {
+.nav p, .buttonstyle {
 	text-align: center;
 }
 
-a {
+.buttonstyle {
 	background-color: rgba(255, 244, 176, 1);
 	padding-inline: var(--padding);
 	padding-block: calc(var(--padding) / 2);
@@ -216,10 +216,18 @@ a {
 	transition: var(--transition);
 }
 
-a:hover {
+.buttonstyle:hover {
 	transition: var(--transition);
 	background-color: rgba(255, 255, 255, 0);
 	box-shadow: inset 0 0 0.3rem #0808089c;
+}
+
+header .buttonstyle {
+	width: calc(100% - (2 * var(--padding)));
+}
+
+.mobile button {
+	inset-inline-start: var(--padding);
 }
 
 h2 {
