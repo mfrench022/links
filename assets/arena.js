@@ -143,6 +143,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
+				<a href="${blockData.source.url}" target=_blank>Read More</a>
 			</figcaption>
 			${blankDivsHTML(0, 3)}
 			`
@@ -264,6 +265,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
+				<a href="${blockData.source.url}" target=_blank>Watch Video</a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}
@@ -369,6 +371,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
+				<a href="${blockData.source.url}" target=_blank>Watch Video</a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}
