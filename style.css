@@ -427,7 +427,7 @@ header {
 }
 
 .textopen p {
-	font-size: 1.45rem;
+	font-size: 1.4rem;
 	line-height: 1.8rem;
 	transition: var(--transition);
 }
