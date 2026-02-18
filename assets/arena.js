@@ -89,8 +89,18 @@ document.addEventListener('click', (e) => {
 });
 
 
+let activeMenu = 'mobileactive'
+let mobileMenu = document.querySelector('.mobile')
+let hamburgerButton = document.querySelector('#hamburger')
 
-// Not using these so I am commenting out to avoid 
+hamburgerButton.addEventListener('click', () => {
+	mobileMenu.classList.toggle(activeMenu)
+})
+
+
+
+
+// Not using these so I am commenting out to avoid console errors
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
