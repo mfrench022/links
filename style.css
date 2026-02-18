@@ -46,9 +46,9 @@ span {
 
 .linework svg {
 	position: absolute;
-	inline-size: 110%;
+	inline-size: 300%;
 	display: block;
-	inset-block-end: 30vh;
+	inset-inline-end: 0;
 }
 
 #content {
@@ -393,6 +393,7 @@ svg.palette6 { color:#8BA48D; }
 
 .linework svg {
 	inset-block-end: 60vh;
+	inline-size: 110%;
 }
 
 }
