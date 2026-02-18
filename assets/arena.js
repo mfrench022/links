@@ -88,13 +88,22 @@ document.addEventListener('click', (e) => {
 	textCaption.classList.toggle('caption-active', textOpen)
 });
 
-
+// Hamburger menu opening interaction
 let activeMenu = 'mobileactive'
 let mobileMenu = document.querySelector('.mobile')
 let hamburgerButton = document.querySelector('#hamburger')
+let closeButton = document.querySelector('#closebutton')
 
 hamburgerButton.addEventListener('click', () => {
-	mobileMenu.classList.toggle(activeMenu)
+	mobileMenu.classList.add(activeMenu)
+	hamburgerButton.classList.add('is-hidden')
+	closeButton.classList.add('is-visible')
+})
+
+closeButton.addEventListener('click', () => {
+	mobileMenu.classList.remove(activeMenu)
+	hamburgerButton.classList.remove('is-hidden')
+	closeButton.classList.remove('is-visible')
 })
 
 

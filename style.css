@@ -228,12 +228,37 @@ h2 {
 	line-height: 2.1rem;
 }
 
-#hamburger {
+#hamburger, #closebutton {
 	position: fixed;
 	inset-block-start: calc(var(--padding) /2);
 	inset-inline-start: calc(var(--padding) /2);
 	scale: 50%;
 	z-index: 500;
+	display: block;
+	transition: var(--transition);
+	color: black;
+}
+
+#hamburger:hover {
+	transition: var(--transition);
+	color: rgba(0, 0, 0, 0.4);
+}
+
+#closebutton:hover {
+	transition: var(--transition);
+	color: rgba(0, 0, 0, 0.4);
+}
+
+#closebutton {
+	inset-block-start: -1.4rem;
+	display: none;
+}
+
+#hamburger.is-hidden {
+	display: none;
+}
+
+#closebutton.is-visible {
 	display: block;
 }
 
