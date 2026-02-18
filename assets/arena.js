@@ -8,7 +8,7 @@ function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function blankDivsHTML(min = 0, max = 2) {
+function blankDivsHTML(min = 0, max = 3) {
 	let n = randInt(min, max)
 	return `<div class="blank"></div>`.repeat(n)
 }
@@ -27,7 +27,11 @@ function randFloat(min, max) {
 function randomRotationDeg() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
-
+	
+function randomTranslation() {
+	return Math.round(randFloat(-3, 3) * 10) / 10
+	}
+	
 
 // I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
@@ -115,7 +119,7 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
-			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
+			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -140,7 +144,7 @@ let renderBlock = (blockData) => {
 					}
 				</p>
 			</figcaption>
-			${blankDivsHTML(0, 2)}
+			${blankDivsHTML(0, 3)}
 			`
 
 		// And puts it into the page!
@@ -155,7 +159,7 @@ let renderBlock = (blockData) => {
 		let imageItem =
 		`
 			<figure class="item">
-			<div class="polaroid" style="--rotation: ${randomRotationDeg()}">
+			<div class="polaroid" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -180,7 +184,7 @@ let renderBlock = (blockData) => {
 				</p>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
+			${blankDivsHTML(0, 3)}
 			`
 
 			channelBlocks.insertAdjacentHTML('beforeend', imageItem)
@@ -193,7 +197,7 @@ let renderBlock = (blockData) => {
 		let textItem = 
 		`
 		<figure class ="textitem">
-		<div class="text" style="--rotation: ${randomRotationDeg()}">
+		<div class="text" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 		<p>
 		${html}
 		</p>
@@ -215,7 +219,7 @@ let renderBlock = (blockData) => {
 			</p>
 		</figcaption>
 		</figure>
-		${blankDivsHTML(0, 2)}
+		${blankDivsHTML(0, 3)}
 		`
 
 	channelBlocks.insertAdjacentHTML("beforeend", textItem)
@@ -232,7 +236,7 @@ let renderBlock = (blockData) => {
 
 		`
 			<figure class="item">
-			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
+			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
 			<svg width="105" height="133" class="template">
 				<use href="#play"/>
@@ -262,7 +266,7 @@ let renderBlock = (blockData) => {
 				</p>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
+			${blankDivsHTML(0, 3)}
 		`
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
@@ -276,7 +280,7 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
-			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}">
+			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -301,7 +305,7 @@ let renderBlock = (blockData) => {
 					}
 				</p>
 			</figcaption>
-			${blankDivsHTML(0, 2)}
+			${blankDivsHTML(0, 3)}
 			`
 
 		// And puts it into the page!
@@ -337,7 +341,7 @@ let renderBlock = (blockData) => {
 			let linkedVideoItem = 
 			`
 				<figure class="item">
-			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}">
+			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
 			<svg width="105" height="133" class="template">
 				<use href="#play"/>
@@ -367,7 +371,7 @@ let renderBlock = (blockData) => {
 				</p>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
+			${blankDivsHTML(0, 3)}
 			`
 
   channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem)

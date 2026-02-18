@@ -26,6 +26,10 @@ body::before{
 	opacity: 80%;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 span {
 	font-size: 1.2em;
 	letter-spacing: -0.03em;
@@ -84,7 +88,6 @@ span {
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
 	transition: var(--transition);
-	rotate: calc(var(--rotation) * 1deg);
 }
 
 .polaroid:hover, .text:hover {
@@ -147,8 +150,11 @@ img, picture {
 	margin-block-start: calc(2 * var(--padding));
 	box-shadow: var(--dropshadow);
 	transition: var(--transition);
-	rotate: calc(var(--rotation) * 1deg);
 	margin-inline: var(--padding);
+}
+
+.text, .caption, .polaroid, .document-shadow {
+	transform: translateY(calc(-2* var(--translate))) rotate(var(--rotation)) translateX(var(--translate));
 }
 
 .text {
@@ -222,7 +228,6 @@ h2 {
 .document-shadow{
 	filter: drop-shadow(var(--dropshadow));
 	display: inline-block;
-	rotate: calc(var(--rotation) * 1deg);
 	transition: var(--transition)
 }
 
@@ -265,9 +270,9 @@ header {
 	display: none;
 	flex-direction: column;
 	row-gap: var(--padding);
-	border-inline-end-width: calc(var(--padding) / 4);
+	/* border-inline-end-width: calc(var(--padding) / 4);
 	border-inline-end-style: double;
-	border-inline-end-color: rgba(234, 104, 104, 0.699);
+	border-inline-end-color: rgba(234, 104, 104, 0.699); */
 	mix-blend-mode: multiply;
 	z-index: 1;
 }
@@ -359,4 +364,9 @@ svg.palette6 { color:#8BA48D; }
 	.textopen {
 		inset-block-start: 40%;
 	}
+
+	.text, .caption, .polaroid, .document-shadow {
+	transform: translateY(var(--translate)) rotate(var(--rotation)) translateX(var(--translate));
+}
+
 }
