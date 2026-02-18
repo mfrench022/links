@@ -46,9 +46,9 @@ span {
 
 .linework svg {
 	position: absolute;
-	inline-size: 100%;
+	inline-size: 110%;
 	display: block;
-	inset-block-end: 60vh;
+	inset-block-end: 30vh;
 }
 
 #content {
@@ -274,7 +274,7 @@ header {
 	border-inline-end-style: double;
 	border-inline-end-color: rgba(234, 104, 104, 0.699); */
 	mix-blend-mode: multiply;
-	z-index: 1;
+	z-index: 0;
 }
 
 .palette {
@@ -330,6 +330,10 @@ svg.palette6 { color:#8BA48D; }
 .caption {
 	width: 25vw;
 	aspect-ratio: 1;
+}
+
+.linework svg {
+	inset-block-end: 60vh;
 }
 
 }
