@@ -106,7 +106,7 @@ closeButton.addEventListener('click', () => {
 	closeButton.classList.remove('is-visible')
 })
 
-// About the project modal adapr
+// About the project modal adapted from course site
 let modalButton = document.querySelector('#modal') // The thing we’re clicking.
 let modalDialog = document.querySelector('#dialog') // Now one for our `dialog`.
 let closeModal = modalDialog.querySelector('button') // Only looking within `modalDialog`.

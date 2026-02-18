@@ -19,7 +19,7 @@ body::before{
 	content:"";
 	position: fixed;
 	inset: 0;
-	background-image: url("paper.jpg");
+	background-image: url("canvas.jpg");
 	background-size: cover;
 	background-position: center;
 	z-index: -1;
@@ -217,32 +217,31 @@ p, h2, .buttonstyle {
 	bottom: calc(1 * var(--padding));
 	position: absolute;
 	transition: var(--transition);
-	mix-blend-mode: multiply;
+	mix-blend-mode: normal;
 }
 
-.buttonstyle:hover, #dialog button:hover {
+.buttonstyle:hover, #dialog button:hover, #modal:hover {
 	transition: var(--transition);
 	background-color: rgba(255, 255, 255, 0);
+	background: none;
 	box-shadow: inset 0 0 0.3rem #0808089c;
 }
 
-header .buttonstyle {
-	width: calc(100% - (2 * var(--padding)));
-}
-
-.mobile button {
+#modal {
+	width: calc((8 * var(--padding)));
+	position: fixed;
+	background: #fff5d9;
 	inset-inline-start: var(--padding);
+	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
 
 #dialog {
-	/* background-color: green; */
+	background-color: rgba(205, 205, 205, 0.6);
+	backdrop-filter: blur(0.2rem);
 	inline-size: calc(100% - (10 * var(--padding)));
 	height: 100%;
 	position: fixed;
 	transition: var(--transition);
-	background-image: url("paper.jpg");
-	background-size: cover;
-	background-position: center;
 	inset-block-start: 0;
 	inset-inline-end: 0;
 	box-shadow: var(--dropshadow3);
@@ -255,6 +254,8 @@ header .buttonstyle {
 	transition: var(--transition);
 	aspect-ratio: 1;
 	height: calc(100vh - (4 * var(--padding)));
+	background: #fff5d9;
+	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
 
 #dialog button {
@@ -267,6 +268,8 @@ header .buttonstyle {
 	height: 2.2rem;
 	transition: var(--transition);
 	text-align: center;
+	background: #fff5d9;
+	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
 
 body:has(dialog[open]) { overflow: hidden; }
@@ -375,7 +378,7 @@ header {
 	mix-blend-mode: normal;
 	padding-block-start: calc(5 * var(--padding));
 	transition: var(--transition);
-	background-image: url("paper.jpg");
+	background-image: url("canvas.jpg");
 	background-size: cover;
 	background-position: center;
 	box-shadow: var(--dropshadow2);
