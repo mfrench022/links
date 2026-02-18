@@ -229,11 +229,13 @@ p, h2, .buttonstyle {
 
 #modal {
 	width: calc((8 * var(--padding)));
+	height: 2.25rem;
 	z-index: 500;
 	box-shadow: var(--dropshadow);
 	position: fixed;
 	background: #fff5d9;
-	inset-inline-start: var(--padding);
+	inset-inline-end: var(--padding);
+	inset-block-start: var(--padding);
 	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
 
@@ -480,6 +482,13 @@ svg.palette6 { color:#8BA48D; }
 
 	.textopen {
 		inset-block-start: 40%;
+	}
+
+	#modal {
+		inset-inline-start: var(--padding);
+		inset-block-end: 1rem;
+		inset-inline-end: auto;
+		inset-block-start: auto; 
 	}
 }
 

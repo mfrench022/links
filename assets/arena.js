@@ -8,7 +8,7 @@ function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function blankDivsHTML(min = 0, max = 3) {
+function blankDivsHTML(min = 0, max = 2) {
 	let n = randInt(min, max)
 	return `<div class="blank"></div>`.repeat(n)
 }
@@ -183,7 +183,7 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
-			${blankDivsHTML(0, 3)}
+			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
@@ -224,7 +224,7 @@ let renderBlock = (blockData) => {
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 3)}
+			${blankDivsHTML(0, 2)}
 			`
 
 			channelBlocks.insertAdjacentHTML('beforeend', imageItem)
@@ -260,7 +260,7 @@ let renderBlock = (blockData) => {
 			<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 		</figcaption>
 		</figure>
-		${blankDivsHTML(0, 3)}
+		${blankDivsHTML(0, 2)}
 		`
 
 	channelBlocks.insertAdjacentHTML("beforeend", textItem)
@@ -308,7 +308,7 @@ let renderBlock = (blockData) => {
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 3)}
+			${blankDivsHTML(0, 2)}
 		`
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
@@ -348,7 +348,7 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
-			${blankDivsHTML(0, 3)}
+			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
@@ -415,7 +415,7 @@ let renderBlock = (blockData) => {
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 3)}
+			${blankDivsHTML(0, 2)}
 			`
 
   channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem)
