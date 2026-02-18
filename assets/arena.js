@@ -183,6 +183,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank>More Info</a>
 			</figcaption>
 			</figure>
 			${blankDivsHTML(0, 3)}
@@ -218,6 +219,7 @@ let renderBlock = (blockData) => {
 				: `` // Our “otherwise” can also be blank!
 				}
 			</p>
+			<a href="https://www.are.na/block/${blockData.id }" target=_blank>More Info</a>
 		</figcaption>
 		</figure>
 		${blankDivsHTML(0, 3)}
@@ -306,6 +308,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank>Read More</a>
 			</figcaption>
 			${blankDivsHTML(0, 3)}
 			`
