@@ -25,7 +25,7 @@ function randFloat(min, max) {
 
 // Limit function output to random numbers between -3 and 3 degrees, rounded to the nearest 0.1
 function randomRotationDeg() {
-	return Math.round(randFloat(-3, 3) * 10) / 10
+	return Math.round(randFloat(-5, 5) * 10) / 10
 	}
 	
 function randomTranslation() {

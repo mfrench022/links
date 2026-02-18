@@ -364,9 +364,4 @@ svg.palette6 { color:#8BA48D; }
 	.textopen {
 		inset-block-start: 40%;
 	}
-
-	.text, .caption, .polaroid, .document-shadow {
-	transform: translateY(var(--translate)) rotate(var(--rotation)) translateX(var(--translate));
-}
-
 }
