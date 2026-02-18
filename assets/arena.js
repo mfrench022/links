@@ -106,7 +106,26 @@ closeButton.addEventListener('click', () => {
 	closeButton.classList.remove('is-visible')
 })
 
+// About the project modal adapr
+let modalButton = document.querySelector('#modal') // The thing we’re clicking.
+let modalDialog = document.querySelector('#dialog') // Now one for our `dialog`.
+let closeModal = modalDialog.querySelector('button') // Only looking within `modalDialog`.
 
+modalButton.addEventListener('click', () => { // “Listen” for clicks.
+	modalDialog.showModal() // This opens it up.
+})
+
+closeModal.addEventListener('click', () => {
+	modalDialog.close() // And this closes it!
+})
+
+
+document.addEventListener('click', (event) => {
+	// Only clicks on the page itself behind the `dialog`.
+	if (event.target == document.documentElement) {
+		modalDialog.close() // Close it too then.
+	}
+})
 
 
 // Not using these so I am commenting out to avoid console errors

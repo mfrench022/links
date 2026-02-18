@@ -207,16 +207,17 @@ p, h2, .buttonstyle {
 	text-align: center;
 }
 
-.buttonstyle {
+.buttonstyle, #dialog button {
 	background-color: rgba(255, 244, 176, 1);
 	padding-inline: var(--padding);
 	padding-block: calc(var(--padding) / 2);
 	bottom: calc(1 * var(--padding));
 	position: absolute;
 	transition: var(--transition);
+	mix-blend-mode: multiply;
 }
 
-.buttonstyle:hover {
+.buttonstyle:hover, #dialog button:hover {
 	transition: var(--transition);
 	background-color: rgba(255, 255, 255, 0);
 	box-shadow: inset 0 0 0.3rem #0808089c;
@@ -229,6 +230,43 @@ header .buttonstyle {
 .mobile button {
 	inset-inline-start: var(--padding);
 }
+
+#dialog {
+	/* background-color: green; */
+	inline-size: calc(100% - (10 * var(--padding)));
+	height: 100%;
+	position: fixed;
+	transition: var(--transition);
+	background-image: url("paper.jpg");
+	background-size: cover;
+	background-position: center;
+	inset-block-start: 0;
+	inset-inline-end: 0;
+	box-shadow: var(--dropshadow3);
+}
+
+#dialog .text {
+	inline-size: auto;
+	inset-inline-end: var(--padding);
+	position: absolute;
+	transition: var(--transition);
+	aspect-ratio: 1;
+	height: calc(100vh - (4 * var(--padding)));
+}
+
+#dialog button {
+	width: 100%;
+	height: 100%;
+	inline-size: calc(8 * var(--padding));
+	inset-inline-start: var(--padding);
+	inset-block-end: var(--padding);
+	position: absolute;
+	height: 2.2rem;
+	transition: var(--transition);
+	text-align: center;
+}
+
+body:has(dialog[open]) { overflow: hidden; }
 
 h2 {
 	font-size: 1.5rem;
