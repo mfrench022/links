@@ -93,6 +93,9 @@ span {
 .polaroid:hover, .text:hover {
 	box-shadow: var(--dropshadow2);
 	transition: var(--transition);
+
+	/* FIGURE OUT WHY THIS DOES NOT WORK ON TEXT */
+	z-index: 400;
 }
 
 .polaroidimg, .polaroidcover {
@@ -321,6 +324,7 @@ h2 {
 .document-shadow:hover {
 	transition: var(--transition);
 	filter: drop-shadow(var(--dropshadow2));
+	z-index: 400;
 }
 
 .document{
