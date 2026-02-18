@@ -208,7 +208,7 @@ p, h2, a {
 }
 
 a {
-	background-color: var(--white);
+	background-color: rgba(255, 244, 176, 1);
 	padding-inline: var(--padding);
 	padding-block: calc(var(--padding) / 2);
 	bottom: calc(1 * var(--padding));
@@ -217,8 +217,9 @@ a {
 }
 
 a:hover {
-	mix-blend-mode: multiply;
 	transition: var(--transition);
+	background-color: rgba(255, 255, 255, 0);
+	box-shadow: inset 0 0 0.3rem #0808089c;
 }
 
 h2 {
