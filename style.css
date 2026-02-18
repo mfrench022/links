@@ -369,7 +369,7 @@ header {
 	display: none;
 	z-index: 12;
 	mix-blend-mode: normal;
-	padding-block-start: calc(8 * var(--padding));
+	padding-block-start: calc(5 * var(--padding));
 	transition: var(--transition);
 	background-image: url("paper.jpg");
 	background-size: cover;
@@ -378,7 +378,7 @@ header {
 }
 
 .mobile svg {
-	padding-block: calc(2 * var(--padding));
+	padding-block: calc(1.5 * var(--padding));
 	transition: var(--transition);
 }
 
