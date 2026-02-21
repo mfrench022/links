@@ -56,12 +56,12 @@ span {
 	block-size: 100%;
 	z-index: 1;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 	column-gap: var(--padding);
 	row-gap: var(--padding);
-	margin-inline: calc(4* var(--padding));
-	padding-block-start: calc(2 * var(--padding));
-	padding-block-end: calc(3 * var(--padding));
+	padding-inline: var(--padding);
+	padding-block-start: var(--padding);
+	padding-block-end: calc(10 * var(--padding));
 }
 
 .polaroid, .blank, .document, .placeholder {
@@ -219,23 +219,16 @@ p, h2, .buttonstyle {
 	mix-blend-mode: normal;
 }
 
-.buttonstyle:hover, #dialog button:hover, #modal:hover {
+.buttonstyle:hover, #dialog button:hover {
 	transition: var(--transition);
 	background-color: rgba(255, 255, 255, 0);
 	background: none;
 	box-shadow: inset 0 0 0.3rem #0808089c;
 }
 
-#modal {
-	width: calc((8 * var(--padding)));
-	height: 2.25rem;
-	z-index: 500;
-	box-shadow: var(--dropshadow);
-	position: fixed;
-	background: #fff5d9;
-	inset-inline-end: var(--padding);
-	inset-block-start: var(--padding);
-	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
+.navigation .buttonstyle {
+	position: static;
+	height: 2.35rem;
 }
 
 #dialog {
@@ -275,7 +268,7 @@ p, h2, .buttonstyle {
 
 body:has(dialog[open]) { overflow: hidden; }
 
-h2 {
+#content h2 {
 	font-size: 1.5rem;
 	margin-block-end: var(--padding);
 	line-height: 2.1rem;
@@ -358,39 +351,52 @@ h2 {
 
 header {
 	padding: var(--padding);
-	padding-block-start: calc(1.5 * var(--padding));
 	inline-size: 100%;
 	position: fixed;
-	inset-block-start: 0;
+	inset-block-end: 0;
 	inset-inline-start: 0;
-	z-index: 10000;
-	mix-blend-mode: multiply;
+	z-index: 600;
+	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	z-index: 0;
-	background-color: green;
-}
-
-.flexcolors{
-  display: flex;
-  column-gap: var(--padding);
-  background-color: red;
-}
-
-.mobile {
-	display: none;
-	z-index: 12;
-	mix-blend-mode: normal;
-	padding-block-start: calc(5 * var(--padding));
-	transition: var(--transition);
-	background-image: url("canvas.jpg");
+	height: auto;
+	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
 	box-shadow: var(--dropshadow2);
 }
 
-.mobile svg {
-	padding-block: calc(1.5 * var(--padding));
-	transition: var(--transition);
+.flexcolors p {
+	width: 100%;
+	text-align: center;
+	margin-block-end: var(--padding);
+}
+
+.flexcolors{
+	display: grid;
+	grid-template-columns: 15rem 1fr 1fr 1fr 1fr 1fr 1fr;
+	align-items: stretch;
+	column-gap: var(--padding);
+	height: auto;
+	width: 100%;
+	inset-inline-end: 0;
+}
+
+/* Wanted to make SVGs resize responsively. ChatGPT pointed me towards the flex property: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex */
+/* This shorthand sets flex grow and flex shrink to 1, and flex basis to auto, so the SVG will always responsively fill its viewbox */
+.flexcolors svg.palette {
+	flex: 1 1 auto;
+	width: 100%;
+	min-width: 0;
+	height: auto;
+	max-height: 3rem;
+	max-width: 100%;
+	display: block;
+}
+
+.navigation {
+	display: flex;
+	align-items: center;
+	/* background-color: red; */
 }
 
 .open, .documentopen, .textopen {
@@ -444,7 +450,7 @@ svg.palette6 { color:#8BA48D; }
 }
 
 .linework svg {
-	inset-block-end: 60vh;
+	inset-block-end: 85vh;
 	inline-size: 110%;
 }
 
@@ -457,11 +463,6 @@ svg.palette6 { color:#8BA48D; }
 }
 
 @media (width > 600px) {
-
-	#content {
-	margin-inline-start: calc(11 * var(--padding));
-	inline-size: calc(100% - (12 * var(--padding)));
-	}
 
 	#hamburger {
 		display: none;
@@ -477,17 +478,4 @@ svg.palette6 { color:#8BA48D; }
 	.textopen {
 		inset-block-start: 40%;
 	}
-
-	#modal {
-		inset-inline-start: var(--padding);
-		inset-block-end: 1rem;
-		inset-inline-end: auto;
-		inset-block-start: auto; 
-	}
-}
-
-@media (width < 600px) {
-	.mobileactive {
-	display: block;
-}
 }
