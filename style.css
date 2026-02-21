@@ -34,6 +34,27 @@ body {
 	overflow-x: hidden;
 }
 
+/* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
+/* I tried using the not selector, but after troubleshooting wtih chatGPT I realized the has selector would be an easier setup */
+
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	backdrop-filter: blur(0.15rem);
+	pointer-events: none;
+	z-index: 5;
+	opacity: 0;
+	transition: opacity var(--transition);
+}
+
+/* Here we activate the blur pseudo element each time one of the elements is hovered over */
+body:has(.polaroid:hover)::after,
+body:has(.text:hover)::after,
+body:has(.document-shadow:hover)::after {
+	opacity: 1;
+}
+
 .blur {
 	width: 100vw;
 	height: 100vh; 
@@ -111,8 +132,15 @@ span {
 
 .polaroid:hover, .text:hover {
 	box-shadow: var(--dropshadow2);
-	transition: var(--transition);
+}
+
+.document-shadow:hover {
+	filter: drop-shadow(var(--dropshadow2));
+}
+
+.polaroid:hover, .text:hover, .document-shadow:hover {
 	z-index: 7;
+	transition: var(--transition);
 }
 
 .open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
@@ -339,12 +367,6 @@ body:has(dialog[open]) { overflow: hidden; }
 	filter: drop-shadow(var(--dropshadow));
 	display: inline-block;
 	transition: var(--transition);
-}
-
-.document-shadow:hover {
-	transition: var(--transition);
-	filter: drop-shadow(var(--dropshadow2));
-	z-index: 7;
 }
 
 .document{
