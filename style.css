@@ -62,7 +62,6 @@ span {
 	padding-inline: var(--padding);
 	padding-block-start: calc(4 * var(--padding));
 	padding-block-end: calc(10 * var(--padding));
-	background-color: green;
 }
 
 .polaroid, .blank, .document, .placeholder {
