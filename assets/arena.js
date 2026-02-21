@@ -49,13 +49,13 @@ document.addEventListener('click', (e) => {
 	let polaroid = item.querySelector('.polaroid')
 	let placeholder = item.querySelector('.placeholder')
 	let caption = item.querySelector('.caption')
-	let blur = item.querySelector('.blur')
+	let blur = document.querySelector('.blur')
 
 	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, and fly in a caption
 	let polaroidOpen = polaroid.classList.toggle('open')
 	placeholder.classList.toggle('placeholder-active', polaroidOpen)
 	caption.classList.toggle('caption-active', polaroidOpen)
-	blur.classList.toggle('bluractive', polaroidOpen)
+	if (blur) blur.classList.toggle('bluractive', polaroidOpen)
 });
 
 // Replicating function for documents
@@ -66,6 +66,7 @@ document.addEventListener('click', (e) => {
 	// These have a different HTML structure, so I am using the nextElementSibling to target siblings of the drop shadow div
 	let docPlaceholder = docItem.nextElementSibling
 	let docCaption = docPlaceholder.nextElementSibling
+	let docBlur = document.querySelector('.blur')
 
 	if (!docPlaceholder.classList.contains('placeholder')) return
 	if (!docCaption.classList.contains('caption')) return
@@ -73,6 +74,7 @@ document.addEventListener('click', (e) => {
 	let documentOpen = docItem.classList.toggle('documentopen')
 	docPlaceholder.classList.toggle('placeholder-active', documentOpen)
 	docCaption.classList.toggle('caption-active', documentOpen)
+	if (docBlur) docBlur.classList.toggle('bluractive', documentOpen)
 });
 
 // Replicating for text
@@ -84,10 +86,12 @@ document.addEventListener('click', (e) => {
 	let text = textItem.querySelector('.text')
 	let textPlaceholder = textItem.querySelector('.placeholder')
 	let textCaption = textItem.querySelector('.caption')
+	let textBlur = document.querySelector('.blur')
 
 	let textOpen = text.classList.toggle('textopen')
 	textPlaceholder.classList.toggle('placeholder-active', textOpen)
 	textCaption.classList.toggle('caption-active', textOpen)
+	if (textBlur) textBlur.classList.toggle('bluractive', textOpen)
 });
 
 // // About the project modal adapted from course site

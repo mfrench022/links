@@ -47,6 +47,7 @@ body {
 
 .bluractive {
 	display: block;
+	transition: var(--transition);
 }
 
 span {
@@ -111,9 +112,10 @@ span {
 .polaroid:hover, .text:hover {
 	box-shadow: var(--dropshadow2);
 	transition: var(--transition);
+	transform: rotate(-1deg);
 
 	/* FIGURE OUT WHY THIS DOES NOT WORK ON TEXT */
-	/* z-index: 400; */
+	z-index: 7;
 }
 
 .polaroidimg, .polaroidcover {
@@ -340,7 +342,8 @@ body:has(dialog[open]) { overflow: hidden; }
 .document-shadow:hover {
 	transition: var(--transition);
 	filter: drop-shadow(var(--dropshadow2));
-	/* z-index: 400; */
+	transform: rotate(-1deg);
+	z-index: 7;
 }
 
 .document{
@@ -373,7 +376,7 @@ header {
 	position: fixed;
 	inset-block-end: 0;
 	inset-inline-start: 0;
-	z-index: 9;
+	z-index: 8;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
 	height: var(--headerheight2);
