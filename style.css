@@ -463,9 +463,9 @@ header {
 .documentopen {
 	box-shadow: none;
 	filter: drop-shadow(var(--dropshadow3));
-	width: min(calc(100vw - (1 * var(--padding))),
-	calc((100vh - (1 * var(--padding))) * (2.8 / 4)));
-	inset-block-start: calc(0.5 * var(--padding));
+	width: min(calc(100vw - (-2 * var(--padding))),
+	calc((100vh - (-2 * var(--padding))) * (2.8 / 4)));
+	inset-block-start: calc(-0.8 * var(--padding));
 }
 
 .textopen {
