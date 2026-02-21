@@ -6,7 +6,7 @@
 
 
 :root {
-	font-size: 125%;
+	font-size: 100%;
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
 	--dropshadow3: 0.25rem 0.25rem 0.6rem #2929296a;
@@ -14,6 +14,9 @@
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
 	--headerheight: 5rem;
+	--headerheight2: 3rem;
+	--navwidth: 16rem;
+	--navwidth2: 20rem;
 }
 
 body::before{
@@ -351,7 +354,6 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 
 header {
-	padding: var(--padding);
 	inline-size: 100%;
 	position: fixed;
 	inset-block-end: 0;
@@ -359,47 +361,61 @@ header {
 	z-index: 9;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	height: var(--headerheight);
+	height: var(--headerheight2);
 	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
 	box-shadow: var(--dropshadow2);
-}
-
-.flexcolors p {
-	width: 100%;
-	text-align: center;
-	margin-block-end: var(--padding);
+	display: flex;
+	justify-content: space-between;
 }
 
 .flexcolors{
-	display: grid;
-	grid-template-columns: 15rem 1fr 1fr 1fr 1fr 1fr 1fr;
-	align-items: stretch;
-	column-gap: var(--padding);
-	position: fixed;
-	height: auto;
-	width: calc(100% - (2 * var(--padding)));
-	inset-inline-start: var(--padding);
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	column-gap: calc(var(--padding) / 2);
+	width: auto;
+	inset-inline-end: 0;
 	inset-block-end: var(--padding);
-}
-
-/* Wanted to make SVGs resize responsively. ChatGPT pointed me towards the flex property: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex */
-/* This shorthand sets flex grow and flex shrink to 1, and flex basis to auto, so the SVG will always responsively fill its viewbox */
-.flexcolors svg.palette {
-	flex: 1 1 auto;
-	width: 100%;
-	min-width: 0;
-	height: auto;
-	max-height: 3rem;
-	max-width: 100%;
-	display: block;
+	mix-blend-mode: multiply;
+	/* background-color: purple; */
+	padding-inline: var(--padding);
 }
 
 .navigation {
 	display: flex;
 	align-items: center;
 	/* background-color: red; */
+	height: 100%;
+	mix-blend-mode: normal;
+	width: var(--navwidth2);
+	justify-content: space-between;
+	padding-inline-start: var(--padding);
+}
+
+.swatch, .swatch2, .swatch3 {
+	-webkit-mask-image: url("swatch1.svg");
+	-webkit-mask-size: cover;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-image: url("swatch1.svg");
+	mask-size: cover;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	height: 70%;
+	aspect-ratio: 0.92;
+	background-color: rgb(200, 124, 124);
+}
+
+.swatch2 {
+	-webkit-mask-image: url("swatch2.svg");
+	mask-image: url("swatch2.svg");
+}
+
+.swatch3 {
+	-webkit-mask-image: url("swatch3.svg");
+	mask-image: url("swatch3.svg");
 }
 
 .navigation p {
@@ -449,6 +465,13 @@ svg.palette4 { color:#87C9AE; }
 svg.palette5 { color:#70838F; }
 svg.palette6 { color:#8BA48D; }
 
+header .palette1 { background:#2121DB; }
+header .palette2 { background:#FC7F5F; }
+header .palette3 { background:#F2C478; }
+header .palette4 { background:#87C9AE; }
+header .palette5 { background:#70838F; }
+header .palette6 { background:#8BA48D; }
+
 @media (width > 1000px) {
 
 .caption {
@@ -464,11 +487,59 @@ svg.palette6 { color:#8BA48D; }
 }
 
 @media (width > 860px) {
+	
+	.flexcolors {
+	column-gap: var(--padding);
+	}
+
 	.blank {
 	display: block;
 	}
+
+	.swatch, .swatch2, .swatch3 {
+	height: 70%;
+	aspect-ratio: 0.92;
 }
 
-@media (width > 600px) {
+header {
+	height: var(--headerheight);
+}
+}
+
+@media (width > 650px) {
+
+	.flexcolors {
+		justify-content: right;
+	}
+
+	:root {
+	font-size: 125%;
+	}
+
+	header p {
+		font-size: 0.9rem;
+	}
+
+	.navigation {
+		width: var(--navwidth2);
+	}
 
 }
+
+@media (width < 450px) {
+	.flexcolors, .navigation {
+		padding-inline: calc(var(--padding) / 2);
+	}
+
+	.flexcolors {
+		column-gap: calc(var(--padding) / 4);
+	}
+
+	.swatch, .swatch2, .swatch3 {
+	height: 50%;
+	aspect-ratio: 0.92;
+}
+
+
+}
+
