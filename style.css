@@ -60,8 +60,9 @@ span {
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	padding-inline: var(--padding);
-	padding-block-start: var(--padding);
+	padding-block-start: calc(4 * var(--padding));
 	padding-block-end: calc(10 * var(--padding));
+	background-color: green;
 }
 
 .polaroid, .blank, .document, .placeholder {
@@ -399,6 +400,10 @@ header {
 	/* background-color: red; */
 }
 
+.navigation p {
+	margin: 0;
+}
+
 .open, .documentopen, .textopen {
 	position: fixed;
 	inset-inline-start: 50%;
@@ -463,11 +468,6 @@ svg.palette6 { color:#8BA48D; }
 }
 
 @media (width > 600px) {
-
-	#hamburger {
-		display: none;
-	}
-
 
 	.open, .documentopen, .textopen {
 	inset-inline-start: 50%;
