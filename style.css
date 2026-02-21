@@ -13,6 +13,7 @@
 	--dropshadow2: 0.35rem 0.35rem 0.9rem #2929296a;
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
+	--headerheight: 5rem;
 }
 
 body::before{
@@ -172,11 +173,11 @@ img, picture {
 	display: none;
 	z-index: 11;
 	inset-inline-end: 0;
-	inset-block-end: calc(2 *var(--padding));
 	height: auto;
 	width: calc(100vw - (2 * var(--padding)));
 	box-shadow: var(--dropshadow3);
 	padding-block-end: calc(var(--padding) * 5);
+	inset-block-end: calc((2 * var(--padding)) + (var(--headerheight)));
 }
 
 .caption-active {
@@ -355,10 +356,10 @@ header {
 	position: fixed;
 	inset-block-end: 0;
 	inset-inline-start: 0;
-	z-index: 600;
+	z-index: 9;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	height: auto;
+	height: var(--headerheight);
 	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
@@ -376,9 +377,11 @@ header {
 	grid-template-columns: 15rem 1fr 1fr 1fr 1fr 1fr 1fr;
 	align-items: stretch;
 	column-gap: var(--padding);
+	position: fixed;
 	height: auto;
-	width: 100%;
-	inset-inline-end: 0;
+	width: calc(100% - (2 * var(--padding)));
+	inset-inline-start: var(--padding);
+	inset-block-end: var(--padding);
 }
 
 /* Wanted to make SVGs resize responsively. ChatGPT pointed me towards the flex property: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex */
@@ -412,14 +415,14 @@ header {
 	z-index: 10;
 	box-shadow: var(--dropshadow3);
 	transition: var(--transition);
-	max-height: calc(100vh - (4 * var(--padding)));
+	max-height: calc(100vh - (9 * var(--padding)));
 	height: auto;
 
 /* I wanted to make sure the image would responsively resize for any viewport width or height while still maintaining the same aspect aspect-ratio */
 /* I found the min () CSS function on MDN, which allows me to compute the largest width that fits within the available viewport: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min */
 /* Here we are limiting the size of the image to respect the existing design system padding while allowing it to resize to the viewport accordingly */
-	width: min(calc(100vw - (4 * var(--padding))),
-	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
+	width: min(calc(100vw - (9 * var(--padding))),
+	calc((100vh - (9 * var(--padding))) * (2.8 / 4)));
 }
 
 .documentopen {
@@ -468,13 +471,4 @@ svg.palette6 { color:#8BA48D; }
 
 @media (width > 600px) {
 
-	.open, .documentopen, .textopen {
-	inset-inline-start: 50%;
-	inset-block-start: 50%;
-	transform: translate(-50%, -50%);
-	}
-
-	.textopen {
-		inset-block-start: 40%;
-	}
 }
