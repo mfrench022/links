@@ -49,11 +49,13 @@ document.addEventListener('click', (e) => {
 	let polaroid = item.querySelector('.polaroid')
 	let placeholder = item.querySelector('.placeholder')
 	let caption = item.querySelector('.caption')
+	let blur = item.querySelector('.blur')
 
 	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, and fly in a caption
 	let polaroidOpen = polaroid.classList.toggle('open')
 	placeholder.classList.toggle('placeholder-active', polaroidOpen)
 	caption.classList.toggle('caption-active', polaroidOpen)
+	blur.classList.toggle('bluractive', polaroidOpen)
 });
 
 // Replicating function for documents
