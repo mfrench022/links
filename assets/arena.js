@@ -88,44 +88,26 @@ document.addEventListener('click', (e) => {
 	textCaption.classList.toggle('caption-active', textOpen)
 });
 
-// // Hamburger menu opening interaction
-// let activeMenu = 'mobileactive'
-// let mobileMenu = document.querySelector('.mobile')
-// let hamburgerButton = document.querySelector('#hamburger')
-// let closeButton = document.querySelector('#closebutton')
+// // About the project modal adapted from course site
+// let modalButton = document.querySelector('#modal') // The thing we’re clicking.
+// let modalDialog = document.querySelector('#dialog') // Now one for our `dialog`.
+// let closeModal = modalDialog.querySelector('button') // Only looking within `modalDialog`.
 
-// hamburgerButton.addEventListener('click', () => {
-// 	mobileMenu.classList.add(activeMenu)
-// 	hamburgerButton.classList.add('is-hidden')
-// 	closeButton.classList.add('is-visible')
+// modalButton.addEventListener('click', () => { // “Listen” for clicks.
+// 	modalDialog.showModal() // This opens it up.
 // })
 
-// closeButton.addEventListener('click', () => {
-// 	mobileMenu.classList.remove(activeMenu)
-// 	hamburgerButton.classList.remove('is-hidden')
-// 	closeButton.classList.remove('is-visible')
+// closeModal.addEventListener('click', () => {
+// 	modalDialog.close() // And this closes it!
 // })
 
-// About the project modal adapted from course site
-let modalButton = document.querySelector('#modal') // The thing we’re clicking.
-let modalDialog = document.querySelector('#dialog') // Now one for our `dialog`.
-let closeModal = modalDialog.querySelector('button') // Only looking within `modalDialog`.
 
-modalButton.addEventListener('click', () => { // “Listen” for clicks.
-	modalDialog.showModal() // This opens it up.
-})
-
-closeModal.addEventListener('click', () => {
-	modalDialog.close() // And this closes it!
-})
-
-
-document.addEventListener('click', (event) => {
-	// Only clicks on the page itself behind the `dialog`.
-	if (event.target == document.documentElement) {
-		modalDialog.close() // Close it too then.
-	}
-})
+// document.addEventListener('click', (event) => {
+// 	// Only clicks on the page itself behind the `dialog`.
+// 	if (event.target == document.documentElement) {
+// 		modalDialog.close() // Close it too then.
+// 	}
+// })
 
 
 // Not using these so I am commenting out to avoid console errors
