@@ -10,7 +10,7 @@
 	--padding: 1rem;
 	--dropshadow: 0.1rem 0.15rem 0.2rem #2929293d;
 	--dropshadow3: 0.25rem 0.25rem 0.6rem #2929296a;
-	--dropshadow2: 0.35rem 0.35rem 0.9rem #2929296a;
+	--dropshadow2: 0.55rem 0.55rem 1.2rem #29292981;
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
 	--headerheight: 5rem;
@@ -112,10 +112,11 @@ span {
 .polaroid:hover, .text:hover {
 	box-shadow: var(--dropshadow2);
 	transition: var(--transition);
-	transform: rotate(-1deg);
-
-	/* FIGURE OUT WHY THIS DOES NOT WORK ON TEXT */
 	z-index: 7;
+}
+
+.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
+	z-index: 12;
 }
 
 .polaroidimg, .polaroidcover {
@@ -181,6 +182,7 @@ img, picture {
 }
 
 .text {
+	position: relative;
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
 	aspect-ratio: 1;
@@ -342,7 +344,6 @@ body:has(dialog[open]) { overflow: hidden; }
 .document-shadow:hover {
 	transition: var(--transition);
 	filter: drop-shadow(var(--dropshadow2));
-	transform: rotate(-1deg);
 	z-index: 7;
 }
 
