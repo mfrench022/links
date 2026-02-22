@@ -14,9 +14,8 @@
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
 	--headerheight: 5rem;
-	--headerheight2: 3rem;
+	--headerheight2: 10rem;
 	--navwidth: 16rem;
-	--navwidth2: 20rem;
 }
 
 body::before{
@@ -402,37 +401,37 @@ header {
 	z-index: 8;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	height: var(--headerheight2);
+	min-height: var(--headerheight2);
+	height: auto;
 	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
 	box-shadow: var(--dropshadow2);
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	align-items: start;
 }
 
 .flexcolors{
 	display: flex;
 	align-items: center;
-	justify-content: right;
+	justify-content: space-between;
 	column-gap: calc(var(--padding) / 2);
-	width: auto;
-	inset-inline-end: 0;
-	inset-block-end: var(--padding);
-	mix-blend-mode: multiply;
-	/* background-color: purple; */
-	padding-inline: var(--padding);
+	width: 100%;
+	/* mix-blend-mode: multiply; */
+	background-color: purple;
+	height: 4rem;
 }
 
 .navigation {
 	display: flex;
 	align-items: center;
-	/* background-color: red; */
-	height: 100%;
+	background-color: red;
+	height: auto;
 	mix-blend-mode: normal;
-	width: var(--navwidth2);
+	width: 70%;
 	justify-content: space-between;
-	padding-inline-start: var(--padding);
+	margin-inline-start: 15%;
 }
 
 .swatch, .swatch2, .swatch3 {
@@ -531,10 +530,6 @@ header .palette6 { background:#8BA48D; }
 }
 
 @media (width > 860px) {
-	
-	.flexcolors {
-	column-gap: var(--padding);
-	}
 
 	.blank {
 	display: block;
@@ -543,10 +538,6 @@ header .palette6 { background:#8BA48D; }
 	.swatch, .swatch2, .swatch3 {
 	height: 70%;
 	aspect-ratio: 0.92;
-}
-
-header {
-	height: var(--headerheight);
 }
 }
 
@@ -560,30 +551,4 @@ header {
 	font-size: 125%;
 	}
 
-	header p {
-		font-size: 0.9rem;
-	}
-
-	.navigation {
-		width: var(--navwidth2);
-	}
-
 }
-
-@media (width < 450px) {
-	.flexcolors, .navigation {
-		padding-inline: calc(var(--padding) / 2);
-	}
-
-	.flexcolors {
-		column-gap: calc(var(--padding) / 4);
-	}
-
-	.swatch, .swatch2, .swatch3 {
-	height: 50%;
-	aspect-ratio: 0.92;
-}
-
-
-}
-
