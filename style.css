@@ -355,7 +355,7 @@ header {
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
 	height: var(--headerheight2);
-	background-image: url("paper.jpg");
+	background-image: url("paper2.jpg");
 	background-size: cover;
 	background-position: center;
 	box-shadow: var(--dropshadow2);
