@@ -41,7 +41,7 @@ body::after {
 	content: "";
 	position: fixed;
 	inset: 0;
-	backdrop-filter: blur(0.15rem);
+	backdrop-filter: blur(0.08rem);
 	pointer-events: none;
 	z-index: 5;
 	opacity: 0;
