@@ -75,12 +75,12 @@ span {
 }
 
 .linework {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-  /* overflow: hidden; */
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	mix-blend-mode: multiply;
+	opacity: 0.8;
 }
 
 .linework svg {
@@ -404,6 +404,8 @@ header {
 	height: 70%;
 	aspect-ratio: 0.92;
 	background-color: rgb(200, 124, 124);
+	mix-blend-mode: multiply;
+	opacity: 0.8;
 }
 
 .swatch2 {
