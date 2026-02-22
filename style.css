@@ -203,6 +203,7 @@ img, picture {
 	box-shadow: var(--dropshadow3);
 	padding-block-end: calc(var(--padding) * 5);
 	inset-block-end: calc(2 * var(--padding));
+	transform: rotate(2deg);
 }
 
 .caption-active {
@@ -445,17 +446,18 @@ header {
 
 /* I wanted to make sure the image would responsively resize for any viewport width or height while still maintaining the same aspect aspect-ratio */
 /* I found the min () CSS function on MDN, which allows me to compute the largest width that fits within the available viewport: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min */
-/* Here we are limiting the size of the image to respect the existing design system padding while allowing it to resize to the viewport accordingly */
+/* First min() arg limits by viewport width (100%); second by viewport height (100vh) so aspect ratio 2.8/4 is kept at all sizes */
 	width: min(calc(100% - (4 * var(--padding))),
-	calc((100% - (4 * var(--padding))) * (2.8 / 4)));
+	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
 }
 
 .documentopen {
 	box-shadow: none;
 	filter: drop-shadow(var(--dropshadow3));
 	width: min(calc(100% - (-2 * var(--padding))),
-	calc((100% - (-2 * var(--padding))) * (2.8 / 4)));
+	calc((100vh - (-2 * var(--padding))) * (2.8 / 4)));
 	inset-block-start: calc(-0.8 * var(--padding));
+	aspect-ratio: 1;
 }
 
 .textopen {
