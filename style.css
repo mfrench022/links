@@ -35,7 +35,7 @@ body::before{
 }
 
 body {
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 /* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
@@ -101,6 +101,7 @@ span {
 	padding-inline: var(--padding);
 	padding-block-start: calc(4 * var(--padding));
 	padding-block-end: calc(10 * var(--padding));
+	overflow-y: hidden;
 }
 
 .polaroid, .blank, .document, .placeholder {
