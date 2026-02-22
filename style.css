@@ -471,6 +471,12 @@ header .palette3 { background:#F2C478; }
 header .palette4 { background:#87C9AE; }
 header .palette5 { background:#70838F; }
 
+@media (width > 1200px) {
+	#dialog .text {
+	max-width: calc(100vh - (2 * var(--padding)));
+}
+}
+
 @media (width > 1000px) {
 
 .caption {
