@@ -225,7 +225,7 @@ img, picture {
 	filter: contrast(140%) brightness(105%);
 }
 
-p, h2, .buttonstyle {
+h1, p, h2, .buttonstyle {
 	font-family: "Rock Salt", cursive;
 	font-weight: 400;
 	font-style: normal;
@@ -233,7 +233,7 @@ p, h2, .buttonstyle {
 	line-height: 1.2rem;
 }
 
-p, h2 {
+p, h2, h1 {
 	mix-blend-mode: multiply;
 	opacity: 0.9;
 }
@@ -314,6 +314,32 @@ body:has(dialog[open]) #modal {
 	inset-block-start: calc(var(--padding) /2);
 	inset-inline-start: calc(var(--padding) /2);
 	scale: 50%;
+}
+
+.test {
+	width: calc(100% - (2 *var(--padding)));
+	height: auto;
+	position: absolute;
+	inset-block-end: var(--padding);
+	display: flex;
+	justify-content: space-between;
+	column-gap: var(--padding);
+	padding: 0;
+}
+
+.test .buttonstyle {
+	bottom: 0;
+	position: static;
+}
+
+h1 {
+	font-size: 2.5rem;
+	line-height: 2.5rem;
+	padding-block: var(--padding);
+}
+
+#dialog p {
+	padding-block-start: var(--padding);
 }
 
 /* I wanted to use an svg file as a mask to make my PDF files look torn */
