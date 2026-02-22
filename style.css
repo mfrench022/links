@@ -335,7 +335,7 @@ body:has(dialog[open]) { overflow: hidden; }
 	color: black;
 }
 
-#hamburger:hover {
+#hamburger:hover, .arrow:hover {
 	transition: var(--transition);
 	color: rgba(0, 0, 0, 0.4);
 }
@@ -428,9 +428,19 @@ header {
 	align-items: center;
 	height: calc(var(--headerheight2) / 4);
 	mix-blend-mode: normal;
-	width: 70%;
-	justify-content: space-between;
-	margin-inline-start: 15%;
+	width: 80%;
+	justify-content: center;
+	column-gap: calc(var(--padding) / 2);
+	margin-inline-start: 10%;
+}
+
+.arrow {
+	scale: 38%;
+	transform: rotate(180deg);
+}
+
+.forward {
+	transform: rotate(0deg) translateY(0.2rem);
 }
 
 .swatch, .swatch2, .swatch3 {
@@ -524,6 +534,10 @@ header .palette5 { background:#70838F; }
 	inline-size: 110%;
 }
 
+.arrow {
+	scale: 55%;
+}
+
 }
 
 @media (width > 860px) {
@@ -537,7 +551,7 @@ header .palette5 { background:#70838F; }
 	}
 }
 
-@media (width > 600px) {
+@media (width > 650px) {
 
 header {
 	height: var(--headerheight);
@@ -551,12 +565,14 @@ header {
 	justify-content: right;
 	column-gap: var(--padding);
 	width: auto;
+	padding-inline-start: 0;
 }
 
 .navigation {
-	width: 20rem;
+	width: auto;
 	margin-inline-start: 0;
 	padding-inline-start: var(--padding);
+	margin-inline-start: 0;
 }
 }
 
