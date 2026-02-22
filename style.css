@@ -14,7 +14,7 @@
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
 	--headerheight: 5rem;
-	--headerheight2: 10rem;
+	--headerheight2: 9rem;
 	--navwidth: 16rem;
 }
 
@@ -278,7 +278,7 @@ p, h2, .buttonstyle {
 
 .navigation .buttonstyle {
 	position: static;
-	height: 2.35rem;
+	height: calc(var(--headerheight2) / 4);
 }
 
 #dialog {
@@ -401,8 +401,7 @@ header {
 	z-index: 8;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	min-height: var(--headerheight2);
-	height: auto;
+	height: var(--headerheight2);
 	background-image: url("paper.jpg");
 	background-size: cover;
 	background-position: center;
@@ -410,6 +409,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	padding-block-start: var(--padding);
 }
 
 .flexcolors{
@@ -418,16 +418,15 @@ header {
 	justify-content: space-between;
 	column-gap: calc(var(--padding) / 2);
 	width: 100%;
+	padding-inline: var(--padding);
 	/* mix-blend-mode: multiply; */
-	background-color: purple;
-	height: 4rem;
+	height: 100%;
 }
 
 .navigation {
 	display: flex;
 	align-items: center;
-	background-color: red;
-	height: auto;
+	height: calc(var(--headerheight2) / 4);
 	mix-blend-mode: normal;
 	width: 70%;
 	justify-content: space-between;
@@ -506,14 +505,12 @@ svg.palette2 { color:#FC7F5F; }
 svg.palette3 { color:#F2C478; }
 svg.palette4 { color:#87C9AE; }
 svg.palette5 { color:#70838F; }
-svg.palette6 { color:#8BA48D; }
 
 header .palette1 { background:#2121DB; }
 header .palette2 { background:#FC7F5F; }
 header .palette3 { background:#F2C478; }
 header .palette4 { background:#87C9AE; }
 header .palette5 { background:#70838F; }
-header .palette6 { background:#8BA48D; }
 
 @media (width > 1000px) {
 
@@ -535,20 +532,37 @@ header .palette6 { background:#8BA48D; }
 	display: block;
 	}
 
-	.swatch, .swatch2, .swatch3 {
-	height: 70%;
-	aspect-ratio: 0.92;
-}
-}
-
-@media (width > 650px) {
-
-	.flexcolors {
-		justify-content: right;
-	}
-
 	:root {
 	font-size: 125%;
 	}
+}
+
+@media (width > 600px) {
+
+header {
+	height: var(--headerheight);
+	flex-direction: row;
+	padding-block-start: 0;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.flexcolors{
+	justify-content: right;
+	column-gap: var(--padding);
+	width: auto;
+}
+
+.navigation {
+	width: 20rem;
+	margin-inline-start: 0;
+	padding-inline-start: var(--padding);
+}
+}
+
+@media (width < 370px) {
+	.swatch, .swatch2, .swatch3 {
+	height: 50%;
+}
 
 }
