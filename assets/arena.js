@@ -129,7 +129,7 @@ document.addEventListener('click', (e) => {
 // // About the project modal adapted from course site
 let modalButton = document.querySelector('#modal')
 let modalDialog = document.querySelector('#dialog')
-let closeModal = modalDialog.querySelector('button')
+let closeModal = modalDialog.querySelector('#closebutton')
 
 modalButton.addEventListener('click', () => {
 	modalDialog.showModal()
