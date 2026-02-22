@@ -280,6 +280,10 @@ body:has(dialog[open]) {
 	overflow: hidden;
 }
 
+body:has(dialog[open]) #modal {
+	display: none;
+}
+
 #content h2 {
 	font-size: 1.5rem;
 	margin-block-end: var(--padding);
@@ -301,10 +305,6 @@ body:has(dialog[open]) {
 	inset-block-start: calc(var(--padding) /2);
 	inset-inline-start: calc(var(--padding) /2);
 	scale: 50%;
-}
-
-#modal.is-hidden {
-	display: none;
 }
 
 /* I wanted to use an svg file as a mask to make my PDF files look torn */
