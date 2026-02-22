@@ -278,6 +278,9 @@ p, h2, h1 {
 	transform: translate(-50%, -50%);
 	aspect-ratio: 1;
 	position: fixed;
+	display: flex;
+	flex-direction: column;
+	padding: var(--padding);
 	transition: var(--transition);
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
@@ -317,16 +320,17 @@ body:has(dialog[open]) #modal {
 }
 
 .test {
-	width: calc(100% - (2 *var(--padding)));
+	width: 100%;
 	height: auto;
-	position: absolute;
-	inset-block-end: var(--padding);
 	display: flex;
 	justify-content: start;
 	column-gap: var(--padding);
 	row-gap: var(--padding);
-	padding: 0;
+	padding-block-start: var(--padding);
+	padding-inline: 0;
+	padding-block-end: 0;
 	flex-wrap: wrap;
+	margin-block-start: auto;
 }
 
 .test .buttonstyle {
@@ -643,6 +647,10 @@ body:has(.document-shadow:hover)::after {
 @media (width < 370px) {
 	.swatch, .swatch2, .swatch3 {
 	height: 50%;
+}
+
+h1 {
+	font-size: 1.6rem;
 }
 
 }
