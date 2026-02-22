@@ -322,9 +322,11 @@ body:has(dialog[open]) #modal {
 	position: absolute;
 	inset-block-end: var(--padding);
 	display: flex;
-	justify-content: space-between;
+	justify-content: start;
 	column-gap: var(--padding);
+	row-gap: var(--padding);
 	padding: 0;
+	flex-wrap: wrap;
 }
 
 .test .buttonstyle {
