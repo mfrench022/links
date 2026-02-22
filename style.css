@@ -335,8 +335,8 @@ body:has(dialog[open]) #modal {
 }
 
 h1 {
-	font-size: 2.5rem;
-	line-height: 2.5rem;
+	font-size: 1.9rem;
+	line-height: 1.9rem;
 	padding-block: var(--padding);
 }
 
@@ -560,6 +560,11 @@ header .palette5 { background:#70838F; }
 
 #content {
 	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+h1 {
+	font-size: 3rem;
+	line-height: 3rem;
 }
 
 header {
