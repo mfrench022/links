@@ -85,7 +85,7 @@ span {
 }
 
 #content {
-	inline-size: 100%;
+	inline-size: 100vw;
 	block-size: 100%;
 	z-index: 1;
 	display: grid;
