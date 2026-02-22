@@ -48,7 +48,7 @@ function randomRotationDeg() {
 function randomTranslation() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
-	
+
 
 // I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
@@ -68,21 +68,34 @@ document.addEventListener('click', (e) => {
 	let caption = item.querySelector('.caption')
 	let blur = document.querySelector('.blur')
 
-	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, and fly in a caption
+	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, blur the background, and fly in a caption
 	let polaroidOpen = polaroid.classList.toggle('open')
 	placeholder.classList.toggle('placeholder-active', polaroidOpen)
 	caption.classList.toggle('caption-active', polaroidOpen)
 	if (blur) blur.classList.toggle('bluractive', polaroidOpen)
 });
 
-// Replicating function for documents
+// Ran into an issue where blank divs were blocking click interactions, specifically with document elements
+// Here I am writing a function to target the non-blank document elements
+function nextNonBlank(el) {
+	let next = el.nextElementSibling
+
+	// Using 'while' here for add make the function conditionally applied for elements with 'blank' siblings
+	while (next.classList.contains('blank')) next = next.nextElementSibling
+
+	// This expression evaluates the 'next' variable I set. If next is anything other than null or undefined, its value is returned
+	return next ?? null
+}
+
+// Replicating click function for documents
 document.addEventListener('click', (e) => {
 	let docItem = e.target.closest('.document-shadow')
 	if (!docItem) return
 
-	// These have a different HTML structure, so I am using the nextElementSibling to target siblings of the drop shadow div
-	let docPlaceholder = docItem.nextElementSibling
-	let docCaption = docPlaceholder.nextElementSibling
+	// Here I am skipping any .blank divs inserted between #content children when finding placeholder and caption
+	let docPlaceholder = nextNonBlank(docItem)
+	let docCaption = docPlaceholder ? nextNonBlank(docPlaceholder) : null
+
 	let docBlur = document.querySelector('.blur')
 
 	if (!docPlaceholder.classList.contains('placeholder')) return
@@ -94,7 +107,7 @@ document.addEventListener('click', (e) => {
 	if (docBlur) docBlur.classList.toggle('bluractive', documentOpen)
 });
 
-// Replicating for text
+// Replicating click function for text
 document.addEventListener('click', (e) => {
 	let textItem = e.target.closest('.textitem')
 
