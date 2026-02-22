@@ -47,13 +47,6 @@ body::after {
 	transition: opacity var(--transition);
 }
 
-/* Here we activate the blur pseudo element each time one of the elements is hovered over */
-body:has(.polaroid:hover)::after,
-body:has(.text:hover)::after,
-body:has(.document-shadow:hover)::after {
-	opacity: 1;
-}
-
 .blur {
 	width: 100vw;
 	height: 100vh; 
@@ -129,23 +122,6 @@ span {
 	transition: var(--transition);
 }
 
-.polaroid:hover, .text:hover {
-	box-shadow: var(--dropshadow2);
-}
-
-.document-shadow:hover {
-	filter: drop-shadow(var(--dropshadow2));
-}
-
-.polaroid:hover, .text:hover, .document-shadow:hover {
-	z-index: 7;
-	transition: var(--transition);
-}
-
-.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
-	z-index: 12;
-}
-
 .polaroidimg, .polaroidcover {
 	position: absolute;
 	inset-block-start: calc(var(--padding)/2);
@@ -175,12 +151,6 @@ span {
 
 /* Per Michael's instruction, I am using a symbol within an SVG to reference the SVG in Javascript. This CSS hides the original copy of the SVG that is in my HTML */
 svg:has(symbol) { display: none; }
-
-.polaroid.withvideo:hover .template {
-	scale: 1.2;
-	transform: rotate(-4deg);
-	transition: var(--transition);
-}
 
 img, picture {
 	inline-size: 100%;
@@ -269,13 +239,6 @@ p, h2, .buttonstyle {
 	mix-blend-mode: normal;
 }
 
-.buttonstyle:hover, #dialog button:hover {
-	transition: var(--transition);
-	background-color: rgba(255, 255, 255, 0);
-	background: none;
-	box-shadow: inset 0 0 0.3rem #0808089c;
-}
-
 .navigation .buttonstyle {
 	position: static;
 	height: calc(var(--headerheight2) / 4);
@@ -333,16 +296,6 @@ body:has(dialog[open]) { overflow: hidden; }
 	display: block;
 	transition: var(--transition);
 	color: black;
-}
-
-#hamburger:hover, .arrow:hover {
-	transition: var(--transition);
-	color: rgba(0, 0, 0, 0.4);
-}
-
-#closebutton:hover {
-	transition: var(--transition);
-	color: rgba(0, 0, 0, 0.4);
 }
 
 #closebutton {
@@ -534,10 +487,6 @@ header .palette5 { background:#70838F; }
 	inline-size: 110%;
 }
 
-.arrow {
-	scale: 55%;
-}
-
 }
 
 @media (width > 860px) {
@@ -549,6 +498,10 @@ header .palette5 { background:#70838F; }
 	:root {
 	font-size: 125%;
 	}
+
+	.arrow {
+	scale: 55%;
+}
 }
 
 @media (width > 650px) {
@@ -574,6 +527,56 @@ header {
 	padding-inline-start: var(--padding);
 	margin-inline-start: 0;
 }
+
+/* Here we activate the blur pseudo element each time one of the elements is hovered over */
+body:has(.polaroid:hover)::after,
+body:has(.text:hover)::after,
+body:has(.document-shadow:hover)::after {
+	opacity: 1;
+}
+
+#hamburger:hover, .arrow:hover {
+	transition: var(--transition);
+	color: rgba(0, 0, 0, 0.4);
+}
+
+#closebutton:hover {
+	transition: var(--transition);
+	color: rgba(0, 0, 0, 0.4);
+}
+
+.buttonstyle:hover, #dialog button:hover {
+	transition: var(--transition);
+	background-color: rgba(255, 255, 255, 0);
+	background: none;
+	box-shadow: inset 0 0 0.3rem #0808089c;
+}
+
+.polaroid.withvideo:hover .template {
+	scale: 1.2;
+	transform: rotate(-4deg);
+	transition: var(--transition);
+}
+
+.polaroid:hover, .text:hover {
+	box-shadow: var(--dropshadow2);
+}
+
+.document-shadow:hover {
+	filter: drop-shadow(var(--dropshadow2));
+}
+
+.polaroid:hover, .text:hover, .document-shadow:hover {
+	z-index: 7;
+	transition: var(--transition);
+}
+
+.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
+	z-index: 12;
+}
+
+
+
 }
 
 @media (width < 370px) {
