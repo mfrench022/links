@@ -251,18 +251,17 @@ p, h2, .buttonstyle {
 	transition: var(--transition);
 	inset-block-start: 0;
 	inset-inline-end: 0;
-	width: 100%;
+	width: 100vw;
 }
 
 #dialog .text {
-	inline-size: auto;
+	aspect-ratio: 1;
+	width: calc(100vh - (2 * var(--padding)));
 	inset-inline-start: 50%;
 	inset-block-start: 50%;
-	transform: translate(50%, -50%);
+	transform: translate(-50%, -50%);
 	position: fixed;
 	transition: var(--transition);
-	aspect-ratio: 1;
-	height: calc(100vh - (4 * var(--padding)));
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
