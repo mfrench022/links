@@ -593,6 +593,10 @@ header {
 	margin-inline-start: 0;
 }
 
+#dialog p {
+	line-height: 1.5rem;
+}
+
 /* Here we activate the blur pseudo element each time one of the elements is hovered over */
 body:has(.polaroid:hover)::after,
 body:has(.text:hover)::after,
