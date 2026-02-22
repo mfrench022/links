@@ -95,7 +95,7 @@ span {
 	min-block-size: 100%;
 	z-index: 1;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	grid-template-columns: 1fr;
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	padding-inline: var(--padding);
@@ -231,6 +231,11 @@ p, h2, .buttonstyle {
 	line-height: 1.2rem;
 }
 
+p, h2 {
+	mix-blend-mode: multiply;
+	opacity: 0.9;
+}
+
 .buttonstyle {
 	text-align: center;
 }
@@ -295,10 +300,12 @@ body:has(dialog[open]) #modal {
 	inset-block-start: -0.1rem;
 	inset-inline-start: -0.1rem;
 	scale: 40%;
-	z-index: 500;
+	z-index: 0;
 	display: block;
 	transition: var(--transition);
 	color: black;
+	mix-blend-mode: multiply;
+	opacity: 0.9;
 }
 
 #closebutton {
@@ -381,6 +388,8 @@ header {
 	justify-content: center;
 	column-gap: calc(var(--padding) / 2);
 	margin-inline-start: 10%;
+	mix-blend-mode: multiply;
+	opacity: 0.9;
 }
 
 .arrow {
@@ -426,7 +435,7 @@ header {
 	position: fixed;
 	inset-inline-start: 50%;
 	inset-block-start: calc(2 * var(--padding));
-	transform: translate(-50%, 0);
+	transform: translateX(-50%);
 	aspect-ratio: 2.8 / 4;
 	z-index: 13;
 	box-shadow: var(--dropshadow3);
@@ -452,7 +461,8 @@ header {
 .textopen {
 	position: fixed;
 	aspect-ratio: 1;
-	width: 24rem;
+	margin: 0;
+	width: calc(100% - (2 * var(--padding)));
 }
 
 .textopen p {
@@ -486,6 +496,13 @@ header .palette5 { background:#70838F; }
 	aspect-ratio: 1;
 }
 
+.textopen {
+	inset-block-start: 50%;
+	transform: translate(-50%, -50%);
+	width: auto;
+	max-width: 30rem;
+}
+
 .linework svg {
 	inset-block-end: 85vh;
 	inline-size: 110%;
@@ -509,6 +526,10 @@ header .palette5 { background:#70838F; }
 }
 
 @media (width > 650px) {
+
+#content {
+	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
 
 header {
 	height: var(--headerheight);
@@ -576,7 +597,7 @@ body:has(.document-shadow:hover)::after {
 }
 
 .open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
-	z-index: 12;
+	z-index: 15;
 }
 
 
