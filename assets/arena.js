@@ -13,6 +13,23 @@ function blankDivsHTML(min = 0, max = 2) {
 	return `<div class="blank"></div>`.repeat(n)
 }
 
+/** Here I want to insert random blank divs after every child of #content except the last. */
+// I used ChatGPT to troubleshoot my function, which told me I needed to turn the children into a true array by using an elipse
+
+// Same function setup as before
+function insertBlanks(min = 0, max = 2) {
+	let content = document.querySelector('#content')
+	if (!content) return
+
+	// By spreading the HTML collection into an Array, I'm essentially making a static snapshot of the original children that I can then insert random divs after
+	let children = [...content.children]
+
+	// Using a for loop here to target all children but the last
+	for (let i = 0; i < children.length - 1; i++) {
+		children[i].insertAdjacentHTML('afterend', blankDivsHTML(min, max))
+	}
+}
+
 // I wanted to write a function that would randomize the rotation angle of my blocks
 // Reviewed materials from creative coding class last year and used ChatGPT to troubleshoot: https://taliacotton.notion.site/Javascript-Cheat-Sheet-5007bb6769c44a47991abb03b7aff177
 // See line by line comments below for explanations
@@ -171,7 +188,6 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
-			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
@@ -212,7 +228,6 @@ let renderBlock = (blockData) => {
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
 			`
 
 			channelBlocks.insertAdjacentHTML('beforeend', imageItem)
@@ -248,7 +263,6 @@ let renderBlock = (blockData) => {
 			<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 		</figcaption>
 		</figure>
-		${blankDivsHTML(0, 2)}
 		`
 
 	channelBlocks.insertAdjacentHTML("beforeend", textItem)
@@ -296,7 +310,6 @@ let renderBlock = (blockData) => {
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
 		`
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
@@ -336,7 +349,6 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
-			${blankDivsHTML(0, 2)}
 			`
 
 		// And puts it into the page!
@@ -403,7 +415,6 @@ let renderBlock = (blockData) => {
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Watch Video</button></a>
 			</figcaption>
 			</figure>
-			${blankDivsHTML(0, 2)}
 			`
 
   channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem)
@@ -471,4 +482,5 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
+	insertBlanks(0, 2)
 })
