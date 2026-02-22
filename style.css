@@ -247,34 +247,22 @@ p, h2, .buttonstyle {
 #dialog {
 	inline-size: calc(100% - (10 * var(--padding)));
 	height: 100%;
-	position: fixed;
+	position: relative;
 	transition: var(--transition);
 	inset-block-start: 0;
 	inset-inline-end: 0;
+	width: 100%;
 }
 
 #dialog .text {
 	inline-size: auto;
-	inset-inline-end: var(--padding);
-	position: absolute;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	transform: translate(50%, -50%);
+	position: fixed;
 	transition: var(--transition);
 	aspect-ratio: 1;
 	height: calc(100vh - (4 * var(--padding)));
-	background: #fff5d9;
-	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
-}
-
-#dialog button {
-	width: 100%;
-	height: 100%;
-	inline-size: calc(8 * var(--padding));
-	inset-inline-start: var(--padding);
-	inset-block-end: var(--padding);
-	box-shadow: var(--dropshadow);
-	position: absolute;
-	height: 2.2rem;
-	transition: var(--transition);
-	text-align: center;
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
 }
@@ -287,7 +275,7 @@ body:has(dialog[open]) { overflow: hidden; }
 	line-height: 2.1rem;
 }
 
-#hamburger, #closebutton {
+#modal, #closebutton {
 	position: fixed;
 	inset-block-start: calc(var(--padding) /2);
 	inset-inline-start: calc(var(--padding) /2);
@@ -303,7 +291,7 @@ body:has(dialog[open]) { overflow: hidden; }
 	display: none;
 }
 
-#hamburger.is-hidden {
+#modal.is-hidden {
 	display: none;
 }
 
@@ -535,7 +523,7 @@ body:has(.document-shadow:hover)::after {
 	opacity: 1;
 }
 
-#hamburger:hover, .arrow:hover {
+#modal:hover, .arrow:hover {
 	transition: var(--transition);
 	color: rgba(0, 0, 0, 0.4);
 }

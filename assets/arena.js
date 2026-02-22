@@ -73,7 +73,7 @@ document.addEventListener('click', (e) => {
 	placeholder.classList.toggle('placeholder-active', polaroidOpen)
 	caption.classList.toggle('caption-active', polaroidOpen)
 	if (blur) blur.classList.toggle('bluractive', polaroidOpen)
-});
+})
 
 // Ran into an issue where blank divs were blocking click interactions, specifically with document elements
 // Here I am writing a function to target the non-blank document elements
@@ -105,7 +105,7 @@ document.addEventListener('click', (e) => {
 	docPlaceholder.classList.toggle('placeholder-active', documentOpen)
 	docCaption.classList.toggle('caption-active', documentOpen)
 	if (docBlur) docBlur.classList.toggle('bluractive', documentOpen)
-});
+})
 
 // Replicating click function for text
 document.addEventListener('click', (e) => {
@@ -122,28 +122,29 @@ document.addEventListener('click', (e) => {
 	textPlaceholder.classList.toggle('placeholder-active', textOpen)
 	textCaption.classList.toggle('caption-active', textOpen)
 	if (textBlur) textBlur.classList.toggle('bluractive', textOpen)
-});
+})
+
+
 
 // // About the project modal adapted from course site
-// let modalButton = document.querySelector('#modal') // The thing we’re clicking.
-// let modalDialog = document.querySelector('#dialog') // Now one for our `dialog`.
-// let closeModal = modalDialog.querySelector('button') // Only looking within `modalDialog`.
+let modalButton = document.querySelector('#modal')
+let modalDialog = document.querySelector('#dialog')
+let closeModal = modalDialog.querySelector('button')
 
-// modalButton.addEventListener('click', () => { // “Listen” for clicks.
-// 	modalDialog.showModal() // This opens it up.
-// })
+modalButton.addEventListener('click', () => {
+	modalDialog.showModal()
+})
 
-// closeModal.addEventListener('click', () => {
-// 	modalDialog.close() // And this closes it!
-// })
+closeModal.addEventListener('click', () => {
+	modalDialog.close()
+})
 
 
-// document.addEventListener('click', (event) => {
-// 	// Only clicks on the page itself behind the `dialog`.
-// 	if (event.target == document.documentElement) {
-// 		modalDialog.close() // Close it too then.
-// 	}
-// })
+document.addEventListener('click', (event) => {
+	if (event.target == document.documentElement) {
+		modalDialog.close()
+	}
+})
 
 
 // Not using these so I am commenting out to avoid console errors
