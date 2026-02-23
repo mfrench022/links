@@ -305,7 +305,7 @@ body:has(dialog[open]) #modal {
 	inset-block-start: -0.1rem;
 	inset-inline-start: -0.1rem;
 	scale: 40%;
-	z-index: 0;
+	z-index: 500;
 	display: block;
 	transition: var(--transition);
 	color: black;
@@ -561,6 +561,10 @@ header .palette5 { background:#70838F; }
 }
 
 @media (width > 650px) {
+
+#modal, #closebutton {
+	z-index: 0;
+}
 
 #content {
 	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
