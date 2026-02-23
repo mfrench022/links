@@ -23,7 +23,6 @@ function blockOneObserver() {
 			threshold: 0,
 		}
 	)
-
 	blocks.forEach((block) => observerOne.observe(block))
 }
 
@@ -35,7 +34,7 @@ function blockTwoObserver() {
 	let observerOne = new IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
-				entry.target.classList.toggle('block1hover', entry.isIntersecting)
+				entry.target.classList.toggle('block2hover', entry.isIntersecting)
 			})
 		},
 		{
@@ -44,7 +43,6 @@ function blockTwoObserver() {
 			threshold: 0,
 		}
 	)
-
 	blocks.forEach((block) => observerOne.observe(block))
 }
 

@@ -696,25 +696,24 @@ body:has(.audio:hover)::after {
 }
 }
 
-/* CSS for scroll-triggered “hover” when card passes through viewport */
-	body.block1hover-active::after, body.block2hover-active::after {
-		opacity: 1;
-	}
 
+body.block1hover::after, body.block2hover::after {
+		opacity: 1;
+}
+
+/* CSS for scroll-triggered “hover” when card passes through viewport */
 /* Using not selectors per Michael's suggestion to avoid targeting specific components */
 @media (width < 650px) {
 	.block1hover:not(.open):not(.textopen):not(.documentopen):not(.audioopen) {
 		box-shadow: var(--dropshadow2);
 		z-index: 7;
 		transition: var(--transition);
-		background-color: red;
 	}
 
 	.block2hover:not(.open):not(.textopen):not(.documentopen):not(.audioopen) {
 		filter: drop-shadow(var(--dropshadow2));
 		z-index: 7;
 		transition: var(--transition);
-		background-color: red;
 	}
 }
 
