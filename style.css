@@ -5,11 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 
-html {
-	overflow-x: hidden;
-	/* Prevent 100vw from causing horizontal overflow / zoom on load */
-}
-
 :root {
 	font-size: 100%;
 	--padding: 1rem;
