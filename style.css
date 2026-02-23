@@ -131,7 +131,7 @@ span {
 	margin-block-start: 3rem;
 	border-radius: 100%;
 	transition: var(--transition);
-	background-color: pink;
+	/* background-color: pink; */
 }
 
 .audio p {
@@ -536,6 +536,7 @@ header {
 
 .audioopen {
 	box-shadow: none;
+	aspect-ratio: 1;
 	filter: drop-shadow(var(--dropshadow3));
 }
 
@@ -607,6 +608,10 @@ header .palette5 { background:#70838F; }
 }
 
 @media (width > 650px) {
+
+.audioopen {
+	inset-block-start: 10%;
+}
 
 #modal, #closebutton {
 	z-index: 0;
