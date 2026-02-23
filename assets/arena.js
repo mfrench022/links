@@ -1,6 +1,53 @@
 let channelSlug = 'staying-in-style' // The “slug” is just the end of the URL.
 let myUsername = 'michael-french' // For linking to your profile.
 
+// Per Michael's suggestion, I am setting up an intersection observer to mimic the desktop hover effects as user scrolls on mobile
+// I used the class website example as a template, but after setting it up initially it was not observing any elements (essentially it was observing the page before the arena blocks were loaded) 
+// After troubleshooting with ChatGPT, I learned that wrapping the observer in a function allows me to call the observer after the arena blocks are loaded into the DOM
+
+function blockOneObserver() {
+	let blocks = document.querySelectorAll('.block1') // Gets all of the elements with class .block1
+
+	// This ensures that the observer takes place once the blocks are loaded
+	if (!blocks.length) return 
+
+	// Same setup as class website example, using for loop to go through all elements and add the class to those that intersect with the specified portion of the viewport
+	let observerOne = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				entry.target.classList.toggle('block1hover', entry.isIntersecting)
+			})
+		},
+		{
+			rootMargin: '-45% 0px -55% 0px',
+			threshold: 0,
+		}
+	)
+
+	blocks.forEach((block) => observerOne.observe(block))
+}
+
+// Replicating for elements with different style structure
+function blockTwoObserver() {
+	let blocks = document.querySelectorAll('.block2')
+	if (!blocks.length) return
+
+	let observerOne = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				entry.target.classList.toggle('block1hover', entry.isIntersecting)
+			})
+		},
+		{
+			root: null,
+			rootMargin: '-45% 0px -55% 0px',
+			threshold: 0,
+		}
+	)
+
+	blocks.forEach((block) => observerOne.observe(block))
+}
+
 // I learned about Math.Random and other functions last year in creative coding class
 // Here I am using a random integer function to define a min and max for the randomization, and then another function to add a random amount of divs to the HTML
 
@@ -138,7 +185,7 @@ document.addEventListener('click', (e) => {
 	let audioOpen = audio.classList.toggle('audioopen')
 	audioPlaceholder.classList.toggle('placeholder-active', audioOpen)
 	audioCaption.classList.toggle('caption-active', audioOpen)
-	if (audioBlur) textBlur.classList.toggle('bluractive', audioOpen)
+	if (audioBlur) audioBlur.classList.toggle('bluractive', audioOpen)
 })
 
 // // About the project modal adapted from course site
@@ -161,23 +208,6 @@ document.addEventListener('click', (event) => {
 	}
 })
 
-
-// Not using these so I am commenting out to avoid console errors
-
-// First, let’s lay out some *functions*, starting with our basic metadata:
-let placeChannelInfo = (channelData) => {
-
-	// let channelTitle = document.querySelector('#channel-title')
-	// let channelDescription = document.querySelector('#channel-description')
-	// let channelCount = document.querySelector('#channel-count')
-	// let channelLink = document.querySelector('#channel-link')
-
-	// channelTitle.innerHTML = channelData.title
-	// channelDescription.innerHTML = channelData.description.html
-	// channelCount.innerHTML = channelData.counts.blocks
-	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
-}
-
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
 	// To start, a shared `ul` where we’ll insert all our blocks
@@ -191,7 +221,7 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
-			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -231,7 +261,7 @@ let renderBlock = (blockData) => {
 		let imageItem =
 		`
 			<figure class="item">
-			<div class="polaroid" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="polaroid block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<img class="polaroidcover" src="polaroid.svg"></img>
 					<picture class="polaroidimg">
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -269,7 +299,7 @@ let renderBlock = (blockData) => {
 		let textItem = 
 		`
 		<figure class ="textitem">
-		<div class="text" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+		<div class="text block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 		<p>
 		${html}
 		</p>
@@ -308,7 +338,7 @@ let renderBlock = (blockData) => {
 
 		`
 			<figure class="item">
-			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="polaroid withvideo block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
 			<svg width="105" height="133" class="template">
 				<use href="#play"/>
@@ -352,7 +382,7 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
-			<div class="document-shadow" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -390,7 +420,7 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 			<figure class = "audioitem">
-			<div class="audio" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -437,7 +467,7 @@ let renderBlock = (blockData) => {
 			let linkedVideoItem = 
 			`
 				<figure class="item">
-			<div class="polaroid withvideo" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="polaroid withvideo block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
 			<svg width="105" height="133" class="template">
 				<use href="#play"/>
@@ -478,7 +508,7 @@ let renderBlock = (blockData) => {
 			let linkedAudioItem = 
 					`
 			<figure class = "audioitem">
-			<div class="audio" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -515,20 +545,20 @@ let renderBlock = (blockData) => {
 
 
 // A function to display the owner/collaborator info:
-let renderUser = (userData) => {
-	let channelUsers = document.querySelector('#channel-users') // Container.
+// let renderUser = (userData) => {
+// 	let channelUsers = document.querySelector('#channel-users') // Container.
 
-	let userAddress =
-		`
-		<address>
-			<img src="${ userData.avatar }">
-			<h3>${ userData.name }</h3>
-			<p><a href="https://are.na/${ userData.slug }">Are.na profile ↗</a></p>
-		</address>
-		`
+// 	let userAddress =
+// 		`
+// 		<address>
+// 			<img src="${ userData.avatar }">
+// 			<h3>${ userData.name }</h3>
+// 			<p><a href="https://are.na/${ userData.slug }">Are.na profile ↗</a></p>
+// 		</address>
+// 		`
 
-	// channelUsers.insertAdjacentHTML('beforeend', userAddress)
-}
+// 	// channelUsers.insertAdjacentHTML('beforeend', userAddress)
+// }
 
 
 
@@ -568,4 +598,6 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
 	insertBlanks(0, 2)
+	blockOneObserver()
+	blockTwoObserver()
 })

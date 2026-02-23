@@ -129,6 +129,7 @@ span {
 	z-index: 1;
 	margin-block-start: 3rem;
 	border-radius: 100%;
+	transition: var(--transition);
 }
 
 .audio p {
@@ -157,6 +158,7 @@ span {
 	left: 50%;
 	transform:translateX(-50%);
 	filter: drop-shadow(var(--dropshadow));
+	transition: var(--transition);
 }
 
 .polaroid {
@@ -643,14 +645,6 @@ header {
 	line-height: 1.5rem;
 }
 
-/* Here we activate the blur pseudo element each time one of the elements is hovered over */
-body:has(.polaroid:hover)::after,
-body:has(.text:hover)::after,
-body:has(.document-shadow:hover)::after
-body:has(.audio:hover)::after {
-	opacity: 1;
-}
-
 #modal:hover, .arrow:hover {
 	transition: var(--transition);
 	color: rgba(0, 0, 0, 0.4);
@@ -668,21 +662,29 @@ body:has(.audio:hover)::after {
 	box-shadow: inset 0 0 0.3rem #0808089c;
 }
 
+/* Here we activate the blur pseudo element each time one of the elements is hovered over */
+body:has(.polaroid:hover)::after,
+body:has(.text:hover)::after,
+body:has(.document-shadow:hover)::after,
+body:has(.audio:hover)::after {
+	opacity: 1;
+}
+
 .polaroid.withvideo:hover .template {
 	scale: 1.2;
 	transform: rotate(-4deg);
 	transition: var(--transition);
 }
 
-.polaroid:hover, .text:hover {
+.block1:hover {
 	box-shadow: var(--dropshadow2);
 }
 
-.document-shadow:hover, .audio:hover {
+.block2:hover {
 	filter: drop-shadow(var(--dropshadow2));
 }
 
-.polaroid:hover, .text:hover, .document-shadow:hover, .audio:hover {
+.block1:hover, .block2:hover {
 	z-index: 7;
 	transition: var(--transition);
 }
@@ -690,10 +692,26 @@ body:has(.audio:hover)::after {
 .open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover, .audioopen.audio:hover{
 	z-index: 15;
 }
-
-
-
 }
+
+/* CSS for scroll-triggered “hover” when card passes through viewport */
+	body.block1hover-active::after, body.block2hover-active::after {
+		opacity: 1;
+	}
+
+	.block1hover {
+		box-shadow: var(--dropshadow2);
+		z-index: 7;
+		transition: var(--transition);
+		background-color: red;
+	}
+
+	.block2hover {
+		filter: drop-shadow(var(--dropshadow2));
+		z-index: 7;
+		transition: var(--transition);
+		background-color: red;
+	}
 
 @media (width < 370px) {
 	.swatch, .swatch2, .swatch3 {
