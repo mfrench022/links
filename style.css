@@ -122,6 +122,12 @@ span {
 	display: block;
 }
 
+.audio {
+	width: 100%;
+	height: 100%;
+	background-color: green;
+}
+
 .polaroid {
 	position: relative;
 	box-shadow: var(--dropshadow);
@@ -181,7 +187,7 @@ img, picture {
 	margin-inline: var(--padding);
 }
 
-.text, .caption, .polaroid, .document-shadow {
+.text, .caption, .polaroid, .document-shadow, .audio {
 	transform: translateY(calc(-2* var(--translate))) rotate(var(--rotation)) translateX(var(--translate));
 }
 
@@ -465,7 +471,7 @@ header {
 	margin: 0;
 }
 
-.open, .documentopen, .textopen {
+.open, .documentopen, .textopen, .audioopen {
 	position: fixed;
 	inset-inline-start: 50%;
 	inset-block-start: calc(2 * var(--padding));
@@ -501,8 +507,8 @@ header {
 }
 
 .textopen p {
-	font-size: 1.4rem;
-	line-height: 1.8rem;
+	font-size: 1.54rem;
+	line-height: 2rem;
 	transition: var(--transition);
 }
 
@@ -604,7 +610,8 @@ header {
 /* Here we activate the blur pseudo element each time one of the elements is hovered over */
 body:has(.polaroid:hover)::after,
 body:has(.text:hover)::after,
-body:has(.document-shadow:hover)::after {
+body:has(.document-shadow:hover)::after
+body:has(.audio:hover)::after {
 	opacity: 1;
 }
 
@@ -639,12 +646,12 @@ body:has(.document-shadow:hover)::after {
 	filter: drop-shadow(var(--dropshadow2));
 }
 
-.polaroid:hover, .text:hover, .document-shadow:hover {
+.polaroid:hover, .text:hover, .document-shadow:hover, .audio:hover {
 	z-index: 7;
 	transition: var(--transition);
 }
 
-.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover {
+.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover, .audioopen.audio:hover{
 	z-index: 15;
 }
 

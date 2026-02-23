@@ -124,7 +124,22 @@ document.addEventListener('click', (e) => {
 	if (textBlur) textBlur.classList.toggle('bluractive', textOpen)
 })
 
+// Replicating click function for audio
+document.addEventListener('click', (e) => {
+	let audioItem = e.target.closest('.audioitem')
 
+	if (!audioItem) return
+
+	let audio = audioItem.querySelector('.audio')
+	let audioPlaceholder = audioItem.querySelector('.placeholder')
+	let audioCaption = audioItem.querySelector('.caption')
+	let audioBlur = document.querySelector('.blur')
+
+	let audioOpen = audio.classList.toggle('audioopen')
+	audioPlaceholder.classList.toggle('placeholder-active', audioOpen)
+	audioCaption.classList.toggle('caption-active', audioOpen)
+	if (audioBlur) textBlur.classList.toggle('bluractive', audioOpen)
+})
 
 // // About the project modal adapted from course site
 let modalButton = document.querySelector('#modal')
@@ -374,10 +389,29 @@ let renderBlock = (blockData) => {
 			// …still up to you, but here’s an `audio` element:
 			let audioItem =
 				`
-				<li>
-					<p><em>Audio</em></p>
+			<figure class = "audioitem">
+			<div class="audio" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+				<p><em>Audio</em></p>
 					<audio controls src="${ blockData.attachment.url }"></video>
-				</li>
+			</div>
+			<div class="placeholder"></div>
+			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+				<h2>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</h2>
+
+				<p>
+					${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+					? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+					: `` // Our “otherwise” can also be blank!
+					}
+				</p>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
+			</figcaption>
+			</figure>
 				`
 
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
