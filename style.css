@@ -35,7 +35,7 @@ body::before{
 }
 
 body {
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 /* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
@@ -101,7 +101,6 @@ span {
 	padding-inline: var(--padding);
 	padding-block-start: calc(4 * var(--padding));
 	padding-block-end: calc(10 * var(--padding));
-	overflow-y: hidden;
 }
 
 .polaroid, .blank, .document, .placeholder {
@@ -125,7 +124,28 @@ span {
 .audio {
 	width: 100%;
 	height: 100%;
-	background-color: green;
+	/* background-color: green; */
+	position: relative;
+	z-index: 1;
+}
+
+.audio p {
+	z-index: 2;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform:translateX(-50%);
+	text-align: center;
+}
+
+.audio img {
+	width: 95%;
+	object-fit: contain;
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform:translateX(-50%);
+	filter: drop-shadow(var(--dropshadow));
 }
 
 .polaroid {
@@ -499,6 +519,11 @@ header {
 	aspect-ratio: 1;
 }
 
+.audioopen {
+	box-shadow: none;
+	filter: drop-shadow(var(--dropshadow3));
+}
+
 .textopen {
 	position: fixed;
 	aspect-ratio: 1;
@@ -642,7 +667,7 @@ body:has(.audio:hover)::after {
 	box-shadow: var(--dropshadow2);
 }
 
-.document-shadow:hover {
+.document-shadow:hover, .audio:hover {
 	filter: drop-shadow(var(--dropshadow2));
 }
 

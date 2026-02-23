@@ -201,7 +201,7 @@ let renderBlock = (blockData) => {
 				</div>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -240,7 +240,7 @@ let renderBlock = (blockData) => {
 					</picture>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -275,7 +275,7 @@ let renderBlock = (blockData) => {
 		</p>
 		</div>
 		<div class="placeholder"></div>
-		<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+		<figcaption class="caption">
 			<h2>
 				${ blockData.title
 					? blockData.title // If `blockData.title` exists, do this.
@@ -322,7 +322,7 @@ let renderBlock = (blockData) => {
 					</picture>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -362,7 +362,7 @@ let renderBlock = (blockData) => {
 				</div>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -391,11 +391,16 @@ let renderBlock = (blockData) => {
 				`
 			<figure class = "audioitem">
 			<div class="audio" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
-				<p><em>Audio</em></p>
-					<audio controls src="${ blockData.attachment.url }"></video>
+				<p>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</p>
+				<img src="cd.png">
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -409,7 +414,7 @@ let renderBlock = (blockData) => {
 					: `` // Our “otherwise” can also be blank!
 					}
 				</p>
-				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Listen</button></a>
 			</figcaption>
 			</figure>
 				`
@@ -446,7 +451,7 @@ let renderBlock = (blockData) => {
 					</picture>
 			</div>
 			<div class="placeholder"></div>
-			<figcaption class="caption" style="--rotation: ${randomRotationDeg()}">
+			<figcaption class="caption">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -470,7 +475,39 @@ let renderBlock = (blockData) => {
 
 		// Linked audio!
 		else if (embedType.includes('rich')) {
-			// …up to you!
+			let linkedAudioItem = 
+					`
+			<figure class = "audioitem">
+			<div class="audio" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+				<p>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</p>
+				<img src="cd.png">
+			</div>
+			<div class="placeholder"></div>
+			<figcaption class="caption">
+				<h2>
+					${ blockData.title
+						? blockData.title // If `blockData.title` exists, do this.
+						: `Untitled` // Otherwise do this.
+					}
+				</h2>
+
+				<p>
+					${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
+					? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
+					: `` // Our “otherwise” can also be blank!
+					}
+				</p>
+				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Listen</button></a>
+			</figcaption>
+			</figure>
+				`
+
+				  channelBlocks.insertAdjacentHTML("beforeend", linkedAudioItem)
 		}
 	}
 }
