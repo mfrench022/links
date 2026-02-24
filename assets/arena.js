@@ -131,6 +131,7 @@ document.addEventListener('click', (e) => {
 	if (!figure) return
 
 	// Here we are targeting the elements within the figure.item element that we want to apply the view transition to
+	// The :scope selector is used to target the elements within the figure.item element. Without it, the selector would target the elements within the figure.item element and not the figure.item element itself
 	let blur = document.querySelector('.blur')
 	let target = figure.querySelector(':scope > :is(.polaroid, .document-shadow, .text, .audio)')
 	let placeholder = figure.querySelector(':scope > .placeholder')
