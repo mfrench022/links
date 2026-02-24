@@ -511,7 +511,6 @@ header {
 	aspect-ratio: 2.8 / 4;
 	z-index: 13;
 	box-shadow: var(--dropshadow3);
-	transition: var(--transition);
 	max-height: calc(100vh - (4 * var(--padding)));
 	height: auto;
 
@@ -520,6 +519,17 @@ header {
 /* First min() arg limits by viewport width (100%); second by viewport height (100vh) so aspect ratio 2.8/4 is kept at all sizes */
 	width: min(calc(100% - (4 * var(--padding))),
 	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
+}
+
+::view-transition-group(open-card) {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+}
+::view-transition-old(open-card),
+::view-transition-new(open-card) {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	mix-blend-mode: normal;
 }
 
 .documentopen {

@@ -94,6 +94,20 @@ function randomTranslation() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
 
+// ADD ATTRIBUTION
+// Run a DOM update with a smooth view transition when supported (open/close cards).
+function withViewTransition(element, update) {
+	if (element) element.style.viewTransitionName = 'open-card'
+	if (document.startViewTransition) {
+		const vt = document.startViewTransition(update)
+		if (element && vt.finished) vt.finished.then(() => { if (element) element.style.viewTransitionName = '' })
+	} else {
+		if (element) element.style.viewTransitionName = ''
+		update()
+	}
+}
+
+
 // I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
@@ -110,10 +124,12 @@ document.addEventListener('click', (e) => {
 		let polaroid = toggle.querySelector('.polaroid')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
-		let open = polaroid.classList.toggle('open')
-		placeholder.classList.toggle('placeholder-active', open)
-		caption.classList.toggle('caption-active', open)
-		if (blur) blur.classList.toggle('bluractive', open)
+		withViewTransition(polaroid, () => {
+			let open = polaroid.classList.toggle('open')
+			placeholder.classList.toggle('placeholder-active', open)
+			caption.classList.toggle('caption-active', open)
+			if (blur) blur.classList.toggle('bluractive', open)
+		})
 		return
 	}
 
@@ -121,10 +137,12 @@ document.addEventListener('click', (e) => {
 		let placeholder = nextNonBlank(toggle)
 		let caption = placeholder ? nextNonBlank(placeholder) : null
 		if (!placeholder?.classList.contains('placeholder') || !caption?.classList.contains('caption')) return
-		let open = toggle.classList.toggle('documentopen')
-		placeholder.classList.toggle('placeholder-active', open)
-		caption.classList.toggle('caption-active', open)
-		if (blur) blur.classList.toggle('bluractive', open)
+		withViewTransition(toggle, () => {
+			let open = toggle.classList.toggle('documentopen')
+			placeholder.classList.toggle('placeholder-active', open)
+			caption.classList.toggle('caption-active', open)
+			if (blur) blur.classList.toggle('bluractive', open)
+		})
 		return
 	}
 
@@ -132,10 +150,12 @@ document.addEventListener('click', (e) => {
 		let text = toggle.querySelector('.text')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
-		let open = text.classList.toggle('textopen')
-		placeholder.classList.toggle('placeholder-active', open)
-		caption.classList.toggle('caption-active', open)
-		if (blur) blur.classList.toggle('bluractive', open)
+		withViewTransition(text, () => {
+			let open = text.classList.toggle('textopen')
+			placeholder.classList.toggle('placeholder-active', open)
+			caption.classList.toggle('caption-active', open)
+			if (blur) blur.classList.toggle('bluractive', open)
+		})
 		return
 	}
 
@@ -143,10 +163,12 @@ document.addEventListener('click', (e) => {
 		let audio = toggle.querySelector('.audio')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
-		let open = audio.classList.toggle('audioopen')
-		placeholder.classList.toggle('placeholder-active', open)
-		caption.classList.toggle('caption-active', open)
-		if (blur) blur.classList.toggle('bluractive', open)
+		withViewTransition(audio, () => {
+			let open = audio.classList.toggle('audioopen')
+			placeholder.classList.toggle('placeholder-active', open)
+			caption.classList.toggle('caption-active', open)
+			if (blur) blur.classList.toggle('bluractive', open)
+		})
 	}
 })
 
