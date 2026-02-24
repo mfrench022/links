@@ -184,6 +184,11 @@ span {
 	box-shadow: var(--dropshadow);
 	background-color: rgb(234, 234, 231);
 	transition: var(--transition);
+	overflow: hidden;
+}
+
+.polaroidimg {
+overflow: hidden;
 }
 
 .polaroidimg, .polaroidcover {
@@ -198,6 +203,11 @@ span {
 	z-index: 1;
 	mix-blend-mode: lighten;
 	opacity: 40%;
+}
+
+.polaroid img,
+.polaroid picture{
+  position: absolute;
 }
 
 .template {
@@ -222,8 +232,6 @@ img, picture {
 	object-fit: cover;
 	aspect-ratio: auto;
 	display: block;
-	overflow: hidden;
-	position: absolute;
 	object-position: top center; 
 }
 
@@ -547,6 +555,7 @@ header {
 
 
 /* Controlling animations associated with viewtransition JS */
+/* Refreshed on animation properties on MDN https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-duration */
 ::view-transition-group(open-card) {
 	animation-duration: 300ms;
 	animation-timing-function: ease-in-out;
@@ -763,4 +772,5 @@ h1 {
 }
 
 }
+
 
