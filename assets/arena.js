@@ -133,7 +133,7 @@ document.addEventListener('click', (e) => {
 	// Here we are targeting the elements within the figure.item element that we want to apply the view transition to
 	// The :scope selector is used to target the elements within the figure.item element. Without it, the selector would target the elements within the figure.item element and not the figure.item element itself
 	let blur = document.querySelector('.blur')
-	let target = figure.querySelector(':scope > :is(.polaroid, .document-shadow, .text, .audio)')
+	let target = figure.querySelector(':scope > :is(.polaroid, .document, .text, .audio)')
 	let placeholder = figure.querySelector(':scope > .placeholder')
 	let caption = figure.querySelector(':scope > .caption')
 
@@ -193,8 +193,7 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
-			<figure class="item">
-			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<figure class="item document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -202,7 +201,6 @@ let renderBlock = (blockData) => {
 							<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 						</picture>
 				</div>
-			</div>
 			<div class="placeholder container"></div>
 			<figcaption class="caption container">
 				<h2>
@@ -356,8 +354,7 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
-			<figure class = "item">
-			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
+			<figure class="item document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
 							<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -365,7 +362,6 @@ let renderBlock = (blockData) => {
 							<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 						</picture>
 				</div>
-			</div>
 			<div class="placeholder container"></div>
 			<figcaption class="caption container">
 				<h2>
