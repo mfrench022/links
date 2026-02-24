@@ -75,10 +75,10 @@ function insertBlanks(min = 0, max = 2) {
 	}
 }
 
+
 // I wanted to write a function that would randomize the rotation angle of my blocks
 // Reviewed materials from creative coding class last year and used ChatGPT to troubleshoot: https://taliacotton.notion.site/Javascript-Cheat-Sheet-5007bb6769c44a47991abb03b7aff177
 // See line by line comments below for explanations
-
 
 // Set up function to return a number within a min/max range (using a random floating point)
 function randFloat(min, max) {
@@ -94,30 +94,60 @@ function randomTranslation() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
 
-
 // I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
 
-// Listening for a click on the event object
+// Revised function after talking to Michael, single click listener: only direct children of #content act as open/close toggles
 document.addEventListener('click', (e) => {
-	// Declaring the nearest .item figure as the event object
-	let item = e.target.closest('.item')
+	// Using > to select all direct children of #content
+	let toggle = e.target.closest('#content > .item, #content > .document-shadow, #content > .audioitem, #content > .textitem')
+	if (!toggle) return
 
-	// If the click is detected, do the following
-	if (!item) return
-
-	// Declaring variables for classes that I will add
-	let polaroid = item.querySelector('.polaroid')
-	let placeholder = item.querySelector('.placeholder')
-	let caption = item.querySelector('.caption')
 	let blur = document.querySelector('.blur')
 
-	// Adding classes which zoom in on the images, activate a placeholder to maintain the grid, blur the background, and fly in a caption
-	let polaroidOpen = polaroid.classList.toggle('open')
-	placeholder.classList.toggle('placeholder-active', polaroidOpen)
-	caption.classList.toggle('caption-active', polaroidOpen)
-	if (blur) blur.classList.toggle('bluractive', polaroidOpen)
+	if (toggle.classList.contains('item')) {
+		let polaroid = toggle.querySelector('.polaroid')
+		let placeholder = toggle.querySelector('.placeholder')
+		let caption = toggle.querySelector('.caption')
+		let open = polaroid.classList.toggle('open')
+		placeholder.classList.toggle('placeholder-active', open)
+		caption.classList.toggle('caption-active', open)
+		if (blur) blur.classList.toggle('bluractive', open)
+		return
+	}
+
+	if (toggle.classList.contains('document-shadow')) {
+		let placeholder = nextNonBlank(toggle)
+		let caption = placeholder ? nextNonBlank(placeholder) : null
+		if (!placeholder?.classList.contains('placeholder') || !caption?.classList.contains('caption')) return
+		let open = toggle.classList.toggle('documentopen')
+		placeholder.classList.toggle('placeholder-active', open)
+		caption.classList.toggle('caption-active', open)
+		if (blur) blur.classList.toggle('bluractive', open)
+		return
+	}
+
+	if (toggle.classList.contains('textitem')) {
+		let text = toggle.querySelector('.text')
+		let placeholder = toggle.querySelector('.placeholder')
+		let caption = toggle.querySelector('.caption')
+		let open = text.classList.toggle('textopen')
+		placeholder.classList.toggle('placeholder-active', open)
+		caption.classList.toggle('caption-active', open)
+		if (blur) blur.classList.toggle('bluractive', open)
+		return
+	}
+
+	if (toggle.classList.contains('audioitem')) {
+		let audio = toggle.querySelector('.audio')
+		let placeholder = toggle.querySelector('.placeholder')
+		let caption = toggle.querySelector('.caption')
+		let open = audio.classList.toggle('audioopen')
+		placeholder.classList.toggle('placeholder-active', open)
+		caption.classList.toggle('caption-active', open)
+		if (blur) blur.classList.toggle('bluractive', open)
+	}
 })
 
 // Ran into an issue where blank divs were blocking click interactions, specifically with document elements
@@ -131,60 +161,6 @@ function nextNonBlank(el) {
 	// This expression evaluates the 'next' variable I set. If next is anything other than null or undefined, its value is returned
 	return next ?? null
 }
-
-// Replicating click function for documents
-document.addEventListener('click', (e) => {
-	let docItem = e.target.closest('.document-shadow')
-	if (!docItem) return
-
-	// Here I am skipping any .blank divs inserted between #content children when finding placeholder and caption
-	let docPlaceholder = nextNonBlank(docItem)
-	let docCaption = docPlaceholder ? nextNonBlank(docPlaceholder) : null
-
-	let docBlur = document.querySelector('.blur')
-
-	if (!docPlaceholder.classList.contains('placeholder')) return
-	if (!docCaption.classList.contains('caption')) return
-
-	let documentOpen = docItem.classList.toggle('documentopen')
-	docPlaceholder.classList.toggle('placeholder-active', documentOpen)
-	docCaption.classList.toggle('caption-active', documentOpen)
-	if (docBlur) docBlur.classList.toggle('bluractive', documentOpen)
-})
-
-// Replicating click function for text
-document.addEventListener('click', (e) => {
-	let textItem = e.target.closest('.textitem')
-
-	if (!textItem) return
-
-	let text = textItem.querySelector('.text')
-	let textPlaceholder = textItem.querySelector('.placeholder')
-	let textCaption = textItem.querySelector('.caption')
-	let textBlur = document.querySelector('.blur')
-
-	let textOpen = text.classList.toggle('textopen')
-	textPlaceholder.classList.toggle('placeholder-active', textOpen)
-	textCaption.classList.toggle('caption-active', textOpen)
-	if (textBlur) textBlur.classList.toggle('bluractive', textOpen)
-})
-
-// Replicating click function for audio
-document.addEventListener('click', (e) => {
-	let audioItem = e.target.closest('.audioitem')
-
-	if (!audioItem) return
-
-	let audio = audioItem.querySelector('.audio')
-	let audioPlaceholder = audioItem.querySelector('.placeholder')
-	let audioCaption = audioItem.querySelector('.caption')
-	let audioBlur = document.querySelector('.blur')
-
-	let audioOpen = audio.classList.toggle('audioopen')
-	audioPlaceholder.classList.toggle('placeholder-active', audioOpen)
-	audioCaption.classList.toggle('caption-active', audioOpen)
-	if (audioBlur) audioBlur.classList.toggle('bluractive', audioOpen)
-})
 
 // // About the project modal adapted from course site
 let modalButton = document.querySelector('#modal')

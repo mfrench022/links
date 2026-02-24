@@ -33,9 +33,6 @@ body {
 	overflow-x: hidden;
 }
 
-/* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
-/* I tried using the not selector, but after troubleshooting wtih chatGPT I realized the has selector would be an easier setup */
-
 body::after {
 	content: "";
 	position: fixed;
@@ -670,6 +667,8 @@ header {
 	box-shadow: inset 0 0 0.3rem #0808089c;
 }
 
+/* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
+/* I tried using the not selector, but after troubleshooting wtih chatGPT I realized the has selector would be an easier setup */
 /* Here we activate the blur pseudo element each time one of the elements is hovered over */
 body:has(.polaroid:hover)::after,
 body:has(.text:hover)::after,
@@ -728,3 +727,4 @@ h1 {
 }
 
 }
+
