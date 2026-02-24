@@ -264,6 +264,10 @@ img, picture {
 	object-position: top center; 
 }
 
+.polaroid.withvideo img {
+	scale: 134%;
+}
+
 .text, .caption {
 	color: black;
 	inline-size: calc(100% - (2 * var(--padding)));
@@ -453,7 +457,7 @@ h1 {
 
 .document-shadow{
 	filter: drop-shadow(var(--dropshadow));
-	display: inline-block;
+	display: block;
 	transition: var(--transition);
 }
 
@@ -635,10 +639,6 @@ header .palette2 { background:#FC7F5F; }
 header .palette3 { background:#F2C478; }
 header .palette4 { background:#87C9AE; }
 header .palette5 { background:#70838F; }
-
-.item {
-	/* background-color: red; */
-}
 
 @media (width > 1200px) {
 	#dialog .text {
