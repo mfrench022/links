@@ -163,7 +163,9 @@ span {
 	/* background-color: red; */
 }
 
-.audioopen p {
+/* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
+/* I use this technique again throughout the project */
+figure.item.open > .audio p {
 	top: 12%;
 	font-size: 1.2rem;
 	line-height: 1.6rem;
@@ -224,6 +226,7 @@ overflow: hidden;
 }
 
 /* Per Michael's instruction, I am using a symbol within an SVG to reference the SVG in Javascript. This CSS hides the original copy of the SVG that is in my HTML */
+/* I use this technique again throughout the project */
 svg:has(symbol) { display: none; }
 
 img, picture {
@@ -384,8 +387,8 @@ body:has(dialog[open]) #modal {
 	scale: 50%;
 }
 
-body:has(:is(.open, .documentopen, .textopen, .audioopen)) #modal,
-body:has(:is(.open, .documentopen, .textopen, .audioopen)) #closebutton {
+body:has(figure.item.open) #modal,
+body:has(figure.item.open) #closebutton {
 	z-index: 0;
 }
 
@@ -535,7 +538,7 @@ header {
 	margin: 0;
 }
 
-.open, .documentopen, .textopen, .audioopen {
+figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
 	position: fixed;
 	inset-inline-start: 50%;
 	inset-block-start: calc(2 * var(--padding));
@@ -567,7 +570,7 @@ header {
 	mix-blend-mode: normal;
 }
 
-.documentopen {
+figure.item.open > .document-shadow {
 	box-shadow: none;
 	filter: drop-shadow(var(--dropshadow3));
 	width: min(calc(100% - (-2 * var(--padding))),
@@ -576,20 +579,20 @@ header {
 	aspect-ratio: 1;
 }
 
-.audioopen {
+figure.item.open > .audio {
 	box-shadow: none;
 	aspect-ratio: 1;
 	filter: drop-shadow(var(--dropshadow3));
 }
 
-.textopen {
+figure.item.open > .text {
 	position: fixed;
 	aspect-ratio: 1;
 	margin: 0;
 	width: calc(100% - (2 * var(--padding)));
 }
 
-.textopen p {
+figure.item.open > .text p {
 	font-size: 1.54rem;
 	line-height: 2rem;
 	transition: var(--transition);
@@ -620,7 +623,7 @@ header .palette5 { background:#70838F; }
 	aspect-ratio: 1;
 }
 
-.textopen {
+figure.item.open > .text {
 	inset-block-start: 50%;
 	transform: translate(-50%, -50%);
 	width: auto;
@@ -651,7 +654,7 @@ header .palette5 { background:#70838F; }
 
 @media (width > 650px) {
 
-.audioopen {
+figure.item.open > .audio {
 	inset-block-start: 10%;
 }
 
@@ -741,7 +744,10 @@ body:has(.audio:hover)::after {
 	transition: var(--transition);
 }
 
-.open.polaroid:hover, .textopen.text:hover, .documentopen.document-shadow:hover, .audioopen.audio:hover{
+figure.item.open > .polaroid:hover,
+figure.item.open > .text:hover,
+figure.item.open > .document-shadow:hover,
+figure.item.open > .audio:hover {
 	z-index: 15;
 }
 }
@@ -749,13 +755,13 @@ body:has(.audio:hover)::after {
 /* CSS for scroll-triggered “hover” when card passes through viewport */
 /* Using not selectors per Michael's suggestion to avoid targeting specific components */
 @media (width < 650px) {
-	.block1hover:not(.open):not(.textopen):not(.documentopen):not(.audioopen) {
+	figure.item:not(.open) .block1hover {
 		box-shadow: var(--dropshadow2);
 		z-index: 7;
 		transition: var(--transition);
 	}
 
-	.block2hover:not(.open):not(.textopen):not(.documentopen):not(.audioopen) {
+	figure.item:not(.open) .block2hover {
 		filter: drop-shadow(var(--dropshadow2));
 		z-index: 7;
 		transition: var(--transition);

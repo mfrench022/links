@@ -124,94 +124,42 @@ function withViewTransition(element, update, clearNamesAfter) {
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class
 
 // Revised function after talking to Michael, single click listener: only direct children of #content act as open/close toggles
+// Did some troubleshooting with ChatGPT to figure out the best way to accomplish this; learned new concepts below
 document.addEventListener('click', (e) => {
-	// Using > to select all direct children of #content
-	let toggle = e.target.closest('#content > .item, #content > .document-shadow, #content > .audioitem, #content > .textitem')
-	if (!toggle) return
+	// Here we are targeting the closest figure.item element to the clicked element
+	let figure = e.target.closest('#content > figure.item')
+	if (!figure) return
 
+	// Here we are targeting the elements within the figure.item element that we want to apply the view transition to
 	let blur = document.querySelector('.blur')
+	let target = figure.querySelector(':scope > :is(.polaroid, .document-shadow, .text, .audio)')
+	let placeholder = figure.querySelector(':scope > .placeholder')
+	let caption = figure.querySelector(':scope > .caption')
 
-	if (toggle.classList.contains('item')) {
-		let polaroid = toggle.querySelector('.polaroid')
-		let placeholder = toggle.querySelector('.placeholder')
-		let caption = toggle.querySelector('.caption')
-		if (placeholder?.classList.contains('placeholder-active')) {
-			placeholder.style.viewTransitionName = 'open-card-placeholder'
-			caption.style.viewTransitionName = 'open-card-caption'
-		}
-		withViewTransition(polaroid, () => {
-			let open = polaroid.classList.toggle('open')
-			placeholder.classList.toggle('placeholder-active', open)
-			caption.classList.toggle('caption-active', open)
-			if (blur) blur.classList.toggle('bluractive', open)
-		}, [placeholder, caption])
-		return
+	// Here we are checking if the target, placeholder, and caption elements exist
+	// The ! and || operators are used to check if the elements do not exist
+	// If any of the elements do not exist, the function returns
+	if (!target || !placeholder || !caption) return
+
+	// Here we are checking if the placeholder element has the class placeholder-active
+	if (placeholder.classList.contains('placeholder-active')) {
+		placeholder.style.viewTransitionName = 'open-card-placeholder'
+		caption.style.viewTransitionName = 'open-card-caption'
 	}
 
-	if (toggle.classList.contains('document-shadow')) {
-		let placeholder = nextNonBlank(toggle)
-		let caption = placeholder ? nextNonBlank(placeholder) : null
-		if (!placeholder.classList.contains('placeholder') || !caption?.classList.contains('caption')) return
-		if (placeholder.classList.contains('placeholder-active')) {
-			placeholder.style.viewTransitionName = 'open-card-placeholder'
-			caption.style.viewTransitionName = 'open-card-caption'
-		}
-		withViewTransition(toggle, () => {
-			let open = toggle.classList.toggle('documentopen')
-			placeholder.classList.toggle('placeholder-active', open)
-			caption.classList.toggle('caption-active', open)
-			if (blur) blur.classList.toggle('bluractive', open)
-		}, [placeholder, caption])
-		return
-	}
-
-	if (toggle.classList.contains('textitem')) {
-		let text = toggle.querySelector('.text')
-		let placeholder = toggle.querySelector('.placeholder')
-		let caption = toggle.querySelector('.caption')
-		if (placeholder.classList.contains('placeholder-active')) {
-			placeholder.style.viewTransitionName = 'open-card-placeholder'
-			caption.style.viewTransitionName = 'open-card-caption'
-		}
-		withViewTransition(text, () => {
-			let open = text.classList.toggle('textopen')
-			placeholder.classList.toggle('placeholder-active', open)
-			caption.classList.toggle('caption-active', open)
-			if (blur) blur.classList.toggle('bluractive', open)
-		}, [placeholder, caption])
-		return
-	}
-
-	if (toggle.classList.contains('audioitem')) {
-		let audio = toggle.querySelector('.audio')
-		let placeholder = toggle.querySelector('.placeholder')
-		let caption = toggle.querySelector('.caption')
-		if (placeholder.classList.contains('placeholder-active')) {
-			placeholder.style.viewTransitionName = 'open-card-placeholder'
-			caption.style.viewTransitionName = 'open-card-caption'
-		}
-		withViewTransition(audio, () => {
-			let open = audio.classList.toggle('audioopen')
-			placeholder.classList.toggle('placeholder-active', open)
-			caption.classList.toggle('caption-active', open)
-			if (blur) blur.classList.toggle('bluractive', open)
-		}, [placeholder, caption])
-	}
+	// Here we are applying the view transition to the target element
+	withViewTransition(target, () => {
+		let open = figure.classList.toggle('open')
+		placeholder.classList.toggle('placeholder-active', open)
+		caption.classList.toggle('caption-active', open)
+		blur.classList.toggle('bluractive', open)
+	},
+	
+	// Last we are clearing the view transition name for the placeholder and caption elements
+	[placeholder, caption])
 })
 
-// Ran into an issue where blank divs were blocking click interactions, specifically with document elements
-// Here I am writing a function to target the non-blank document elements
-function nextNonBlank(el) {
-	let next = el.nextElementSibling
-
-	// Using 'while' here for add make the function conditionally applied for elements with 'blank' siblings
-	while (next.classList.contains('blank')) next = next.nextElementSibling
-
-	// This expression evaluates the 'next' variable I set. If next is anything other than null or undefined, its value is returned
-	return next ?? null
-}
-
-// // About the project modal adapted from course site
+// About the project modal adapted from course site
 let modalButton = document.querySelector('#modal')
 let modalDialog = document.querySelector('#dialog')
 let closeModal = modalDialog.querySelector('#closebutton')
@@ -244,6 +192,7 @@ let renderBlock = (blockData) => {
 
 		let linkItem =
 			`
+			<figure class="item">
 			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
@@ -270,6 +219,7 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="${blockData.source.url}" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
+			</figure>
 			`
 
 		// And puts it into the page!
@@ -321,7 +271,7 @@ let renderBlock = (blockData) => {
 
 		let textItem = 
 		`
-		<figure class ="textitem">
+		<figure class ="item">
 		<div class="text block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 		<p>
 		${html}
@@ -405,6 +355,7 @@ let renderBlock = (blockData) => {
 		else if (contentType.includes('pdf')) {
 			let pdfItem =
 			`
+			<figure class = "item">
 			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
@@ -431,6 +382,7 @@ let renderBlock = (blockData) => {
 				</p>
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Read More</button></a>
 			</figcaption>
+			</figure>
 			`
 
 		// And puts it into the page!
@@ -442,7 +394,7 @@ let renderBlock = (blockData) => {
 			// …still up to you, but here’s an `audio` element:
 			let audioItem =
 				`
-			<figure class = "audioitem">
+			<figure class = "item">
 			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
@@ -530,7 +482,7 @@ let renderBlock = (blockData) => {
 		else if (embedType.includes('rich')) {
 			let linkedAudioItem = 
 					`
-			<figure class = "audioitem">
+			<figure class = "item">
 			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
