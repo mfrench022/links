@@ -94,14 +94,25 @@ function randomTranslation() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
 	}
 
-// ADD ATTRIBUTION
-// Run a DOM update with a smooth view transition when supported (open/close cards).
-function withViewTransition(element, update) {
+
+// I wanted to create a smooth view transition so it looks like the user is picking up the arena blocks
+// I had to ask ChatGPT to figure out the best way to accomplish this using minimal JS
+
+function withViewTransition(element, update, clearNamesAfter) {
+
+	// Here we are targeting open elements (with the open card tag)
 	if (element) element.style.viewTransitionName = 'open-card'
 	if (document.startViewTransition) {
-		const vt = document.startViewTransition(update)
-		if (element && vt.finished) vt.finished.then(() => { if (element) element.style.viewTransitionName = '' })
+		// Here we are starting the view transition and waiting for it to finish
+		let vt = document.startViewTransition(update)
+		vt.finished.then(() => {
+
+			// Clearing the view transition name when the transition is finished
+			if (element) element.style.viewTransitionName = ''
+			clearNamesAfter.forEach(el => { if (el) el.style.viewTransitionName = '' })
+		})
 	} else {
+		// Fall back to a plain update() when the API isn’t available
 		if (element) element.style.viewTransitionName = ''
 		update()
 	}
@@ -124,25 +135,33 @@ document.addEventListener('click', (e) => {
 		let polaroid = toggle.querySelector('.polaroid')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
+		if (placeholder?.classList.contains('placeholder-active')) {
+			placeholder.style.viewTransitionName = 'open-card-placeholder'
+			caption.style.viewTransitionName = 'open-card-caption'
+		}
 		withViewTransition(polaroid, () => {
 			let open = polaroid.classList.toggle('open')
 			placeholder.classList.toggle('placeholder-active', open)
 			caption.classList.toggle('caption-active', open)
 			if (blur) blur.classList.toggle('bluractive', open)
-		})
+		}, [placeholder, caption])
 		return
 	}
 
 	if (toggle.classList.contains('document-shadow')) {
 		let placeholder = nextNonBlank(toggle)
 		let caption = placeholder ? nextNonBlank(placeholder) : null
-		if (!placeholder?.classList.contains('placeholder') || !caption?.classList.contains('caption')) return
+		if (!placeholder.classList.contains('placeholder') || !caption?.classList.contains('caption')) return
+		if (placeholder.classList.contains('placeholder-active')) {
+			placeholder.style.viewTransitionName = 'open-card-placeholder'
+			caption.style.viewTransitionName = 'open-card-caption'
+		}
 		withViewTransition(toggle, () => {
 			let open = toggle.classList.toggle('documentopen')
 			placeholder.classList.toggle('placeholder-active', open)
 			caption.classList.toggle('caption-active', open)
 			if (blur) blur.classList.toggle('bluractive', open)
-		})
+		}, [placeholder, caption])
 		return
 	}
 
@@ -150,12 +169,16 @@ document.addEventListener('click', (e) => {
 		let text = toggle.querySelector('.text')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
+		if (placeholder.classList.contains('placeholder-active')) {
+			placeholder.style.viewTransitionName = 'open-card-placeholder'
+			caption.style.viewTransitionName = 'open-card-caption'
+		}
 		withViewTransition(text, () => {
 			let open = text.classList.toggle('textopen')
 			placeholder.classList.toggle('placeholder-active', open)
 			caption.classList.toggle('caption-active', open)
 			if (blur) blur.classList.toggle('bluractive', open)
-		})
+		}, [placeholder, caption])
 		return
 	}
 
@@ -163,12 +186,16 @@ document.addEventListener('click', (e) => {
 		let audio = toggle.querySelector('.audio')
 		let placeholder = toggle.querySelector('.placeholder')
 		let caption = toggle.querySelector('.caption')
+		if (placeholder.classList.contains('placeholder-active')) {
+			placeholder.style.viewTransitionName = 'open-card-placeholder'
+			caption.style.viewTransitionName = 'open-card-caption'
+		}
 		withViewTransition(audio, () => {
 			let open = audio.classList.toggle('audioopen')
 			placeholder.classList.toggle('placeholder-active', open)
 			caption.classList.toggle('caption-active', open)
 			if (blur) blur.classList.toggle('bluractive', open)
-		})
+		}, [placeholder, caption])
 	}
 })
 
@@ -226,8 +253,8 @@ let renderBlock = (blockData) => {
 						</picture>
 				</div>
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -265,8 +292,8 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -300,8 +327,8 @@ let renderBlock = (blockData) => {
 		${html}
 		</p>
 		</div>
-		<div class="placeholder"></div>
-		<figcaption class="caption">
+		<div class="placeholder container"></div>
+		<figcaption class="caption container">
 			<h2>
 				${ blockData.title
 					? blockData.title // If `blockData.title` exists, do this.
@@ -347,8 +374,8 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -387,8 +414,8 @@ let renderBlock = (blockData) => {
 						</picture>
 				</div>
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -425,8 +452,8 @@ let renderBlock = (blockData) => {
 				</p>
 				<img src="cd.png">
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -476,8 +503,8 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.
@@ -513,8 +540,8 @@ let renderBlock = (blockData) => {
 				</p>
 				<img src="cd.png">
 			</div>
-			<div class="placeholder"></div>
-			<figcaption class="caption">
+			<div class="placeholder container"></div>
+			<figcaption class="caption container">
 				<h2>
 					${ blockData.title
 						? blockData.title // If `blockData.title` exists, do this.

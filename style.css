@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 
@@ -111,6 +107,34 @@ span {
 
 .placeholder-active {
 	display: block;
+}
+
+/* Creating custom transitions to "fly in" captions from the right */
+.placeholder-active.container,
+.caption-active.container {
+	animation: flyInFromRight 300ms ease-in-out;
+}
+
+@keyframes flyInFromRight {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+.caption-active.container {
+	animation-name: flyInFromRightCaption;
+}
+
+@keyframes flyInFromRightCaption {
+	from {
+		transform: translateX(100%) rotate(0deg);
+	}
+	to {
+		transform: translateX(0) rotate(2deg);
+	}
 }
 
 .audio {
@@ -521,6 +545,8 @@ header {
 	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
 }
 
+
+/* Controlling animations associated with viewtransition JS */
 ::view-transition-group(open-card) {
 	animation-duration: 300ms;
 	animation-timing-function: ease-in-out;
