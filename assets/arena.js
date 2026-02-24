@@ -148,17 +148,22 @@ document.addEventListener('click', (e) => {
 		caption.style.viewTransitionName = 'open-card-caption'
 	}
 
-	// Here we are applying the view transition to the target element
+	// Here we are applying the view transition to the target element and toggling a class so that the background doesn't move when elements are open
+	// I also toggle a blur class so that the foreground stays sharp when elements are open
 	withViewTransition(target, () => {
 		let open = figure.classList.toggle('open')
 		placeholder.classList.toggle('placeholder-active', open)
 		caption.classList.toggle('caption-active', open)
 		blur.classList.toggle('bluractive', open)
-	},
+
+	// Toggling a class so that the background doesn't move when elements are open
+	// I did it this way because these elements were not set up as a true modal
+	document.body.classList.toggle('modal-open', document.querySelector('figure.item.open'))},
 	
 	// Last we are clearing the view transition name for the placeholder and caption elements
 	[placeholder, caption])
 })
+
 
 // About the project modal adapted from course site
 let modalButton = document.querySelector('#modal')

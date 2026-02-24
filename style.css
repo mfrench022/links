@@ -40,6 +40,12 @@ body::after {
 	transition: opacity var(--transition);
 }
 
+body.modal-open {
+	overflow: hidden;
+	height: 100vh;
+	touch-action: none;
+}
+
 .blur {
 	position: fixed;
 	inset: 0;
