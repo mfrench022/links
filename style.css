@@ -137,6 +137,32 @@ span {
 	}
 }
 
+/* Fly out to the right when modal is closed (view transition captures old state) */
+::view-transition-old(open-card-placeholder) {
+	animation: flyOutToRight 300ms ease-in-out forwards;
+}
+::view-transition-old(open-card-caption) {
+	animation: flyOutToRightCaption 300ms ease-in-out forwards;
+}
+
+@keyframes flyOutToRight {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes flyOutToRightCaption {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
 .audio {
 	width: auto;
 	height: auto;
@@ -609,6 +635,10 @@ header .palette2 { background:#FC7F5F; }
 header .palette3 { background:#F2C478; }
 header .palette4 { background:#87C9AE; }
 header .palette5 { background:#70838F; }
+
+.item {
+	/* background-color: red; */
+}
 
 @media (width > 1200px) {
 	#dialog .text {
