@@ -898,3 +898,13 @@ figure.item.open > .audio:hover {
 		opacity: 1;
 	}
 }
+
+/* Had an issue with mobile viewport appearing zoomed in on page load */
+/* I used ChatGPT to help me troubleshoot this issue, and found this override to fix the issue by clipping the overflow of the body to the horizontal axis: */
+html, body {
+	overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+	html, body { overflow-x: hidden; }
+}
