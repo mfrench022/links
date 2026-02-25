@@ -807,7 +807,6 @@ figure.item.open > .audio:hover {
 /* Using not selectors per Michael's suggestion to avoid targeting specific components */
 @media (width < 650px) {
 
-	/* Scroll-triggered “hover” styling */
 figure.item:not(.open) .block1hover {
 	box-shadow: var(--dropshadow2);
 	transition: var(--transition);
@@ -824,7 +823,13 @@ figure.item:not(.open):has(.block2hover) {
 	z-index: 7;
 }
 
-.text p {
+/* Adding same blur from earlier to the mobile version of the interaction */
+body:has(figure.item:not(.open) .block1hover)::after,
+body:has(figure.item:not(.open) .block2hover)::after {
+	opacity: 1;
+}
+
+	.text p {
 	font-size: 1.4rem;
 	line-height: 1.9rem;
 }
