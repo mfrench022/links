@@ -177,7 +177,6 @@ span {
 	container-name: audio;
 	width: auto;
 	height: auto;
-	min-width: 12rem;
 	aspect-ratio: 1;
 	position: relative;
 	z-index: 1;
