@@ -728,13 +728,6 @@ header .palette3 { background: var(--color3); }
 header .palette4 { background: var(--color4); }
 header .palette5 { background: var(--color5); }
 
-figure.item.open > .polaroid:hover,
-figure.item.open > .text:hover,
-figure.item.open > .document-shadow:hover,
-figure.item.open > .audio:hover {
-	z-index: 15;
-}
-
 @media (width > 1200px) {
 	#dialog .text {
 		max-inline-size: calc(100vh - (2 * var(--padding)));
@@ -824,6 +817,13 @@ figure.item.open > .audio:hover {
 	#dialog p {
 		line-height: 1.5rem;
 	}
+
+	figure.item.open > .polaroid:hover,
+	figure.item.open > .text:hover,
+	figure.item.open > .document-shadow:hover,
+	figure.item.open > .audio:hover {
+		z-index: 15;
+}
 
 	#modal:hover, .arrow:hover {
 		transition: var(--transition);
