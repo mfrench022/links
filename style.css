@@ -169,7 +169,12 @@ span {
 	}
 }
 
+
+/* Chat GPT pointed me towards CSS container queries: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries */
+/* Here I am establishing the container as the audio component */
 .audio {
+	container-type: inline-size;
+	container-name: audio;
 	width: auto;
 	height: auto;
 	min-width: 12rem;
@@ -191,18 +196,13 @@ span {
 	mix-blend-mode: multiply;
 	width: 65%;
 	opacity: 0.9;
-	/* background-color: red; */
-	font-size: 0.9rem;
-	top: 17%;
-	line-height: 1.2rem;
-}
+	background-color: red;
 
-/* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
-/* I use this technique again throughout the project */
-figure.item.open > .audio p {
+	/* Here I am using the container query to set the font size and top position of the text based on the container size */
+	/* CQI unit makes the text scale proportionally to the container size */
+	font-size: 4.5cqi;
 	top: 12%;
-	font-size: 1.2rem;
-	line-height: 1.6rem;
+	line-height: 1.25em;
 }
 
 .audio img {
@@ -576,6 +576,8 @@ header {
 	margin: 0;
 }
 
+/* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
+/* I use this technique again throughout the project */
 figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
 	position: fixed;
 	inset-inline-start: 50%;
@@ -814,17 +816,6 @@ figure.item.open > .audio:hover {
 		z-index: 7;
 		transition: var(--transition);
 	}
-
-	.audio p {
-	top: 13%;
-	font-size: 1.2rem;
-	line-height: 1.6rem;
-	}
-
-	figure.item.open > .text p {
-	font-size: 0.97rem;
-	line-height: 1.2rem;
-}
 }
 
 @media (width < 370px) {
