@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
 :root {
 	font-size: 100%;
@@ -12,12 +12,6 @@
 	--headerheight: 5rem;
 	--headerheight2: 9rem;
 	--navwidth: 16rem;
-
-	--color1: red;
-	--color2: orange;
-	--color3: yellow;
-	--color4: green;
-	--color5: blue;
 }
 
 body::before{
@@ -200,15 +194,16 @@ span {
 	transform:translateX(-50%);
 	text-align: center;
 	mix-blend-mode: multiply;
-	width: 65%;
-	opacity: 0.9;
+	width: 45%;
+	color: rgb(201, 199, 199);
 	/* background-color: red; */
 
 	/* Here I am using the container query to set the font size and top position of the text based on the container size */
 	/* CQI unit makes the text scale proportionally to the container size */
-	font-size: 4.5cqi;
+	font-size: 3.5cqi;
 	top: 12%;
 	line-height: 1.25em;
+	font-family: "Lexend Deca", sans-serif;
 }
 
 .audio img {

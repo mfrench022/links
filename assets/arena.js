@@ -59,7 +59,7 @@ function blankDivsHTML(min = 0, max = 2) {
 }
 
 /** Here I want to insert random blank divs after every child of #content except the last. */
-// I used ChatGPT to troubleshoot my function, which told me I needed to turn the children into a true array by using an elipse
+// I used ChatGPT to troubleshoot my function, which told me I needed to turn the children into a true array by using an ellipse
 
 // Same function setup as before
 function insertBlanks(min = 0, max = 2) {
@@ -543,12 +543,15 @@ fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
 	console.log(json) // See what we get back.
 
-	// Loop through the nested `.data` array (list).
-	json.data.forEach((blockData) => {
-		// console.log(blockData) // The data for a single block.
+	// I wanted to limit the number of blocks per page to 15, so I used the slice method to get the first 15 blocks
+	// I referenced materials from creative coding class last year: https://taliacotton.notion.site/Javascript-Cheat-Sheet-5007bb6769c44a47991abb03b7aff177
+	let selectedBlocks = json.data.slice(minSlice, maxSlice)
 
-		renderBlock(blockData) // Pass the single block’s data to the render function.
-	})
+	selectedBlocks.forEach((blockData) => {
+	renderBlock(blockData)
+})
+	
+	
 	insertBlanks(0, 2)
 	blockOneObserver()
 	blockTwoObserver()
