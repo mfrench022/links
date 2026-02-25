@@ -603,6 +603,26 @@ figure.item {
 	container-name: card;
 }
 
+/* Proportional padding/inset when card is narrow so .text and .polaroid match the look at 17rem (1rem ≈ 5.88% of 17rem) */
+@container card (max-width: 17rem) {
+	.text, .caption {
+		margin-inline: 5.88cqw;
+		margin-block-start: 11.76cqw;
+		padding: 5.88cqw;
+		inline-size: calc(100% - 11.76cqw);
+	}
+	.polaroid .polaroidimg,
+	.polaroid .polaroidcover {
+		inset-block-start: 2.94cqw;
+		inset-inline-start: 2.94cqw;
+		inline-size: calc(100% - 5.88cqw);
+	}
+
+	.template {
+		inset-block-end: 10cqw;
+	}
+}
+
 /* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
 /* I use this technique again throughout the project */
 figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
@@ -736,7 +756,7 @@ figure.item.open > .audio {
 }
 
 #content {
-	grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
 }
 
 #content .opengrid{
