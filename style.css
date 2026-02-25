@@ -1,3 +1,5 @@
+/* AI Disclosure: After writing this CSS file, I used Cursor to clean the code and identify opportunities to use variables and nesting */
+
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
@@ -9,41 +11,43 @@
 	--dropshadow2: 0.55rem 0.55rem 1.2rem #29292981;
 	--white: #F5F2ED;
 	--transition: 300ms ease-in-out;
+	--blur-soft: 0.08rem;
+	--blur-strong: 0.25rem;
 	--headerheight: 5rem;
 	--headerheight2: 9rem;
 	--navwidth: 16rem;
 }
 
-body::before{
-	content:"";
-	position: fixed;
-	inset: 0;
-	background-image: url("canvas.jpg");
-	background-size: cover;
-	background-position: center;
-	z-index: -1;
-	opacity: 80%;
-}
-
 body {
 	overflow-x: hidden;
-}
 
-body::after {
-	content: "";
-	position: fixed;
-	inset: 0;
-	backdrop-filter: blur(0.08rem);
-	pointer-events: none;
-	z-index: 5;
-	opacity: 0;
-	transition: opacity var(--transition);
-}
+	&::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		background-image: url("canvas.jpg");
+		background-size: cover;
+		background-position: center;
+		z-index: -1;
+		opacity: 80%;
+	}
 
-body.modal-open {
-	overflow: hidden;
-	height: 100vh;
-	touch-action: none;
+	&::after {
+		content: "";
+		position: fixed;
+		inset: 0;
+		backdrop-filter: blur(var(--blur-soft));
+		pointer-events: none;
+		z-index: 5;
+		opacity: 0;
+		transition: opacity var(--transition);
+	}
+
+	&.modal-open {
+		overflow: hidden;
+		height: 100vh;
+		touch-action: none;
+	}
 }
 
 .blur {
@@ -53,7 +57,7 @@ body.modal-open {
 	height: 100%;
 	background: rgba(255, 255, 255, 0);
 	z-index: 9;
-	backdrop-filter: blur(0.25rem);
+	backdrop-filter: blur(var(--blur-strong));
 	display: none;
 	transition: var(--transition);
 }
@@ -76,13 +80,13 @@ span {
 	mix-blend-mode: multiply;
 	opacity: 0.8;
 	display: none;
-}
 
-.linework svg {
-	position: absolute;
-	inline-size: 300%;
-	display: block;
-	inset-inline-end: 0;
+	svg {
+		position: absolute;
+		inline-size: 300%;
+		display: block;
+		inset-inline-end: 0;
+	}
 }
 
 #content {
@@ -94,7 +98,7 @@ span {
 	column-gap: var(--padding);
 	row-gap: var(--padding);
 	padding-inline: var(--padding);
-	padding-block-start: calc(4 * var(--padding));
+	padding-block-start: calc(6 * var(--padding));
 	padding-block-end: calc(10 * var(--padding));
 }
 
@@ -119,7 +123,7 @@ span {
 /* Creating custom transitions to "fly in" captions from the right */
 .placeholder-active.container,
 .caption-active.container {
-	animation: flyInFromRight 300ms ease-in-out;
+	animation: flyInFromRight var(--transition);
 }
 
 @keyframes flyInFromRight {
@@ -146,10 +150,10 @@ span {
 
 /* Fly out to the right when modal is closed (view transition captures old state) */
 ::view-transition-old(open-card-placeholder) {
-	animation: flyOutToRight 300ms ease-in-out forwards;
+	animation: flyOutToRight var(--transition) forwards;
 }
 ::view-transition-old(open-card-caption) {
-	animation: flyOutToRightCaption 300ms ease-in-out forwards;
+	animation: flyOutToRightCaption var(--transition) forwards;
 }
 
 @keyframes flyOutToRight {
@@ -186,35 +190,35 @@ span {
 	border-radius: 100%;
 	transition: var(--transition);
 	/* background-color: pink; */
-}
 
-.audio p {
-	z-index: 2;
-	position: absolute;
-	left: 50%;
-	transform:translateX(-50%);
-	text-align: center;
-	mix-blend-mode: multiply;
-	width: 45%;
-	color: rgb(201, 199, 199);
-	/* background-color: red; */
+	p {
+		z-index: 2;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+		mix-blend-mode: multiply;
+		width: 45%;
+		color: rgb(201, 199, 199);
+		/* background-color: red; */
 
-	/* Here I am using the container query to set the font size and top position of the text based on the container size */
-	/* CQI unit makes the text scale proportionally to the container size */
-	font-size: 3.5cqi;
-	top: 12%;
-	line-height: 1.25em;
-	font-family: "Lexend Deca", sans-serif;
-}
+		/* Here I am using the container query to set the font size and top position of the text based on the container size */
+		/* CQI unit makes the text scale proportionally to the container size */
+		font-size: 3.5cqi;
+		top: 12%;
+		line-height: 1.25em;
+		font-family: "Lexend Deca", sans-serif;
+	}
 
-.audio img {
-	width: 95%;
-	object-fit: contain;
-	position: absolute;
-	left: 50%;
-	transform:translateX(-50%);
-	filter: drop-shadow(var(--dropshadow));
-	transition: var(--transition);
+	img {
+		width: 95%;
+		object-fit: contain;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		filter: drop-shadow(var(--dropshadow));
+		transition: var(--transition);
+	}
 }
 
 .polaroid {
@@ -223,29 +227,32 @@ span {
 	background-color: rgb(234, 234, 231);
 	transition: var(--transition);
 	overflow: hidden;
-}
 
-.polaroidimg {
-overflow: hidden;
-}
+	.polaroidimg {
+		overflow: hidden;
+	}
 
-.polaroidimg, .polaroidcover {
-	position: absolute;
-	inset-block-start: calc(var(--padding)/2);
-	inset-inline-start: calc(var(--padding)/2);
-	inline-size: calc(100% - var(--padding));
-	block-size: 80%;
-}
+	.polaroidimg, .polaroidcover {
+		position: absolute;
+		inset-block-start: calc(var(--padding) / 2);
+		inset-inline-start: calc(var(--padding) / 2);
+		inline-size: calc(100% - var(--padding));
+		block-size: 80%;
+	}
 
-.polaroidcover {
-	z-index: 1;
-	mix-blend-mode: lighten;
-	opacity: 40%;
-}
+	.polaroidcover {
+		z-index: 1;
+		mix-blend-mode: lighten;
+		opacity: 40%;
+	}
 
-.polaroid img,
-.polaroid picture{
-	position: absolute;
+	img, picture {
+		position: absolute;
+	}
+
+	&.withvideo img {
+		scale: 134%;
+	}
 }
 
 .template {
@@ -263,22 +270,20 @@ overflow: hidden;
 
 /* Per Michael's instruction, I am using a symbol within an SVG to reference the SVG in Javascript. This CSS hides the original copy of the SVG that is in my HTML */
 /* I use this technique again throughout the project */
-svg:has(symbol) { display: none; }
+svg:has(symbol) {
+	display: none;
+}
 
 img, picture {
 	inline-size: 100%;
 	block-size: 100%;
 	aspect-ratio: auto;
 	display: block;
-	object-position: top center; 
+	object-position: top center;
 }
 
 img {
 	object-fit: cover;
-}
-
-.polaroid.withvideo img {
-	scale: 134%;
 }
 
 .text, .caption {
@@ -293,7 +298,7 @@ img {
 }
 
 .text, .caption, .polaroid, .document-shadow, .audio {
-	transform: translateY(calc(-2* var(--translate))) rotate(var(--rotation)) translateX(var(--translate));
+	transform: translateY(calc(-2 * var(--translate))) rotate(var(--rotation)) translateX(var(--translate));
 }
 
 .text {
@@ -330,14 +335,14 @@ img {
 	transition: var(--transition);
 }
 
-.text::after, .document::after, .caption::after{
-	content:"";
-	position:absolute;
+.text::after, .document::after, .caption::after {
+	content: "";
+	position: absolute;
 	inset: 0;
 	background-image: url("paper-grain.jpg");
 	background-size: cover;
 	background-repeat: repeat;
-	pointer-events:none;
+	pointer-events: none;
 	mix-blend-mode: multiply;
 	opacity: 0.6;
 	filter: contrast(140%) brightness(105%);
@@ -358,9 +363,6 @@ p, h2, h1 {
 
 .buttonstyle {
 	text-align: center;
-}
-
-.buttonstyle {
 	background-color: rgba(255, 244, 176, 1);
 	padding-inline: var(--padding);
 	padding-block: calc(var(--padding) / 2);
@@ -384,29 +386,30 @@ p, h2, h1 {
 	max-height: 100%;
 	transition: var(--transition);
 	background: rgba(255, 255, 255, 0);
-	backdrop-filter: blur(0.25rem);
-}
+	backdrop-filter: blur(var(--blur-strong));
 
-#dialog p{
-	font-size: 0.9rem;
-	line-height: 1.2rem;
-}
+	p {
+		font-size: 0.9rem;
+		line-height: 1.2rem;
+		padding-block-start: var(--padding);
+	}
 
-#dialog .text {
-	max-width: calc(100vh - (8 * var(--padding)));
-	margin-block: 0;
-	margin-inline: 0;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	aspect-ratio: 1;
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	padding: var(--padding);
-	transition: var(--transition);
-	background: #fff5d9;
-	background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
+	.text {
+		max-width: calc(100vh - (8 * var(--padding)));
+		margin-block: 0;
+		margin-inline: 0;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		aspect-ratio: 1;
+		position: fixed;
+		display: flex;
+		flex-direction: column;
+		padding: var(--padding);
+		transition: var(--transition);
+		background: #fff5d9;
+		background: linear-gradient(0deg, rgb(203, 250, 255) 0%, rgb(181, 245, 255) 100%);
+	}
 }
 
 body:has(dialog[open]) {
@@ -423,7 +426,9 @@ body:has(dialog[open]) #modal {
 	line-height: 2.1rem;
 }
 
-#modal, #closebutton, #homebutton {
+#modal,
+#closebutton,
+#homebutton {
 	position: fixed;
 	inset-block-start: -0.1rem;
 	inset-inline-start: -0.1rem;
@@ -479,43 +484,39 @@ h1 {
 	padding-block: var(--padding);
 }
 
-#dialog p {
-	padding-block-start: var(--padding);
-}
-
 /* I wanted to use an svg file as a mask to make my PDF files look torn */
 /* I used a LLM to learn about the webkit mask-image property, and read more here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image */
 /* This works because the image is set to cover the entire svg, regardless of size, making it a responsive mask setup */
 
-.document-shadow{
+.document-shadow {
 	filter: drop-shadow(var(--dropshadow));
 	display: block;
 	transition: var(--transition);
-}
 
-.document{
-	-webkit-mask-image: url("torn-mask.svg");
-	-webkit-mask-size: cover;
-	-webkit-mask-repeat: no-repeat;
-	-webkit-mask-position: center;
-	mask-image: url("torn-mask.svg");
-	mask-size: cover;
-	mask-repeat: no-repeat;
-	mask-position: center;
-	position: relative;
-	background: white;
-	overflow: hidden;
-}
+	.document {
+		-webkit-mask-image: url("torn-mask.svg");
+		-webkit-mask-size: cover;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-image: url("torn-mask.svg");
+		mask-size: cover;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		position: relative;
+		background: white;
+		overflow: hidden;
 
-.document img, .document picture {
-	position: absolute;
-	inset: 0;
-	inline-size: 100%;
-	block-size: 100%;
-	object-fit: cover;
-	object-position: top center;
-	transform: scale(0.93);
-	transform-origin: bottom center;
+		img, picture {
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+			object-position: top center;
+			transform: scale(0.93);
+			transform-origin: bottom center;
+		}
+	}
 }
 
 header {
@@ -541,7 +542,7 @@ header {
 	padding-block-start: 0;
 }
 
-.flexcolors{
+.flexcolors {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -609,9 +610,6 @@ header {
 .navigation p {
 	margin: 0;
 }
-
-
-
 
 figure.item {
 	container-type: inline-size;
@@ -722,179 +720,169 @@ figure.item.open > .audio:hover {
 
 @media (width > 1200px) {
 	#dialog .text {
-	max-width: calc(100vh - (2 * var(--padding)));
-}
+		max-width: calc(100vh - (2 * var(--padding)));
+	}
 }
 
 @media (width > 1000px) {
+	.caption {
+		width: 27vw;
+		aspect-ratio: 1;
+	}
 
-.caption {
-	width: 27vw;
-	aspect-ratio: 1;
-}
+	figure.item.open > .text {
+		inset-block-start: 50%;
+		transform: translate(-50%, -50%);
+		max-width: 30rem;
+		transition: var(--transition);
+		font-size: 4.5cqi;
+	}
 
-figure.item.open > .text {
-	inset-block-start: 50%;
-	transform: translate(-50%, -50%);
-	max-width: 30rem;
-	transition: var(--transition);
-	font-size: 4.5cqi;
-}
-
-.linework svg {
-	inset-block-end: 85vh;
-	inline-size: 110%;
-}
-
+	.linework svg {
+		inset-block-end: 85vh;
+		inline-size: 110%;
+	}
 }
 
 @media (width > 860px) {
-
 	.blank {
-	display: block;
+		display: block;
 	}
 
 	:root {
-	font-size: 125%;
+		font-size: 125%;
 	}
 
 	.arrow {
-	scale: 55%;
-}
+		scale: 55%;
+	}
 }
 
 @media (width > 650px) {
+	figure.item.open > .audio {
+		inset-block-start: 10%;
+	}
 
-figure.item.open > .audio {
-	inset-block-start: 10%;
-}
+	#modal, #closebutton, #homebutton {
+		z-index: 0;
+	}
 
-#modal, #closebutton, #homebutton {
-	z-index: 0;
-}
+	#content {
+		grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	}
 
-#content{
-	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-}
+	h1 {
+		font-size: 3rem;
+		line-height: 3rem;
+	}
 
-h1 {
-	font-size: 3rem;
-	line-height: 3rem;
-}
+	header {
+		height: var(--headerheight);
+		flex-direction: row;
+		padding-block-start: 0;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-header {
-	height: var(--headerheight);
-	flex-direction: row;
-	padding-block-start: 0;
-	justify-content: space-between;
-	align-items: center;
-}
+	.flexcolors {
+		justify-content: right;
+		column-gap: var(--padding);
+		width: auto;
+		padding-inline-start: 0;
+	}
 
-.flexcolors{
-	justify-content: right;
-	column-gap: var(--padding);
-	width: auto;
-	padding-inline-start: 0;
-}
+	.navigation {
+		width: auto;
+		margin-inline-start: 0;
+		padding-inline-start: var(--padding);
+		transition: var(--transition);
+	}
 
-.navigation {
-	width: auto;
-	margin-inline-start: 0;
-	padding-inline-start: var(--padding);
-	margin-inline-start: 0;
-	transition: var(--transition);
-}
+	.opening .navigation {
+		padding-inline-start: 0;
+		margin-inline-start: var(--padding);
+		height: calc(var(--headerheight2) / 4);
+	}
 
-.opening .navigation {
-	padding-inline-start: 0;
-	margin-inline-start: var(--padding);
-	height: calc(var(--headerheight2) / 4);
-}
+	#dialog p {
+		line-height: 1.5rem;
+	}
 
-#dialog p {
-	line-height: 1.5rem;
-}
+	#modal:hover, .arrow:hover {
+		transition: var(--transition);
+		color: rgba(0, 0, 0, 0.4);
+	}
 
-#modal:hover, .arrow:hover {
-	transition: var(--transition);
-	color: rgba(0, 0, 0, 0.4);
-}
+	#closebutton:hover, #homebutton:hover {
+		transition: var(--transition);
+		color: rgba(0, 0, 0, 0.4);
+	}
 
-#closebutton:hover, #homebutton:hover {
-	transition: var(--transition);
-	color: rgba(0, 0, 0, 0.4);
-}
+	.buttonstyle:hover {
+		transition: var(--transition);
+		background-color: rgba(255, 255, 255, 0);
+		background: none;
+		box-shadow: inset 0 0 0.3rem #0808089c;
+	}
 
-.buttonstyle:hover {
-	transition: var(--transition);
-	background-color: rgba(255, 255, 255, 0);
-	background: none;
-	box-shadow: inset 0 0 0.3rem #0808089c;
-}
+	/* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
+	/* I tried using the not selector, but after troubleshooting wtih chatGPT I realized the has selector would be an easier setup */
+	/* Here we activate the blur pseudo element each time one of the elements is hovered over */
+	body:has(.polaroid:hover)::after,
+	body:has(.text:hover)::after,
+	body:has(.document-shadow:hover)::after,
+	body:has(.audio:hover)::after {
+		opacity: 1;
+	}
 
-/* I wanted to blur everything except the hovered card (polaroid / text / document-shadow) */
-/* I tried using the not selector, but after troubleshooting wtih chatGPT I realized the has selector would be an easier setup */
-/* Here we activate the blur pseudo element each time one of the elements is hovered over */
-body:has(.polaroid:hover)::after,
-body:has(.text:hover)::after,
-body:has(.document-shadow:hover)::after,
-body:has(.audio:hover)::after {
-	opacity: 1;
-}
+	.polaroid.withvideo:hover .template {
+		scale: 1.2;
+		transform: rotate(-4deg);
+		transition: var(--transition);
+	}
 
-.polaroid.withvideo:hover .template {
-	scale: 1.2;
-	transform: rotate(-4deg);
-	transition: var(--transition);
-}
+	.block1:hover {
+		box-shadow: var(--dropshadow2);
+	}
 
-.block1:hover {
-	box-shadow: var(--dropshadow2);
-}
+	.block2:hover {
+		filter: drop-shadow(var(--dropshadow2));
+	}
 
-.block2:hover {
-	filter: drop-shadow(var(--dropshadow2));
-}
+	.block1,
+	.block2 {
+		position: relative;
+	}
 
-.block1:hover, .block2:hover {
-	z-index: 7;
-	transition: var(--transition);
-}
-
-.block1,
-.block2{
-	position: relative;
-}
-
-.block1:hover,
-.block2:hover{
-	z-index: 7;
-}
+	.block1:hover,
+	.block2:hover {
+		z-index: 7;
+		transition: var(--transition);
+	}
 }
 
 /* CSS for scroll-triggered “hover” when card passes through viewport */
 /* Using not selectors per Michael's suggestion to avoid targeting specific components */
 @media (width < 650px) {
+	figure.item:not(.open) .block1hover {
+		box-shadow: var(--dropshadow2);
+		transition: var(--transition);
+	}
 
-figure.item:not(.open) .block1hover {
-	box-shadow: var(--dropshadow2);
-	transition: var(--transition);
-}
+	figure.item:not(.open) .block2hover {
+		filter: drop-shadow(var(--dropshadow2));
+		transition: var(--transition);
+	}
 
-figure.item:not(.open) .block2hover {
-	filter: drop-shadow(var(--dropshadow2));
-	transition: var(--transition);
-}
+	figure.item:not(.open):has(.block1hover),
+	figure.item:not(.open):has(.block2hover) {
+		position: relative;
+		z-index: 7;
+	}
 
-figure.item:not(.open):has(.block1hover),
-figure.item:not(.open):has(.block2hover) {
-	position: relative;
-	z-index: 7;
-}
-
-/* Adding same blur from earlier to the mobile version of the interaction */
-body:has(figure.item:not(.open) .block1hover)::after,
-body:has(figure.item:not(.open) .block2hover)::after {
-	opacity: 1;
-}
+	/* Adding same blur from earlier to the mobile version of the interaction */
+	body:has(figure.item:not(.open) .block1hover)::after,
+	body:has(figure.item:not(.open) .block2hover)::after {
+		opacity: 1;
+	}
 }
