@@ -420,7 +420,7 @@ body:has(dialog[open]) #modal {
 	line-height: 2.1rem;
 }
 
-#modal, #closebutton {
+#modal, #closebutton, #homebutton {
 	position: fixed;
 	inset-block-start: -0.1rem;
 	inset-inline-start: -0.1rem;
@@ -437,6 +437,13 @@ body:has(dialog[open]) #modal {
 	inset-block-start: calc(var(--padding) /2);
 	inset-inline-start: calc(var(--padding) /2);
 	scale: 50%;
+}
+
+#homebutton {
+	inset-inline-start: auto;
+	scale: 45%;
+	inset-block-start: -0.1rem;
+	inset-inline-end: -0.1rem;
 }
 
 body:has(figure.item.open) #modal,
@@ -759,7 +766,7 @@ figure.item.open > .audio {
 	inset-block-start: 10%;
 }
 
-#modal, #closebutton {
+#modal, #closebutton, #homebutton {
 	z-index: 0;
 }
 
@@ -810,7 +817,7 @@ header {
 	color: rgba(0, 0, 0, 0.4);
 }
 
-#closebutton:hover {
+#closebutton:hover, #homebutton:hover {
 	transition: var(--transition);
 	color: rgba(0, 0, 0, 0.4);
 }
