@@ -806,30 +806,26 @@ figure.item.open > .audio:hover {
 /* CSS for scroll-triggered “hover” when card passes through viewport */
 /* Using not selectors per Michael's suggestion to avoid targeting specific components */
 @media (width < 650px) {
-	figure.item:not(.open) .block1hover {
-		box-shadow: var(--dropshadow2);
-		z-index: 7;
-		transition: var(--transition);
-	}
 
-	figure.item:not(.open) .block2hover {
-		filter: drop-shadow(var(--dropshadow2));
-		z-index: 7;
-		transition: var(--transition);
-	}
-
-	.text p {
-		font-size: 1.4rem;
-		line-height: 1.9rem;
-	}
+	/* Scroll-triggered “hover” styling */
+figure.item:not(.open) .block1hover {
+	box-shadow: var(--dropshadow2);
+	transition: var(--transition);
 }
 
-@media (width < 370px) {
-	.swatch, .swatch2, .swatch3 {
-	height: 50%;
+figure.item:not(.open) .block2hover {
+	filter: drop-shadow(var(--dropshadow2));
+	transition: var(--transition);
 }
 
-h1 {
-	font-size: 1.6rem;
+figure.item:not(.open):has(.block1hover),
+figure.item:not(.open):has(.block2hover) {
+	position: relative;
+	z-index: 7;
+}
+
+.text p {
+	font-size: 1.4rem;
+	line-height: 1.9rem;
 }
 }
