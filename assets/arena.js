@@ -118,7 +118,6 @@ function withViewTransition(element, update, clearNamesAfter) {
 	}
 }
 
-
 // I wanted to be able to add a class to only one of my Arena block elements at a time
 // I tried following the structure demonstrated in class for adding and removing a css class, but my result didn't work
 // After troubleshooting with ChatGPT, I learned that I can use an event object (e) to help the event listener delegate what was clicked and where to apply the class

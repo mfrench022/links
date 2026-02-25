@@ -297,6 +297,13 @@ img, picture {
 	background: #fff5d9;
 	background: linear-gradient(0deg, rgb(252, 239, 204) 0%, rgba(255, 244, 176, 1) 100%);
 	aspect-ratio: 1;
+	container-type: inline-size;
+	container-name: audio;
+}
+
+.text p {
+	font-size: 4.5cqi;
+	line-height: 1.35em;
 }
 
 .caption {
@@ -634,8 +641,6 @@ figure.item.open > .text {
 }
 
 figure.item.open > .text p {
-	font-size: 1.54rem;
-	line-height: 2rem;
 	transition: var(--transition);
 }
 
@@ -650,6 +655,13 @@ header .palette2 { background: var(--color2); }
 header .palette3 { background: var(--color3); }
 header .palette4 { background: var(--color4); }
 header .palette5 { background: var(--color5); }
+
+figure.item.open > .polaroid:hover,
+figure.item.open > .text:hover,
+figure.item.open > .document-shadow:hover,
+figure.item.open > .audio:hover {
+	z-index: 15;
+}
 
 @media (width > 1200px) {
 	#dialog .text {
@@ -667,8 +679,9 @@ header .palette5 { background: var(--color5); }
 figure.item.open > .text {
 	inset-block-start: 50%;
 	transform: translate(-50%, -50%);
-	width: auto;
 	max-width: 30rem;
+	transition: var(--transition);
+	font-size: 4.5cqi;
 }
 
 .linework svg {
@@ -785,13 +798,6 @@ body:has(.audio:hover)::after {
 	transition: var(--transition);
 }
 
-figure.item.open > .polaroid:hover,
-figure.item.open > .text:hover,
-figure.item.open > .document-shadow:hover,
-figure.item.open > .audio:hover {
-	z-index: 15;
-}
-
 .block1,
 .block2{
 	position: relative;
@@ -827,10 +833,5 @@ figure.item:not(.open):has(.block2hover) {
 body:has(figure.item:not(.open) .block1hover)::after,
 body:has(figure.item:not(.open) .block2hover)::after {
 	opacity: 1;
-}
-
-	.text p {
-	font-size: 1.4rem;
-	line-height: 1.9rem;
 }
 }
