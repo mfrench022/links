@@ -12,6 +12,12 @@
 	--headerheight: 5rem;
 	--headerheight2: 9rem;
 	--navwidth: 16rem;
+
+	--color1: red;
+	--color2: orange;
+	--color3: yellow;
+	--color4: green;
+	--color5: blue;
 }
 
 body::before{
@@ -638,17 +644,17 @@ figure.item.open > .text p {
 	transition: var(--transition);
 }
 
-svg.palette1 { color:#2121DB; }
-svg.palette2 { color:#FC7F5F; }
-svg.palette3 { color:#F2C478; }
-svg.palette4 { color:#87C9AE; }
-svg.palette5 { color:#70838F; }
+svg.palette1 { color: var(--color1); }
+svg.palette2 { color: var(--color2); }
+svg.palette3 { color: var(--color3); }
+svg.palette4 { color: var(--color4); }
+svg.palette5 { color: var(--color5); }
 
-header .palette1 { background:#2121DB; }
-header .palette2 { background:#FC7F5F; }
-header .palette3 { background:#F2C478; }
-header .palette4 { background:#87C9AE; }
-header .palette5 { background:#70838F; }
+header .palette1 { background: var(--color1); }
+header .palette2 { background: var(--color2); }
+header .palette3 { background: var(--color3); }
+header .palette4 { background: var(--color4); }
+header .palette5 { background: var(--color5); }
 
 @media (width > 1200px) {
 	#dialog .text {
