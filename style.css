@@ -268,10 +268,13 @@ svg:has(symbol) { display: none; }
 img, picture {
 	inline-size: 100%;
 	block-size: 100%;
-	object-fit: cover;
 	aspect-ratio: auto;
 	display: block;
 	object-position: top center; 
+}
+
+img {
+	object-fit: cover;
 }
 
 .polaroid.withvideo img {
