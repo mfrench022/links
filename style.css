@@ -570,7 +570,7 @@ header {
 	/* background-color: red; */
 
 	& p {
-		width: 6rem;
+		inline-size: 6rem;
 		text-align: center;
 	}
 }
@@ -578,6 +578,10 @@ header {
 .opening .navigation {
 	block-size: 100%;
 	inset-block-start: 0;
+
+	& p {
+		inline-size: auto;
+	}
 }
 
 .arrow {
