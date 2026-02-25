@@ -1,0 +1,15 @@
+/* Proportional padding/inset when card is narrow so .text and .polaroid match the look at 17rem (1rem ≈ 5.88% of 17rem) */
+@container card (max-width: 17rem) {
+	.text, .caption {
+		margin-inline: 5.88cqw;
+		margin-block-start: 11.76cqw;
+		padding: 5.88cqw;
+		inline-size: calc(100% - 11.76cqw);
+	}
+	.polaroid .polaroidimg,
+	.polaroid .polaroidcover {
+		inset-block-start: 2.94cqw;
+		inset-inline-start: 2.94cqw;
+		inline-size: calc(100% - 5.88cqw);
+	}
+}

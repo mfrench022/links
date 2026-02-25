@@ -75,6 +75,7 @@ span {
 	pointer-events: none;
 	mix-blend-mode: multiply;
 	opacity: 0.8;
+	display: none;
 }
 
 .linework svg {
@@ -594,6 +595,14 @@ header {
 	margin: 0;
 }
 
+
+
+
+figure.item {
+	container-type: inline-size;
+	container-name: card;
+}
+
 /* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
 /* I use this technique again throughout the project */
 figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
@@ -727,7 +736,7 @@ figure.item.open > .audio {
 }
 
 #content {
-	grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
 }
 
 #content .opengrid{
