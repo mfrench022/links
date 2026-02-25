@@ -172,6 +172,7 @@ span {
 
 
 /* Chat GPT pointed me towards CSS container queries: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries */
+/* I use this technique throughout the project to control the size and position of the text and caption based on the container size, as well as polaroids */
 /* Here I am establishing the container as the audio component */
 .audio {
 	container-type: inline-size;
@@ -603,22 +604,25 @@ figure.item {
 	container-name: card;
 }
 
-/* Proportional padding/inset when card is narrow so .text and .polaroid match the look at 17rem (1rem ≈ 5.88% of 17rem) */
+/* Here I am using the container query to set the padding, margin, and inline-size of the text and caption based on the container size */
+/* I set the max-width to 17rem, which is the width of the card when the grid is not expanded */
 @container card (max-width: 17rem) {
-	.text, .caption {
+
+	figure.item:not(.open) .text,
+	figure.item:not(.open) .caption {
 		margin-inline: 5.88cqw;
 		margin-block-start: 11.76cqw;
 		padding: 5.88cqw;
 		inline-size: calc(100% - 11.76cqw);
 	}
-	.polaroid .polaroidimg,
-	.polaroid .polaroidcover {
+	figure.item:not(.open) .polaroid .polaroidimg,
+	figure.item:not(.open) .polaroid .polaroidcover {
 		inset-block-start: 2.94cqw;
 		inset-inline-start: 2.94cqw;
 		inline-size: calc(100% - 5.88cqw);
 	}
 
-	.template {
+	figure.item:not(.open) .template {
 		inset-block-end: 10cqw;
 	}
 }
