@@ -79,7 +79,6 @@ span {
 	pointer-events: none;
 	mix-blend-mode: multiply;
 	opacity: 0.8;
-	display: none;
 
 	svg {
 		position: absolute;
