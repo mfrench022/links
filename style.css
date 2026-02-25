@@ -907,7 +907,7 @@ header .palette5 { background: var(--color5); }
 @media (width < 500px) {
 	#dialog p {
 		line-height: 1rem;
-		font-size: 0.7rem;
+		font-size: 0.8rem;
 	}
 
 	#dialog h1 {
