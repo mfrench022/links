@@ -904,6 +904,17 @@ header .palette5 { background: var(--color5); }
 	}
 }
 
+@media (width < 500px) {
+	#dialog p {
+		line-height: 1rem;
+		font-size: 0.7rem;
+	}
+
+	#dialog h1 {
+		font-size: 1.8rem;
+	}
+}
+
 /* Had an issue with mobile viewport appearing zoomed in on page load */
 /* I used ChatGPT to help me troubleshoot this issue, and found this override to fix the issue by clipping the overflow of the body to the horizontal axis: */
 html, body {
