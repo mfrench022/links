@@ -383,6 +383,11 @@ p, h2, h1 {
 	backdrop-filter: blur(0.25rem);
 }
 
+#dialog p{
+	font-size: 0.9rem;
+	line-height: 1.2rem;
+}
+
 #dialog .text {
 	max-width: calc(100vh - (8 * var(--padding)));
 	margin-block: 0;
