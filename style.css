@@ -191,7 +191,7 @@ span {
 	mix-blend-mode: multiply;
 	width: 65%;
 	opacity: 0.9;
-	background-color: red;
+	/* background-color: red; */
 	font-size: 0.9rem;
 	top: 17%;
 	line-height: 1.2rem;
