@@ -7,6 +7,7 @@ The original Are.na channel was curated by Soko Mungunsukh, and it explores the 
 
 ### Lexend Font:
 Designed by Bonnie Shaver-Troup, Thomas Jockin, Santiago Orozco, Héctor Gómez, Superunion
+
 Copyright 2018 The Lexend Project Authors (https://github.com/googlefonts/lexend), with Reserved Font Name “RevReading Lexend”.
 This Font Software is licensed under the SIL Open Font License, Version 1.1 . This license is copied below, and is also available with a FAQ at: https://openfontlicense.org
 SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
