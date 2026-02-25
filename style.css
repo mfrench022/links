@@ -45,7 +45,7 @@ body {
 
 	&.modal-open {
 		overflow: hidden;
-		height: 100vh;
+		block-size: 100vh;
 		touch-action: none;
 	}
 }
@@ -53,8 +53,8 @@ body {
 .blur {
 	position: fixed;
 	inset: 0;
-	width: 100%;
-	height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
 	background: rgba(255, 255, 255, 0);
 	z-index: 9;
 	backdrop-filter: blur(var(--blur-strong));
@@ -180,8 +180,8 @@ span {
 .audio {
 	container-type: inline-size;
 	container-name: audio;
-	width: auto;
-	height: auto;
+	inline-size: auto;
+	block-size: auto;
 	aspect-ratio: 1;
 	position: relative;
 	z-index: 1;
@@ -193,27 +193,27 @@ span {
 	p {
 		z-index: 2;
 		position: absolute;
-		left: 50%;
+		inset-inline-start: 50%;
 		transform: translateX(-50%);
 		text-align: center;
 		mix-blend-mode: multiply;
-		width: 45%;
+		inline-size: 45%;
 		color: rgb(201, 199, 199);
 		/* background-color: red; */
 
 		/* Here I am using the container query to set the font size and top position of the text based on the container size */
 		/* CQI unit makes the text scale proportionally to the container size */
 		font-size: 3.5cqi;
-		top: 12%;
+		inset-block-start: 12%;
 		line-height: 1.25em;
 		font-family: "Lexend Deca", sans-serif;
 	}
 
 	img {
-		width: 95%;
+		inline-size: 95%;
 		object-fit: contain;
 		position: absolute;
-		left: 50%;
+		inset-inline-start: 50%;
 		transform: translateX(-50%);
 		filter: drop-shadow(var(--dropshadow));
 		transition: var(--transition);
@@ -321,8 +321,8 @@ img {
 	display: none;
 	z-index: 14;
 	inset-inline-end: 0;
-	height: auto;
-	width: calc(100% - (2 * var(--padding)));
+	block-size: auto;
+	inline-size: calc(100% - (2 * var(--padding)));
 	box-shadow: var(--dropshadow3);
 	padding-block-end: calc(var(--padding) * 5);
 	inset-block-end: calc(2 * var(--padding));
@@ -365,7 +365,7 @@ p, h2, h1 {
 	background-color: rgba(255, 244, 176, 1);
 	padding-inline: var(--padding);
 	padding-block: calc(var(--padding) / 2);
-	bottom: calc(1 * var(--padding));
+	inset-block-end: calc(1 * var(--padding));
 	position: absolute;
 	transition: var(--transition);
 	mix-blend-mode: normal;
@@ -373,16 +373,16 @@ p, h2, h1 {
 
 .navigation .buttonstyle {
 	position: static;
-	height: calc(var(--headerheight2) / 4);
+	block-size: calc(var(--headerheight2) / 4);
 }
 
 #dialog {
 	position: fixed;
 	inset: 0;
-	width: 100%;
-	height: 100%;
-	max-width: 100%;
-	max-height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
+	max-inline-size: 100%;
+	max-block-size: 100%;
 	transition: var(--transition);
 	background: rgba(255, 255, 255, 0);
 	backdrop-filter: blur(var(--blur-strong));
@@ -394,11 +394,11 @@ p, h2, h1 {
 	}
 
 	.text {
-		max-width: calc(100vh - (8 * var(--padding)));
+		max-inline-size: calc(100vh - (8 * var(--padding)));
 		margin-block: 0;
 		margin-inline: 0;
-		left: 50%;
-		top: 50%;
+		inset-inline-start: 50%;
+		inset-block-start: 50%;
 		transform: translate(-50%, -50%);
 		aspect-ratio: 1;
 		position: fixed;
@@ -459,8 +459,8 @@ body:has(figure.item.open) #closebutton {
 }
 
 .test {
-	width: 100%;
-	height: auto;
+	inline-size: 100%;
+	block-size: auto;
 	display: flex;
 	justify-content: start;
 	column-gap: var(--padding);
@@ -473,7 +473,7 @@ body:has(figure.item.open) #closebutton {
 }
 
 .test .buttonstyle {
-	bottom: 0;
+	inset-block-end: 0;
 	position: static;
 }
 
@@ -526,7 +526,7 @@ header {
 	z-index: 8;
 	/* mix-blend-mode: multiply; */
 	transition: var(--transition);
-	height: var(--headerheight2);
+	block-size: var(--headerheight2);
 	background-image: url("paper2.jpg");
 	background-size: cover;
 	background-position: center;
@@ -546,18 +546,18 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	column-gap: calc(var(--padding) / 2);
-	width: 100%;
+	inline-size: 100%;
 	padding-inline: var(--padding);
 	/* mix-blend-mode: multiply; */
-	height: 100%;
+	block-size: 100%;
 }
 
 .navigation {
 	display: flex;
 	align-items: center;
-	height: calc(var(--headerheight2) / 4);
+	block-size: calc(var(--headerheight2) / 4);
 	mix-blend-mode: normal;
-	width: 80%;
+	inline-size: 80%;
 	justify-content: center;
 	column-gap: calc(var(--padding) / 2);
 	margin-inline-start: 10%;
@@ -567,8 +567,8 @@ header {
 }
 
 .opening .navigation {
-	height: 100%;
-	top: 0;
+	block-size: 100%;
+	inset-block-start: 0;
 }
 
 .arrow {
@@ -589,7 +589,7 @@ header {
 	mask-size: cover;
 	mask-repeat: no-repeat;
 	mask-position: center;
-	height: 70%;
+	block-size: 70%;
 	aspect-ratio: 0.92;
 	background-color: rgb(200, 124, 124);
 	mix-blend-mode: multiply;
@@ -618,7 +618,7 @@ figure.item {
 /* Here I am using the container query to set the padding, margin, and inline-size of the text and caption based on the container size */
 /* I set the max-width to 17rem, which is the width of the card when the grid is not expanded */
 /* Using cqw units instead of cqi units, because I want to scale by width, not height */
-@container card (max-width: 17cqw) {
+@container card (max-inline-size: 17cqw) {
 	figure.item:not(.open) .text,
 	figure.item:not(.open) .caption {
 		margin-inline: 5.88cqw;
@@ -648,13 +648,13 @@ figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
 	aspect-ratio: 2.8 / 4;
 	z-index: 13;
 	box-shadow: var(--dropshadow3);
-	max-height: calc(100vh - (4 * var(--padding)));
-	height: auto;
+	max-block-size: calc(100vh - (4 * var(--padding)));
+	block-size: auto;
 
 /* I wanted to make sure the image would responsively resize for any viewport width or height while still maintaining the same aspect aspect-ratio */
 /* I found the min () CSS function on MDN, which allows me to compute the largest width that fits within the available viewport: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/min */
 /* First min() arg limits by viewport width (100%); second by viewport height (100vh) so aspect ratio 2.8/4 is kept at all sizes */
-	width: min(calc(100% - (4 * var(--padding))),
+	inline-size: min(calc(100% - (4 * var(--padding))),
 	calc((100vh - (4 * var(--padding))) * (2.8 / 4)));
 }
 
@@ -675,7 +675,7 @@ figure.item.open > :is(.polaroid, .document-shadow, .text, .audio) {
 figure.item.open > .document-shadow {
 	box-shadow: none;
 	filter: drop-shadow(var(--dropshadow3));
-	width: min(calc(100% - (-2 * var(--padding))),
+	inline-size: min(calc(100% - (-2 * var(--padding))),
 	calc((100vh - (-2 * var(--padding))) * (2.8 / 4)));
 	inset-block-start: calc(-0.8 * var(--padding));
 	aspect-ratio: 1;
@@ -691,7 +691,7 @@ figure.item.open > .text {
 	position: fixed;
 	aspect-ratio: 1;
 	margin: 0;
-	width: calc(100% - (2 * var(--padding)));
+	inline-size: calc(100% - (2 * var(--padding)));
 }
 
 figure.item.open > .text p {
@@ -719,20 +719,20 @@ figure.item.open > .audio:hover {
 
 @media (width > 1200px) {
 	#dialog .text {
-		max-width: calc(100vh - (2 * var(--padding)));
+		max-inline-size: calc(100vh - (2 * var(--padding)));
 	}
 }
 
 @media (width > 1000px) {
 	.caption {
-		width: 27vw;
+		inline-size: 27vw;
 		aspect-ratio: 1;
 	}
 
 	figure.item.open > .text {
 		inset-block-start: 50%;
 		transform: translate(-50%, -50%);
-		max-width: 30rem;
+		max-inline-size: 30rem;
 		transition: var(--transition);
 		font-size: 4.5cqi;
 	}
@@ -776,7 +776,7 @@ figure.item.open > .audio:hover {
 	}
 
 	header {
-		height: var(--headerheight);
+		block-size: var(--headerheight);
 		flex-direction: row;
 		padding-block-start: 0;
 		justify-content: space-between;
@@ -786,12 +786,12 @@ figure.item.open > .audio:hover {
 	.flexcolors {
 		justify-content: right;
 		column-gap: var(--padding);
-		width: auto;
+		inline-size: auto;
 		padding-inline-start: 0;
 	}
 
 	.navigation {
-		width: auto;
+		inline-size: auto;
 		margin-inline-start: 0;
 		padding-inline-start: var(--padding);
 		transition: var(--transition);
@@ -800,7 +800,7 @@ figure.item.open > .audio:hover {
 	.opening .navigation {
 		padding-inline-start: 0;
 		margin-inline-start: var(--padding);
-		height: calc(var(--headerheight2) / 4);
+		block-size: calc(var(--headerheight2) / 4);
 	}
 
 	#dialog p {
