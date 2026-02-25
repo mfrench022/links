@@ -9,7 +9,7 @@ function blockOneObserver() {
 	let blocks = document.querySelectorAll('.block1') // Gets all of the elements with class .block1
 
 	// This ensures that the observer takes place once the blocks are loaded
-	if (!blocks.length) return 
+	if (!blocks.length) return
 
 	// Same setup as class website example, using for loop to go through all elements and add the class to those that intersect with the specified portion of the viewport
 	let observerOne = new IntersectionObserver(
@@ -83,16 +83,16 @@ function insertBlanks(min = 0, max = 2) {
 // Set up function to return a number within a min/max range (using a random floating point)
 function randFloat(min, max) {
 	return Math.random() * (max - min) + min
-	}
+}
 
 // Limit function output to random numbers between -3 and 3 degrees, rounded to the nearest 0.1
 function randomRotationDeg() {
 	return Math.round(randFloat(-5, 5) * 10) / 10
-	}
-	
+}
+
 function randomTranslation() {
 	return Math.round(randFloat(-3, 3) * 10) / 10
-	}
+}
 
 
 // I wanted to create a smooth view transition so it looks like the user is picking up the arena blocks
@@ -155,13 +155,10 @@ document.addEventListener('click', (e) => {
 		placeholder.classList.toggle('placeholder-active', open)
 		caption.classList.toggle('caption-active', open)
 		blur.classList.toggle('bluractive', open)
-
-	// Toggling a class so that the background doesn't move when elements are open
-	// I did it this way because these elements were not set up as a true modal
-	document.body.classList.toggle('modal-open', document.querySelector('figure.item.open'))},
-	
-	// Last we are clearing the view transition name for the placeholder and caption elements
-	[placeholder, caption])
+		// Toggling a class so that the background doesn't move when elements are open
+		// I did it this way because these elements were not set up as a true modal
+		document.body.classList.toggle('modal-open', document.querySelector('figure.item.open'))
+	}, [placeholder, caption])
 })
 
 
@@ -195,9 +192,7 @@ let renderBlock = (blockData) => {
 		// Declares a “template literal” of the dynamic HTML we want.
 
 		// Michael walked me through the style syntax to allow me to selectively apply the rotation class to different elements to randomly calculate their rotation
-
-		let linkItem =
-			`
+		let linkItem = `
 			<figure class="item">
 			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
@@ -237,8 +232,7 @@ let renderBlock = (blockData) => {
 
 	// Images!
 	else if (blockData.type == 'Image') {
-		let imageItem =
-		`
+		let imageItem = `
 			<figure class="item">
 			<div class="polaroid block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<img class="polaroidcover" src="polaroid.svg"></img>
@@ -266,18 +260,15 @@ let renderBlock = (blockData) => {
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">More Info</button></a>
 			</figcaption>
 			</figure>
-			`
-
-			channelBlocks.insertAdjacentHTML('beforeend', imageItem)
+		`
+		channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 	}
 
 	// Text!
 	else if (blockData.type === "Text") {
 		let html = blockData.content?.html ?? ""
-
-		let textItem = 
-		`
-		<figure class ="item">
+		let textItem = `
+		<figure class="item">
 		<div class="text block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 		<p>
 		${html}
@@ -302,9 +293,8 @@ let renderBlock = (blockData) => {
 		</figcaption>
 		</figure>
 		`
-
-	channelBlocks.insertAdjacentHTML("beforeend", textItem)
-}
+		channelBlocks.insertAdjacentHTML('beforeend', textItem)
+	}
 
 	// Uploaded (not linked) media…
 	else if (blockData.type == 'Attachment') {
@@ -313,9 +303,7 @@ let renderBlock = (blockData) => {
 		// Uploaded videos!
 		if (contentType.includes('video')) {
 			// …still up to you, but we’ll give you the `video` element:
-			let videoItem =
-
-		`
+			let videoItem = `
 			<figure class="item">
 			<div class="polaroid withvideo block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
@@ -352,16 +340,14 @@ let renderBlock = (blockData) => {
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 			// channelBlocks.insertAdjacentHTML('beforeend', videoItem)
-
 			// More on `video`, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
 		}
 
 		// Uploaded PDFs!
 		else if (contentType.includes('pdf')) {
-			let pdfItem =
-			`
-			<figure class = "item">
+			let pdfItem = `
+			<figure class="item">
 			<div class="document-shadow block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<div class="document">
 						<picture>
@@ -390,17 +376,15 @@ let renderBlock = (blockData) => {
 			</figcaption>
 			</figure>
 			`
-
-		// And puts it into the page!
-		channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
+			// And puts it into the page!
+			channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
 		}
 
 		// Uploaded audio!
 		else if (contentType.includes('audio')) {
 			// …still up to you, but here’s an `audio` element:
-			let audioItem =
-				`
-			<figure class = "item">
+			let audioItem = `
+			<figure class="item">
 			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
@@ -431,22 +415,19 @@ let renderBlock = (blockData) => {
 				`
 
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
-
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 		}
 	}
 
 	// Linked (embedded) media…
-					// Here I am using the SVG literal that I declared earlier
-
+	// Here I am using the SVG literal that I declared earlier
 	else if (blockData.type == 'Embed') {
 		let embedType = blockData.embed.type
 
 		// Linked video!
 		if (embedType.includes("video")) {
-			let linkedVideoItem = 
-			`
+			let linkedVideoItem = `
 				<figure class="item">
 			<div class="polaroid withvideo block1" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 
@@ -480,15 +461,13 @@ let renderBlock = (blockData) => {
 			</figcaption>
 			</figure>
 			`
-
-  channelBlocks.insertAdjacentHTML("beforeend", linkedVideoItem)
-}
+			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
+		}
 
 		// Linked audio!
 		else if (embedType.includes('rich')) {
-			let linkedAudioItem = 
-					`
-			<figure class = "item">
+			let linkedAudioItem = `
+			<figure class="item">
 			<div class="audio block2" style="--rotation: ${randomRotationDeg()}deg; --translate: ${randomTranslation()}rem;">
 				<p>
 					${ blockData.title
@@ -516,9 +495,8 @@ let renderBlock = (blockData) => {
 				<a href="https://www.are.na/block/${blockData.id }" target=_blank><button class="buttonstyle">Listen</button></a>
 			</figcaption>
 			</figure>
-				`
-
-				  channelBlocks.insertAdjacentHTML("beforeend", linkedAudioItem)
+			`
+			channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
 		}
 	}
 }
