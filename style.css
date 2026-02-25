@@ -327,6 +327,10 @@ img {
 	padding-block-end: calc(var(--padding) * 5);
 	inset-block-end: calc(2 * var(--padding));
 	transform: rotate(2deg);
+
+	& p {
+	hyphens: auto;
+	}
 }
 
 .caption-active {
@@ -564,6 +568,11 @@ header {
 	mix-blend-mode: multiply;
 	opacity: 0.9;
 	/* background-color: red; */
+
+	& p {
+		width: 6rem;
+		text-align: center;
+	}
 }
 
 .opening .navigation {

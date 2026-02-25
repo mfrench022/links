@@ -1,2 +1,2 @@
-let minSlice = 15
-let maxSlice = 29
+let minSlice = 12
+let maxSlice = 24
