@@ -527,6 +527,10 @@ header {
 	padding-block-start: var(--padding);
 }
 
+.opening {
+	padding-block-start: 0;
+}
+
 .flexcolors{
 	display: flex;
 	align-items: center;
@@ -549,7 +553,7 @@ header {
 	margin-inline-start: 10%;
 	mix-blend-mode: multiply;
 	opacity: 0.9;
-	background-color: red;
+	/* background-color: red; */
 }
 
 .opening .navigation {
@@ -606,8 +610,8 @@ figure.item {
 
 /* Here I am using the container query to set the padding, margin, and inline-size of the text and caption based on the container size */
 /* I set the max-width to 17rem, which is the width of the card when the grid is not expanded */
-@container card (max-width: 17rem) {
-
+/* Using cqw units instead of cqi units, because I want to scale by width, not height */
+@container card (max-width: 17cqw) {
 	figure.item:not(.open) .text,
 	figure.item:not(.open) .caption {
 		margin-inline: 5.88cqw;
@@ -797,7 +801,7 @@ header {
 
 .opening .navigation {
 	padding-inline-start: 0;
-	margin-inline-start: calc(2 * var(--padding));
+	margin-inline-start: var(--padding);
 	height: calc(var(--headerheight2) / 4);
 }
 
