@@ -427,6 +427,11 @@ body:has(dialog[open]) #modal {
 	font-size: 1.5rem;
 	margin-block-end: var(--padding);
 	line-height: 2.1rem;
+	
+	& p {
+	padding-inline-start: 0.08em;
+	overflow: visible;
+	}
 }
 
 #modal,
