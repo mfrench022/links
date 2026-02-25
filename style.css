@@ -244,7 +244,7 @@ overflow: hidden;
 
 .polaroid img,
 .polaroid picture{
-  position: absolute;
+	position: absolute;
 }
 
 .template {
@@ -548,6 +548,12 @@ header {
 	margin-inline-start: 10%;
 	mix-blend-mode: multiply;
 	opacity: 0.9;
+	background-color: red;
+}
+
+.opening .navigation {
+	height: 100%;
+	top: 0;
 }
 
 .arrow {
@@ -721,8 +727,11 @@ figure.item.open > .audio {
 	z-index: 0;
 }
 
-
 #content {
+	grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+}
+
+#content .opengrid{
 	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 }
 
@@ -751,6 +760,13 @@ header {
 	margin-inline-start: 0;
 	padding-inline-start: var(--padding);
 	margin-inline-start: 0;
+	transition: var(--transition);
+}
+
+.opening .navigation {
+	padding-inline-start: 0;
+	margin-inline-start: calc(2 * var(--padding));
+	height: calc(var(--headerheight2) / 4);
 }
 
 #dialog p {
