@@ -185,14 +185,16 @@ span {
 .audio p {
 	z-index: 2;
 	position: absolute;
-	top: 17%;
 	left: 50%;
 	transform:translateX(-50%);
 	text-align: center;
 	mix-blend-mode: multiply;
 	width: 65%;
 	opacity: 0.9;
-	/* background-color: red; */
+	background-color: red;
+	font-size: 0.9rem;
+	top: 17%;
+	line-height: 1.2rem;
 }
 
 /* I had to remind myself about the child combinator: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Child_combinator */
@@ -812,6 +814,17 @@ figure.item.open > .audio:hover {
 		z-index: 7;
 		transition: var(--transition);
 	}
+
+	.audio p {
+	top: 13%;
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+	}
+
+	figure.item.open > .text p {
+	font-size: 0.97rem;
+	line-height: 1.2rem;
+}
 }
 
 @media (width < 370px) {
