@@ -196,7 +196,7 @@ span {
 	mix-blend-mode: multiply;
 	width: 65%;
 	opacity: 0.9;
-	background-color: red;
+	/* background-color: red; */
 
 	/* Here I am using the container query to set the font size and top position of the text based on the container size */
 	/* CQI unit makes the text scale proportionally to the container size */
