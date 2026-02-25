@@ -1,7 +1,7 @@
 :root {
-	--color1: rgb(142, 0, 213);
-	--color2: rgb(78, 213, 0);
-	--color3: rgb(0, 25, 213);
-	--color4: rgb(213, 149, 0);
-	--color5: rgb(213, 0, 131);
+	--color1: rgb(140, 18, 32);    /* arterial red */
+	--color2: rgb(72, 9, 18);
+	--color3: rgb(201, 64, 38);
+	--color4: rgb(219, 141, 134);
+	--color5: rgb(244, 90, 72);
 }
