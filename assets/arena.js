@@ -525,23 +525,16 @@ let renderBlock = (blockData) => {
 
 
 
-// A function to display the owner/collaborator info:
+// Stubs so fetch callbacks don’t throw; replace with real logic if you use channel/user UI:
+let placeChannelInfo = (_json) => {}
+let renderUser = (_userData) => {}
+
+// A function to display the owner/collaborator info (commented-out example):
 // let renderUser = (userData) => {
 // 	let channelUsers = document.querySelector('#channel-users') // Container.
-
-// 	let userAddress =
-// 		`
-// 		<address>
-// 			<img src="${ userData.avatar }">
-// 			<h3>${ userData.name }</h3>
-// 			<p><a href="https://are.na/${ userData.slug }">Are.na profile ↗</a></p>
-// 		</address>
-// 		`
-
-// 	// channelUsers.insertAdjacentHTML('beforeend', userAddress)
+// 	let userAddress = `...`
+// 	channelUsers.insertAdjacentHTML('beforeend', userAddress)
 // }
-
-
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
 let fetchJson = (url, callback) => {
